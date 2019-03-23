@@ -1,1 +1,0 @@
- chatterbot.trainers import ListTrainer
