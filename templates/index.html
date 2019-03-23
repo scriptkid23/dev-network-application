@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Friend Chatbot</title>
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script src="main.js"></script>
+</head>
+<body>
+<div class="container">
+  <div class="Name"><h1>CODE BY HOANDO.</h1></div>
+	<div class="alert alert-primary user" role="alert">
+    User: {{user_input}}
+  </div>
+  <div class="alert alert-dark" role="alert">
+    Bot: {{bot_response}}
+  </div>
+	
+
+	<form  action="/process" method="POST">
+  <div class="form-group">
+    <label for="exampleInputEmail1">Question ?</label>
+    <input type="text" name="user_input" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Talk to my friend"><br>
+  <button type="submit" class="btn btn-primary btn-lg btn-block">Send</button>
+</form>
+<div class="blockquote"><p align="center">Mời bạn đặt câu hỏi tại phần talk to my friend</p></div>
+</div>
+</body>
+</html>
