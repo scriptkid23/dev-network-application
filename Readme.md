@@ -11,8 +11,14 @@ Nuchat is a chat application with many outstanding features
 
 
 ## Installation
+Angular [client]
 
-
+```bash
+npm install -g @angular/cli
+cd client 
+ng serve --open
+```
+Java Spring Boot [server]
 
 ```bash
 
@@ -26,9 +32,9 @@ Nuchat is a chat application with many outstanding features
 
 ## Contributing
 * [@Hoando](https://www.instagram.com/bugmaker_____/)
-* [@ThuThanhNguyen]()
-* [@MyPhuongBui]()
-* [@HaiNguyenTran]()
+* [@Thuthanhnguyen]()
+* [@Myphuongbui]()
+* [@Hainguyentran]()
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
