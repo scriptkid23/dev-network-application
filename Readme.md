@@ -12,20 +12,16 @@ Nuchat is a chat application with many outstanding features
 
 ## Installation
 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
+
 
 ```bash
-pip install foobar
+
 ```
 
 ## Usage
 
-```python 
-import foobar
+```java
 
-foobar.pluralize('word') # returns 'words'
-foobar.pluralize('goose') # returns 'geese'
-foobar.singularize('phenomena') # returns 'phenomenon'
 ```
 
 ## Contributing
