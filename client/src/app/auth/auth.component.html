@@ -1,0 +1,14 @@
+<div class="main-layout card-bg">
+    <ng-container
+    *ngIf="authType === 'signin'; then signin; else signup">
+    </ng-container>
+    
+    <ng-template #signup>
+        <app-signup></app-signup>
+    </ng-template>
+    <ng-template #signin>
+        <app-signin></app-signin>
+    </ng-template>
+
+</div>
+
