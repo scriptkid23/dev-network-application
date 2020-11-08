@@ -6,7 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./auth.component.css']
 })
 export class AuthComponent implements OnInit {
-  authType: String = '';
+  authType: string = '';
 
   constructor(
     private route: ActivatedRoute,
