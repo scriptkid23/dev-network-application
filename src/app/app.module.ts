@@ -7,12 +7,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AuthModule } from './auth/auth.module';
 import { LayoutComponent } from './layout/layout.component';
 import { LayoutModule } from './layout/layout.module';
-import { PerfectScrollbarModule, PerfectScrollbarConfigInterface,
-  PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 
-const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
-  wheelPropagation: true
-};
 
 @NgModule({
   declarations: [
@@ -24,13 +19,10 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     FontAwesomeModule,
     AuthModule,
     LayoutModule,
-    PerfectScrollbarModule,
+
   ],
   providers: [
-    {
-      provide: PERFECT_SCROLLBAR_CONFIG,
-      useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
-    }
+   
   ],
   bootstrap: [AppComponent]
 })

@@ -459,10 +459,10 @@ body{
 }
 
 /* scrollbar  */
-.scrollbar-container {
+/* .scrollbar-container {
     position: relative;
     height: 100%;
-  }
+  } */
   .btn.btn-outline-light {
     background: none;
     border-color: #e6e6e6;
