@@ -24,7 +24,8 @@
 
 
 </div>
-<perfect-scrollbar>
+
+<perfect-scrollbar  [config]="config" [scrollIndicators]="true" (psXReachEnd)="onScrollEvent($event)" (psYReachEnd)="onScrollEvent($event)" (psXReachStart)="onScrollEvent($event)" (psYReachStart)="onScrollEvent($event)">
     <div class="chat-body">
             <div class="messages">
 
