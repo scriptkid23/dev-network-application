@@ -469,13 +469,7 @@ body{
     border-width: 1px;
     color: #212529;
 }
-.btn {
-    font-size: 14px;
-    width: auto;
-    display: inline-flex;
-    padding: 9px 14px;
-    line-height: 14px;
-}
+
 .btn svg {
     width: 16px;
     height: 16px;
