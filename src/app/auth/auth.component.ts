@@ -20,5 +20,8 @@ export class AuthComponent implements OnInit {
       this.authType = data[data.length - 1].path;
     })
   }
+  setValue():void{
+    console.log("hello")
+  }
 
 }

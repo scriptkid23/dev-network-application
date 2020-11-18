@@ -5,7 +5,7 @@ import { AuthComponent } from './auth.component';
 import { NoAuthGuard } from './no-auth-guard.service';
 // import { SharedModule } from '../shared';
 import { AuthRoutingModule } from './auth-routing.module';
-
+import { FormsModule } from '@angular/forms';
 import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
 
@@ -13,7 +13,9 @@ import { SignupComponent } from './signup/signup.component';
   imports: [
     // SharedModule,
     AuthRoutingModule,
-    CommonModule 
+    CommonModule,
+    FormsModule,
+    
   ],
   declarations: [
     AuthComponent,
@@ -23,5 +25,6 @@ import { SignupComponent } from './signup/signup.component';
   providers: [
     NoAuthGuard
   ]
+  
 })
 export class AuthModule {}

@@ -3,10 +3,17 @@
         <div class="col-12 col-md-6 col-lg-5 col-xl-4">
             <h1 class="font-weight-bold">Sign in</h1>
             <p class="text-dark mb-3">We are Different, We Make You Different.</p>
+            <p>{{email}}</p>
             <form class="mb-3">
                 <div class="form-group">
                     <label for="email" class="sr-only">Email Address</label>
-                    <input type="email" class="form-control form-control-md" id="email" placeholder="Enter your email">
+                    <input 
+                    [ngModel]="email"
+                    (ngModelChange) = "modelChangeFn($event)"
+                    name="email"
+                    type="email" 
+                    class="form-control form-control-md" 
+                    id="email" placeholder="Enter your email">
                 </div>
                 <div class="form-group">
                     <label for="password" class="sr-only">Password</label>
