@@ -7,7 +7,7 @@
         <app-signup></app-signup>
     </ng-template>
     <ng-template #signin>
-        <app-signin></app-signin>
+        <app-signin (parentHandleSignIn) = "onChildButtonClick($event)"></app-signin>
     </ng-template>
 
 </div>

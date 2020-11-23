@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-signin',
@@ -7,18 +7,28 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class SigninComponent implements OnInit {
  
-  bar = 'World';
-  email:string = "world";
+  email:string = "";
+  password:string = "";
+
+  @Output() parentHandleSignIn =  new EventEmitter<any>();
+
+
+
   constructor() { }
 
   ngOnInit(): void {
    
   }
-  setValue():void {
-    console.log("Hello");
+  
+  signin():void {
+
   }
-  modelChangeFn(e):void{
-    console.log(e)
+  handleSignin():void {
+  
+    // console.log(this.email);
+    // console.log(this.password);
+    // this.parentHandleSignIn.emit("Funtion SignIn from child");
   }
+  
 
 }
