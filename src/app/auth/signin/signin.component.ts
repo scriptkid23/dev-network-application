@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-
+import { FormBuilder, Validators } from '@angular/forms';
+import {UserService} from '../../core';
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html',
@@ -7,17 +8,30 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class SigninComponent implements OnInit {
  
-  email:string = "";
-  password:string = "";
 
-  constructor() { }
+  constructor(
+    private fb:FormBuilder,
+    private userService:UserService
+  ) { }
 
   ngOnInit(): void {
    
   }
+  signInForm = this.fb.group({
+    email:['',Validators.email],
+    password:['',Validators.minLength(6)],
+  })
  
-  handleSignIn():void{
-    console.log(this.email,this.password);
-  }
+ onSubmitSignIn(): void {
+
+  const credentials = this.signInForm.value;
+  console.log(credentials)
+  this.userService.signin(credentials)
+  .subscribe(
+    
+    data => {console.log(data)},
+    error => console.log(error)
+  );
+ }  
 
 }

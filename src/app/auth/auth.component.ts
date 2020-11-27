@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-auth',
@@ -9,6 +10,7 @@ export class AuthComponent implements OnInit {
   authType: string = '';
 
   constructor(
+    private fb:FormBuilder,
     private route: ActivatedRoute,
     private router: Router) { 
     
@@ -19,9 +21,6 @@ export class AuthComponent implements OnInit {
       
       this.authType = data[data.length - 1].path;
     })
-  }
-  setValue():void{
-    console.log("hello")
   }
 
 }

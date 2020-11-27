@@ -1,4 +1,4 @@
 export const environment = {
-  production: true,
-  api_url: 'https://nucescore-server.herokuapp.com'
+  production: true,https://nucescore-server.herokuapp.com
+  api_url: ''
 };

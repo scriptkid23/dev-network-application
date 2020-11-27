@@ -7,6 +7,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AuthModule } from './auth/auth.module';
 import { LayoutComponent } from './layout/layout.component';
 import { LayoutModule } from './layout/layout.module';
+import { CoreModule } from './core';
+import { SharedModule } from './shared/shared.module';
 
 
 @NgModule({
@@ -19,6 +21,8 @@ import { LayoutModule } from './layout/layout.module';
     FontAwesomeModule,
     AuthModule,
     LayoutModule,
+    CoreModule,
+    SharedModule
 
   ],
   providers: [],

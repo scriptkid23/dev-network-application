@@ -56,19 +56,31 @@ export class UserService {
     this.isAuthenticatedSubject.next(false);
   }
 
-  attemptAuth(type, credentials): Observable<User> {
-    const route = (type === 'login') ? '/login' : '';
-    return this.apiService.post('/users' + route, {user: credentials})
-      .pipe(map(
-      data => {
-        this.setAuth(data.user);
-        return data;
-      }
-    ));
-  }
+  // attemptAuth(type, credentials): Observable<User> {
+  //   const route = (type === 'login') ? '/login' : '';
+  //   return this.apiService.post('/users' + route, {user: credentials})
+  //     .pipe(map(
+  //     data => {
+  //       this.setAuth(data.user);
+  //       return data;
+  //     }
+  //   ));
+  // }
 
+  signin(credentials): Observable<User>{
+    console.log(credentials)
+    return this.apiService.post('/api/auth/signin',credentials)
+    .pipe(map(res => {
+      console.log('pending')
+      this.setAuth(res)
+      return res
+    }));
+  }
   getCurrentUser(): User {
     return this.currentUserSubject.value;
+  }
+  signup(credentials):Observable<Object> {
+    return this.apiService.post('/api/auth/signup',credentials)
   }
 
   // Update the user on the server (email, pass, etc)
