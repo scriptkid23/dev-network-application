@@ -7,18 +7,17 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class SigninComponent implements OnInit {
  
-  bar = 'World';
-  email:string = "world";
+  email:string = "";
+  password:string = "";
+
   constructor() { }
 
   ngOnInit(): void {
    
   }
-  setValue():void {
-    console.log("Hello");
-  }
-  modelChangeFn(e):void{
-    console.log(e)
+ 
+  handleSignIn():void{
+    console.log(this.email,this.password);
   }
 
 }
