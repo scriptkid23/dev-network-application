@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import {UserService} from '../../core';
 @Component({
   selector: 'app-signin',
@@ -11,7 +12,8 @@ export class SigninComponent implements OnInit {
 
   constructor(
     private fb:FormBuilder,
-    private userService:UserService
+    private userService:UserService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -25,11 +27,14 @@ export class SigninComponent implements OnInit {
  onSubmitSignIn(): void {
 
   const credentials = this.signInForm.value;
-  console.log(credentials)
   this.userService.signin(credentials)
   .subscribe(
     
-    data => {console.log(data)},
+    data => {
+      if(data){
+        this.router.navigate([''])
+      }
+    },
     error => console.log(error)
   );
  }  

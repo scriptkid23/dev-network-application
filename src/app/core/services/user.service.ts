@@ -68,10 +68,8 @@ export class UserService {
   // }
 
   signin(credentials): Observable<User>{
-    console.log(credentials)
     return this.apiService.post('/api/auth/signin',credentials)
     .pipe(map(res => {
-      console.log('pending')
       this.setAuth(res)
       return res
     }));
