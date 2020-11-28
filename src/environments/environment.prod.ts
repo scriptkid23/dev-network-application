@@ -1,4 +1,4 @@
 export const environment = {
-  production: true,https://nucescore-server.herokuapp.com
-  api_url: ''
+  production: true,
+  api_url: 'https://capricorn-chat-serv.herokuapp.com'
 };

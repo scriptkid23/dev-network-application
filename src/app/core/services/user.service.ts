@@ -39,7 +39,7 @@ export class UserService {
   }
 
   signin(credentials): Observable<User>{
-    return this.apiService.post('/api/auth/signin',credentials)
+    return this.apiService.post('/api/v1/auth/signin',credentials)
     .pipe(map(res => {
       this.setAuth(res)
       return res
@@ -49,7 +49,7 @@ export class UserService {
     return this.currentUserSubject.value;
   }
   signup(credentials):Observable<Object> {
-    return this.apiService.post('/api/auth/signup',credentials)
+    return this.apiService.post('/api/v1/auth/signup',credentials)
   }
 
   update(user): Observable<User> {
