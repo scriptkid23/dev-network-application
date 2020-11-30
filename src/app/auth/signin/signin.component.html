@@ -23,7 +23,7 @@
                     id="password" placeholder="Enter your password">
                 </div>
                 <div class="form-group d-flex justify-content-end">
-                    <a class="font-size-sm" href="./reset-password.html">Reset password</a>
+                    <a [routerLink]="['/auth/signup']" class="font-size-sm">Reset password</a>
                 </div>
                 <button 
                     class="btn btn-primary btn-lg btn-block text-uppercase font-weight-semibold" 
@@ -32,7 +32,7 @@
 
                 </button>
             </form>
-            <p>Don't have an account? <a class="font-weight-semibold" href="./signup.html">Sign up</a>.</p>
+            <p>Don't have an account? <a [routerLink]="['/auth/signup']" class="font-weight-semibold">Sign up</a>.</p>
         </div>
     </div>
 </div>
