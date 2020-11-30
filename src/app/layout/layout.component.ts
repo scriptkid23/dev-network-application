@@ -11,15 +11,13 @@ import {WebSocketService} from '../core'
 })
 export class LayoutComponent implements OnInit {
 
-  messages: string[] = [];
-  destroyed$ = new Subject();
+  
   constructor(
     private webSocketService:WebSocketService
   ) { }
 
   ngOnInit(): void {
-    console.log("hello")
-    let chatSub$ = this.webSocketService.connect();
+    this.webSocketService.openWebSocket();
 
 
 
