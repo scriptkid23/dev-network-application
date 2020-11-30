@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  api_url: 'https://conduit.productionready.io/api'
+  api_url: 'https://capricorn-chat-serv.herokuapp.com'
 };
 
 /*

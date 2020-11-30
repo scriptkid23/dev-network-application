@@ -2,10 +2,9 @@ import { ModuleWithProviders, NgModule} from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthComponent } from './auth.component';
-import { NoAuthGuard } from './no-auth-guard.service';
 // import { SharedModule } from '../shared';
 import { AuthRoutingModule } from './auth-routing.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
 
@@ -15,6 +14,7 @@ import { SignupComponent } from './signup/signup.component';
     AuthRoutingModule,
     CommonModule,
     FormsModule,
+    ReactiveFormsModule
     
   ],
   declarations: [
@@ -23,7 +23,6 @@ import { SignupComponent } from './signup/signup.component';
     SignupComponent
   ],
   providers: [
-    NoAuthGuard
   ]
   
 })

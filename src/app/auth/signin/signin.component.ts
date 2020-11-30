@@ -1,5 +1,7 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-
+import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import {UserService} from '../../core';
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html',
@@ -7,28 +9,34 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class SigninComponent implements OnInit {
  
-  email:string = "";
-  password:string = "";
 
-  @Output() parentHandleSignIn =  new EventEmitter<any>();
-
-
-
-  constructor() { }
+  constructor(
+    private fb:FormBuilder,
+    private userService:UserService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
    
   }
-  
-  signin():void {
+  signInForm = this.fb.group({
+    email:['',Validators.email],
+    password:['',Validators.minLength(6)],
+  })
+ 
+ onSubmitSignIn(): void {
 
-  }
-  handleSignin():void {
-  
-    // console.log(this.email);
-    // console.log(this.password);
-    // this.parentHandleSignIn.emit("Funtion SignIn from child");
-  }
-  
+  const credentials = this.signInForm.value;
+  this.userService.signin(credentials)
+  .subscribe(
+    
+    data => {
+      if(data){
+        this.router.navigate([''])
+      }
+    },
+    error => console.log(error)
+  );
+ }  
 
 }
