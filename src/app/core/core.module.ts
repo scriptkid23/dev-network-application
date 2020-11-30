@@ -10,6 +10,7 @@ import {
   ProfilesService,
   UserService
 } from './services';
+import { WebSocketService } from './services/websocket.service';
 
 @NgModule({
   imports: [
@@ -21,7 +22,8 @@ import {
     AuthGuard,
     JwtService,
     ProfilesService,
-    UserService
+    UserService,
+    WebSocketService
   ],
   declarations: []
 })

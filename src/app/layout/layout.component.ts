@@ -1,5 +1,7 @@
 import { Component, OnInit,ViewChild } from '@angular/core';
-
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import {WebSocketService} from '../core'
 
 
 @Component({
@@ -8,11 +10,19 @@ import { Component, OnInit,ViewChild } from '@angular/core';
   styleUrls: ['./layout.component.css']
 })
 export class LayoutComponent implements OnInit {
-  
 
-  constructor() { }
+  messages: string[] = [];
+  destroyed$ = new Subject();
+  constructor(
+    private webSocketService:WebSocketService
+  ) { }
 
   ngOnInit(): void {
+    console.log("hello")
+    let chatSub$ = this.webSocketService.connect();
+
+
+
   }
   
 

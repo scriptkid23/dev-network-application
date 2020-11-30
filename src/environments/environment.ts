@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  api_url: 'https://capricorn-chat-serv.herokuapp.com'
+  api_url: 'http://localhost:8000',
+  socket_url:'ws://localhost:8000'
 };
 
 /*

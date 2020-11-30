@@ -3,3 +3,4 @@ export * from './auth-guard.service';
 export * from './jwt.service';
 export * from './profiles.service';
 export * from './user.service';
+export * from './websocket.service'

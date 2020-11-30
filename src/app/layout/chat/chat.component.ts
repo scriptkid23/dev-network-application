@@ -25,7 +25,7 @@ export class ChatComponent implements OnInit {
   
   }
   public onScrollEvent(event: any): void {
-    console.log(event);
+    // TODO
   }
   public scrollToBottom():void{
     this.scrollbar.directiveRef.scrollToBottom()
