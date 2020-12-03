@@ -1,11 +1,11 @@
 import React from 'react';
-import {Route, Switch, Redirect,BrowserRouter} from "react-router-dom";
+import {Route, Switch, Redirect,HashRouter} from "react-router-dom";
 import AuthenticatedGuard from '../guards/AuthenticatedGuard';
 import Auth from '../layouts/Auth';
 import Home from '../layouts/Home';
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Switch>
         <Route exact path={["/auth/:name","/auth/:name/:name_"]} component={Auth}/>
         <AuthenticatedGuard  
@@ -14,7 +14,7 @@ function App() {
           component={Home} />
         <Redirect from="/"  to="/home" />
       </Switch>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
