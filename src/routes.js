@@ -17,7 +17,7 @@ const Routers = [
         require : false,
     },
     {
-        path: "/auth/password-recovery",
+        path: "/auth/password/recovery",
         name: "Password Recovery",
         component: PasswordRecovery,
         require : false,
