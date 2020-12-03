@@ -1,15 +1,20 @@
 import React from 'react';
 import {Route, Switch, Redirect,BrowserRouter} from "react-router-dom";
+import AuthenticatedGuard from '../guards/AuthenticatedGuard';
 import Auth from '../layouts/Auth';
 import Home from '../layouts/Home';
+import NotFound from '../layouts/NotFound';
 
 function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/auth" render={props => <Auth {...props} />} />
-        <Route exact path="/" render={props => <Home {...props}/>} />
-        <Redirect from="/"  to="/" />
+        <Route exact path={["/auth/:name"]} component={Auth}/>
+        <AuthenticatedGuard  
+          exact  
+          path={["/home","/home/:name"]} 
+          component={Home} />
+        <Redirect from="/"  to="/home" />
       </Switch>
     </BrowserRouter>
   );

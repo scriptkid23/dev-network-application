@@ -1,34 +1,32 @@
 import {Signup,Signin,PasswordRecovery} from './pages/Auth/index';
 
-import Home from './pages/Home/Home';
+import{Home} from './pages/Home/index';
+
 const Routers = [
     // ======================= AUTH LAYOUT ====================== //
     {
-        path: "/signin",
+        path: "/auth/login",
         name: "Signin",
         component: Signin,
-        layout: "/auth",
         require : false,
     },
     {
-        path: "/signup",
+        path: "/auth/register",
         name: "Signup",
         component: Signup,
-        layout: "/auth",
         require : false,
     },
     {
-        path: "/password-recovery",
+        path: "/auth/password-recovery",
         name: "Password Recovery",
         component: PasswordRecovery,
-        layout: "/auth",
         require : false,
     },
     {
-        path: "/",
+        path: "/home",
         name: "Chat Room",
         component: Home,
-        layout: "/",
+        layout: "",
         require : true,
     },
   
