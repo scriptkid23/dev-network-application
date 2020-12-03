@@ -3,6 +3,8 @@ import { Redirect, Route } from 'react-router-dom';
 import CookieService from '../services/cookie.service'
 export default function AuthenticatedGuard(props) {
     const {isAuthenticated, Component, ...rest} = props;
+    console.log(isAuthenticated)
+    console.log(CookieService.get("token"))
     return (
        <Route
         {...rest}
