@@ -683,7 +683,8 @@ ul.list-inline.social-links .list-inline-item {
     box-shadow: none;
     border-color: #0a80ff !important;
 }
-.custom-control-label {
+.custom-control-label
+{
     line-height: 25px;
 }
 .custom-control-input:checked ~ .custom-control-label::before {
