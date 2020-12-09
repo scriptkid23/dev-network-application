@@ -1,24 +1,57 @@
 import {Route} from 'react-router-dom'
 import Axios from 'axios'
-import {EVIRONMENTS} from '../constants/paths'
+import {ENVIRONMENTS} from '../constants/paths'
 //setup evironments
-const baseUrl = !process.env.NODE_ENV || process.env.NODE_ENV === 'development' ? EVIRONMENTS.develop : EVIRONMENTS.production; 
+const baseUrl = !process.env.NODE_ENV || process.env.NODE_ENV === 'development' ? 
+                ENVIRONMENTS.DEVELOPMENT : 
+                ENVIRONMENTS.PRODUCTION; 
 
-function get(path,params){
+function get(path,params , token = null){
     return Axios({
         baseURL: baseUrl,
-        
-        
-
-    })
+        method: "GET",
+        url:path,
+        headers:{
+            Authorization :"Bearer "+token,
+        },
+        params:params
+    }).then(result => {return result})
+    .catch(error => {return error.response})
 }
-function post(path,body){
-
+function post(path,body,token = null){
+    return Axios({
+        baseURL:baseUrl,
+        method:"POST",
+        url:path,
+        headers:{
+            Authorization : "Bearer " + token
+        },
+        data: body
+    }).then(result => {return result})
+    .catch(error => {return error.response})
 }
-function put(path,body){
-
+function put(path,body,token){
+    return Axios({
+        baseURL:baseUrl,
+        method:"PUT",
+        url:path,
+        headers:{
+            Authorization : "Bearer " + token
+        },
+        data: body
+    }).then(result => {return result})
+    .catch(error => {return error.response})
 }
-function del(path){
+function del(path,token){
+    return Axios({
+        baseURL:baseUrl,
+        method:"DELETE",
+        url:path,
+        headers:{
+            Authorization : "Bearer " + token
+        },
+    }).then(result => {return result})
+    .catch(error => {return error.response})
 
 }
 function getRoutes(route){
@@ -35,4 +68,4 @@ function getRoutes(route){
 }
 
 
-export {getRoutes}
+export {getRoutes,get,post,put,del}
