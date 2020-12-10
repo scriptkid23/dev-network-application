@@ -1,6 +1,15 @@
 import React from 'react';
+import PerfectScrollbar from 'react-perfect-scrollbar'
 import {ThreeDot, Send} from '../../assets/index';
 export const Chat = () => {
+    var scrollEl  = React.useRef(null);
+
+    React.useEffect(() => {
+        if (scrollEl) {
+            scrollEl.scrollTop = scrollEl.scrollHeight;
+        }
+    });
+   
     return (
         <div className="chat">
         <div class="chat-header">
@@ -30,6 +39,111 @@ export const Chat = () => {
                 </ul>
             </div>
         </div>
+        <PerfectScrollbar ref={ref => scrollEl = ref}>
+            <div className="chat-body">
+                <div  className="messages">
+                    <div className="message-item outgoing-message">
+                        <div className="message-avatar">
+                            <figure className="avatar">
+                                <img src="http://storage-3t.herokuapp.com/uploads/avatar/008-unicorn.svg" alt="avatar"/>
+                            </figure>
+                            <div>
+                                <h5>Mirabelle Tow</h5>
+                                <div class="time">01:20 PM<i class="ti-double-check text-info"></i></div>
+                            </div>
+                        </div>
+                        <div class="message-content">
+                            <div>I\'m fine, how are you <span role="img" aria-label="xxx">😃</span></div>
+                        </div>
+                    </div>
+                    <div className="message-item">
+                        <div className="message-avatar">
+                            <figure className="avatar">
+                                <img src="http://storage-3t.herokuapp.com/uploads/avatar/008-unicorn.svg" alt="avatar"/>
+                            </figure>
+                            <div>
+                                <h5>Mirabelle Tow</h5>
+                                <div class="time">01:20 PM<i class="ti-double-check text-info"></i></div>
+                            </div>
+                        </div>
+                        <div class="message-content">
+                            <div>I\'m fine, how are you <span role="img" aria-label="xxx">😃</span></div>
+                        </div>
+                    </div>
+                    <div className="message-item">
+                        <div className="message-avatar">
+                            <figure className="avatar">
+                                <img src="http://storage-3t.herokuapp.com/uploads/avatar/008-unicorn.svg" alt="avatar"/>
+                            </figure>
+                            <div>
+                                <h5>Mirabelle Tow</h5>
+                                <div class="time">01:20 PM<i class="ti-double-check text-info"></i></div>
+                            </div>
+                        </div>
+                        <div class="message-content">
+                            <div>I\'m fine, how are you <span role="img" aria-label="xxx">😃</span></div>
+                        </div>
+                    </div>
+                    <div className="message-item">
+                        <div className="message-avatar">
+                            <figure className="avatar">
+                                <img src="http://storage-3t.herokuapp.com/uploads/avatar/008-unicorn.svg" alt="avatar"/>
+                            </figure>
+                            <div>
+                                <h5>Mirabelle Tow</h5>
+                                <div class="time">01:20 PM<i class="ti-double-check text-info"></i></div>
+                            </div>
+                        </div>
+                        <div class="message-content">
+                            <div>I\'m fine, how are you <span role="img" aria-label="xxx">😃</span></div>
+                        </div>
+                    </div>
+                    <div className="message-item">
+                        <div className="message-avatar">
+                            <figure className="avatar">
+                                <img src="http://storage-3t.herokuapp.com/uploads/avatar/008-unicorn.svg" alt="avatar"/>
+                            </figure>
+                            <div>
+                                <h5>Mirabelle Tow</h5>
+                                <div class="time">01:20 PM<i class="ti-double-check text-info"></i></div>
+                            </div>
+                        </div>
+                        <div class="message-content">
+                            <div>I\'m fine, how are you <span role="img" aria-label="xxx">😃</span></div>
+                        </div>
+                    </div>
+                    <div className="message-item">
+                        <div className="message-avatar">
+                            <figure className="avatar">
+                                <img src="http://storage-3t.herokuapp.com/uploads/avatar/008-unicorn.svg" alt="avatar"/>
+                            </figure>
+                            <div>
+                                <h5>Mirabelle Tow</h5>
+                                <div class="time">01:20 PM<i class="ti-double-check text-info"></i></div>
+                            </div>
+                        </div>
+                        <div class="message-content">
+                            <div>I\'m fine, how are you <span role="img" aria-label="xxx">😃</span></div>
+                        </div>
+                    </div>
+                    <div className="message-item outgoing-message">
+                        <div className="message-avatar">
+                            <figure className="avatar">
+                                <img src="http://storage-3t.herokuapp.com/uploads/avatar/008-unicorn.svg" alt="avatar"/>
+                            </figure>
+                            <div>
+                                <h5>Mirabelle Tow</h5>
+                                <div class="time">01:20 PM<i class="ti-double-check text-info"></i></div>
+                            </div>
+                        </div>
+                        <div class="message-content">
+                            <div>I\'m fine, how are you <span role="img" aria-label="xxx">😃</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </PerfectScrollbar>
+       
          <div class="chat-footer">
             <form>
                 <div>

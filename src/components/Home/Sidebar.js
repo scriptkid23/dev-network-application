@@ -1,7 +1,36 @@
 import React from 'react'
 import PerfectScrollbar from 'react-perfect-scrollbar'
-import {AddGroup, NewChat, ThreeDot} from '../../assets/index'
+import {AddGroup, NewChat} from '../../assets/index'
+import Data from './data.json';
 export function Sidebar() {
+    const [roomId,setRoomId] = React.useState("1");
+    const [show, setShow] = React.useState(false);
+    const setRoom = (id) => {
+        setRoomId(id)
+    }
+    const renderContactList = (data) => {
+        return data.contact.map((value,index) => {
+            return (
+                <li key={index} 
+                    className={`list-group-item ${value.room_id === roomId ? "open-chat" : ""}`}
+                    onClick={() => setRoom(value.room_id)}>
+                    <figure className="avatar avatar-state-success">
+                    <img src="http://storage-3t.herokuapp.com/uploads/avatar/002-unicorn.svg" className="rounded-circle" alt="avatar"/>
+                    </figure>
+                    <div class="users-list-body">
+                        <div>
+                            <h5 className="">{value.room_name}</h5>
+                            <p>{value.last_message}</p>
+                        </div>
+                        <div className="users-list-action">
+                            <small className="text-muted">{value.created_at}</small>
+                        </div>
+                    </div>
+                </li>
+            )
+        })
+        
+    }
     return (
         <div className="sidebar-group">
             <div className="sidebar active">
@@ -28,31 +57,7 @@ export function Sidebar() {
                 <div className="sidebar-body">
                         <PerfectScrollbar>
                             <ul className="list-group list-group-flush">
-                                <li className="list-group-item open-chat">
-                                    <figure className="avatar avatar-state-success">
-                                    <img src="http://storage-3t.herokuapp.com/uploads/avatar/002-unicorn.svg" className="rounded-circle" alt="avatar"/>
-                                    </figure>
-                                    <div class="users-list-body">
-                                        <div>
-                                            <h5 className="">Townsend Seary</h5>
-                                            <p>What's up, how are you?</p>
-                                        </div>
-                                        <div className="users-list-action">
-                                            <small className="text-muted">03:41 PM</small>
-                                            <div class="action-toggle">
-                                                <div class="dropdown">
-                                                    <span aria-haspopup="true" className="" aria-expanded="false">
-                                                    <ThreeDot/>
-                                                    </span>
-                                                    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
-                                                        <button type="button" tabindex="0" role="menuitem" className="dropdown-item">Profile</button>
-                                                        <button type="button" tabindex="0" role="menuitem" class="dropdown-item">Delete</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
+                                {renderContactList(Data)} 
                             </ul>
                         </PerfectScrollbar>
                 
