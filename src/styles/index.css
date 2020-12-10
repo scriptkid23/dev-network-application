@@ -690,6 +690,9 @@ ul.list-inline.social-links .list-inline-item {
     background-color: #0a80ff;
     border-color: #0a80ff;
 }
+.dropdown-item {
+    font-size:14px;
+}
 .sticky-top {
     position: sticky !important;
 }

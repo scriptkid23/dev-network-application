@@ -1,9 +1,10 @@
 import React from 'react';
 import PerfectScrollbar from 'react-perfect-scrollbar'
 import {ThreeDot, Send} from '../../assets/index';
+import {Dropdown, Button} from 'react-bootstrap'
 export const Chat = () => {
     const [scrollEl, setScrollEl] = React.useState();
-    
+
     React.useEffect(() => {
         if (scrollEl) {
             scrollEl.scrollTop = scrollEl.scrollHeight;
@@ -16,7 +17,24 @@ export const Chat = () => {
             }, 100)
         }
     });
+    const [dropdownOpen, setDropdownOpen] = React.useState(false);
 
+    const toggle = () => setDropdownOpen(prevState => !prevState);
+
+    const CustomToggle = React.forwardRef(({children,onClick},ref) => (
+        <span
+            ref={ref}
+            onClick = {(e) => {
+                e.preventDefault();
+                onClick(e);
+            }}
+        >
+            {children}
+        </span>
+    ))
+    const profileActions = () => {
+        //TODO:
+    }
     
     return (
         <div className="chat">
@@ -33,8 +51,8 @@ export const Chat = () => {
             <div class="chat-header-action">
                 <ul class="list-inline">
                     <li class="list-inline-item" data-toggle="tooltip" title="Video call">
-                        <div class="dropdown">
-                            <span data-toggle="dropdown" aria-expanded="false" aria-haspopup="true" class="">
+                        {/* <div class="dropdown show">
+                            <span data-toggle="dropdown" aria-expanded="true" aria-haspopup="true" class="">
                             <button class="btn btn-outline-light">
                                 <ThreeDot/>
                             </button>
@@ -42,7 +60,22 @@ export const Chat = () => {
                             <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
                                 <button type="button" tabindex="0" role="menuitem" class="dropdown-item">Profile</button>
                             </div>
-                        </div>
+                        </div> */}
+                        <Dropdown>
+                            <Dropdown.Toggle as={CustomToggle}>
+                                <Button variant="light">
+                                    <ThreeDot/>
+                                </Button>
+                            </Dropdown.Toggle>
+                            <Dropdown.Menu className="dropdown-menu-right">
+                                <Dropdown.Item onClick={profileActions}>Profile</Dropdown.Item>
+                                <Dropdown.Item>Add to archive</Dropdown.Item>
+                                <Dropdown.Item>Delete</Dropdown.Item>
+                                <Dropdown.Item divider/>
+                                <Dropdown.Item>Block</Dropdown.Item>
+                            </Dropdown.Menu>
+                        </Dropdown>
+                        
                     </li>
                 </ul>
             </div>
