@@ -2,14 +2,22 @@ import React from 'react';
 import PerfectScrollbar from 'react-perfect-scrollbar'
 import {ThreeDot, Send} from '../../assets/index';
 export const Chat = () => {
-    var scrollEl  = React.useRef(null);
-
+    const [scrollEl, setScrollEl] = React.useState();
+    
     React.useEffect(() => {
         if (scrollEl) {
             scrollEl.scrollTop = scrollEl.scrollHeight;
         }
+    }, [scrollEl]);
+    React.useEffect(() => {
+        if (scrollEl) {
+            setTimeout(() => {
+                scrollEl.scrollTop = scrollEl.scrollHeight;
+            }, 100)
+        }
     });
-   
+
+    
     return (
         <div className="chat">
         <div class="chat-header">
@@ -39,7 +47,7 @@ export const Chat = () => {
                 </ul>
             </div>
         </div>
-        <PerfectScrollbar ref={ref => scrollEl = ref}>
+        <PerfectScrollbar containerRef={ref => setScrollEl(ref)}>
             <div className="chat-body">
                 <div  className="messages">
                     <div className="message-item outgoing-message">
