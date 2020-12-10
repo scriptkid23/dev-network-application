@@ -1,5 +1,5 @@
 import React from 'react';
-import {ThreeDot} from '../../assets/index';
+import {ThreeDot, Send} from '../../assets/index';
 export const Chat = () => {
     return (
         <div className="chat">
@@ -38,7 +38,8 @@ export const Chat = () => {
                 </div>
                 <input placeholder="Write a message." type="text" class="form-control form-control" value=""/>
                 <div class="form-buttons">
-                <button class="btn btn-light">
+                <button class="btn btn-primary">
+                    <Send/>
                 </button>
                 </div>
             </form>
