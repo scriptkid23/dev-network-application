@@ -41,7 +41,7 @@ export const Chat = () => {
         <div class="chat-header">
             <div class="chat-header-user">
             <figure class="avatar avatar-state-success">
-                <img src="" alt="" />                
+                <img src="http://storage-3t.herokuapp.com/uploads/avatar/006-unicorn.svg" alt="avt-room" />                
             </figure>
             <div>
                 <h5>Townsend Seary</h5>
@@ -51,16 +51,6 @@ export const Chat = () => {
             <div class="chat-header-action">
                 <ul class="list-inline">
                     <li class="list-inline-item" data-toggle="tooltip" title="Video call">
-                        {/* <div class="dropdown show">
-                            <span data-toggle="dropdown" aria-expanded="true" aria-haspopup="true" class="">
-                            <button class="btn btn-outline-light">
-                                <ThreeDot/>
-                            </button>
-                            </span>
-                            <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
-                                <button type="button" tabindex="0" role="menuitem" class="dropdown-item">Profile</button>
-                            </div>
-                        </div> */}
                         <Dropdown>
                             <Dropdown.Toggle as={CustomToggle}>
                                 <Button variant="light">
