@@ -1,7 +1,31 @@
 import React from 'react';
 import PerfectScrollbar from 'react-perfect-scrollbar'
-import {ThreeDot, Send} from '../../assets/index';
-import {Dropdown, Button} from 'react-bootstrap'
+import {ThreeDot, Send,Emoji} from '../../assets/index';
+import {Dropdown, Button} from 'react-bootstrap';
+import { Picker } from 'emoji-mart'
+
+const CustomToggle = React.forwardRef(({children,onClick},ref) => (
+    <span
+        ref={ref}
+        onClick = {(e) => {
+            e.preventDefault();
+            onClick(e);
+        }}
+    >
+        {children}
+    </span>
+))
+const CustomMenu = React.forwardRef(({children,style,className},ref) =>{
+    return(
+        <div
+         ref={ref}
+         style={{backgroundColor:"#222"}}
+         className={className}
+        >
+            {children}
+        </div>
+    )
+})
 export const Chat = () => {
     const [scrollEl, setScrollEl] = React.useState();
 
@@ -17,17 +41,6 @@ export const Chat = () => {
             }, 100)
         }
     });
-    const CustomToggle = React.forwardRef(({children,onClick},ref) => (
-        <span
-            ref={ref}
-            onClick = {(e) => {
-                e.preventDefault();
-                onClick(e);
-            }}
-        >
-            {children}
-        </span>
-    ))
     const profileActions = () => {
         //TODO:
     }
@@ -173,8 +186,22 @@ export const Chat = () => {
        
          <div class="chat-footer">
             <form>
-                <div>
-                    <button title="Emoji" class="mr-3 btn btn-light"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg></button>
+                <div>         
+                    <Dropdown drop={"up"}>
+                        <Dropdown.Toggle as={CustomToggle}>
+                        <button title="Emoji" class="mr-3 btn btn-light">
+                            <Emoji/>
+                        </button>
+                        </Dropdown.Toggle>
+                        <Dropdown.Menu as={CustomMenu}
+                           
+                        >
+                                <Picker 
+                                set='apple' style={{border:"none"}}
+                                theme={"dark"}
+                                />
+                        </Dropdown.Menu>
+                    </Dropdown>
                     
                 </div>
                 <input placeholder="Write a message." type="text" class="form-control form-control" value=""/>
