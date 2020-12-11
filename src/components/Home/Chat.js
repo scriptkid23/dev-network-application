@@ -17,10 +17,6 @@ export const Chat = () => {
             }, 100)
         }
     });
-    const [dropdownOpen, setDropdownOpen] = React.useState(false);
-
-    const toggle = () => setDropdownOpen(prevState => !prevState);
-
     const CustomToggle = React.forwardRef(({children,onClick},ref) => (
         <span
             ref={ref}
@@ -50,7 +46,7 @@ export const Chat = () => {
             </div>
             <div class="chat-header-action">
                 <ul class="list-inline">
-                    <li class="list-inline-item" data-toggle="tooltip" title="Video call">
+                    <li class="list-inline-item">
                         <Dropdown>
                             <Dropdown.Toggle as={CustomToggle}>
                                 <Button variant="light">
@@ -61,7 +57,7 @@ export const Chat = () => {
                                 <Dropdown.Item onClick={profileActions}>Profile</Dropdown.Item>
                                 <Dropdown.Item>Add to archive</Dropdown.Item>
                                 <Dropdown.Item>Delete</Dropdown.Item>
-                                <Dropdown.Item divider/>
+                                <Dropdown.Divider/>
                                 <Dropdown.Item>Block</Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>

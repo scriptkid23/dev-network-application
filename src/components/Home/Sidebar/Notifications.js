@@ -2,31 +2,25 @@ import React from 'react'
 import PerfectScrollbar from 'react-perfect-scrollbar'
 import {AddGroup, NewChat} from '../../../assets/index'
 import Data from '../data.json';
-export function Friends() {
-    const renderFriendsList = (data) => {
-            // TODO: 
+export function Notifications() {
+    
+    const renderNotificationsList = (data) => {
+        // TODO:
         
     }
     return (
         <div className="sidebar-group">
             <div className="sidebar active">
                     <header>
-                        <span>Friends</span>
-                        <ul className="list-inline">
-                            <li className="list-inline-item">
-                                <button className="btn btn-outline-light" id="Tooltip-New-Chat">
-                                    <NewChat/>
-                                </button>
-                            </li>
-                        </ul>
+                        <span>Notification</span>
                     </header>  
                 <form>
-                    <input type="text" className="form-control" placeholder="Search friends"/>
+                    <input type="text" className="form-control" placeholder="Search notifications"/>
                 </form>
                 <div className="sidebar-body">
                         <PerfectScrollbar>
                             <ul className="list-group list-group-flush">
-                               {renderFriendsList()}
+                               {renderNotificationsList()}
                             </ul>
                         </PerfectScrollbar>
                 

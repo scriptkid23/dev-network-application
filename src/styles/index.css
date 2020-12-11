@@ -696,6 +696,9 @@ ul.list-inline.social-links .list-inline-item {
 .sticky-top {
     position: sticky !important;
 }
+.cursor-pointer {
+    cursor: pointer;
+}
 /* perfect scrollbar */
 /* .ps {
     overflow: hidden !important;

@@ -15,3 +15,8 @@ export const API = {
     UPDATE_PROFILE: "/api/v1/user/update"
     
 }
+export const COMPONENT = {
+    CHATS : "chats",
+    FRIENDS: "friends",
+    NOTIFICATIONS: "notifications",
+}

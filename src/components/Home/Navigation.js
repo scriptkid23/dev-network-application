@@ -3,7 +3,9 @@ import {Logo,Chats, Friends, Alert} from '../../assets/index';
 import {Dropdown} from 'react-bootstrap';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
-
+import {useSelector,useDispatch} from 'react-redux'
+import * as homeReducer from '../../redux/reducers/home.reducer';
+import {COMPONENT} from '../../constants/paths'
 const CustomizeOverlayTrigger = (props) => {
     return <OverlayTrigger
     placement="right"
@@ -14,19 +16,26 @@ const CustomizeOverlayTrigger = (props) => {
     }
     >{props.children}</OverlayTrigger>
 }
+const CustomToggle = React.forwardRef(({children,onClick},ref) => (
+    <span
+        ref={ref}
+        onClick = {(e) => {
+            e.preventDefault();
+            onClick(e);
+        }}
+    >
+        {children}
+    </span>
+))
+
 export function Navigation() {
-    const CustomToggle = React.forwardRef(({children,onClick},ref) => (
-        <span
-            ref={ref}
-            onClick = {(e) => {
-                e.preventDefault();
-                onClick(e);
-            }}
-        >
-            {children}
-        </span>
-    ))
-  
+    const dispatch = useDispatch();
+    const homeAction = {...homeReducer.actions.navigation}
+    const homeStore  = useSelector(state => state.home) 
+    
+    const setComponent = (component) => {
+            dispatch(homeAction.setComponent(component))
+    }
     return (
         <nav className="navigation">
             <div className="nav-group">
@@ -36,7 +45,12 @@ export function Navigation() {
                     </li>
                     <li>
                        <CustomizeOverlayTrigger title={"Chats"}>
-                            <a href="/#" className="sidebar active">
+                            <a
+                            className={`sidebar 
+                            ${homeStore.navigation === COMPONENT.CHATS ? "active" : null} 
+                            cursor-pointer`}
+                            onClick = {() => setComponent(COMPONENT.CHATS)}
+                            >
                                 <span className="badge badge-warning">&nbsp;</span>
                                 <Chats/>
                             </a>
@@ -44,7 +58,11 @@ export function Navigation() {
                     </li>
                     <li>
                         <CustomizeOverlayTrigger title={"Friends"}>
-                            <a href="/#" className="sidebar">
+                            <a className={`sidebar 
+                            ${homeStore.navigation === COMPONENT.FRIENDS ? "active" : null} 
+                            cursor-pointer`}
+                            onClick = {() => setComponent(COMPONENT.FRIENDS)}
+                            >
                                 <span className="badge badge-warning">&nbsp;</span>
                                 <Friends/>
                             </a>
@@ -52,7 +70,11 @@ export function Navigation() {
                     </li>
                     <li>
                         <CustomizeOverlayTrigger title={"Notifications"}>
-                            <a href="/#" className="sidebar">
+                            <a className={`sidebar 
+                            ${homeStore.navigation === COMPONENT.NOTIFICATIONS ? "active" : null} 
+                            cursor-pointer`}
+                            onClick = {() => setComponent(COMPONENT.NOTIFICATIONS)}
+                            >
                                 <span className="badge badge-success">&nbsp;</span>
                                 <Alert/>
                             </a>
