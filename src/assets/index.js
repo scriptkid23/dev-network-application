@@ -8,5 +8,6 @@ import {ReactComponent as Chats} from './chats.svg';
 import {ReactComponent as Friends} from './friends.svg'
 import {ReactComponent as Alert} from './alert.svg'
 import {ReactComponent as Emoji} from './emoji.svg'
+import {ReactComponent as Close} from './close.svg'
 export {AddGroup,NewChat,AddFriend,
-    ThreeDot, Send,Logo, Chats,Friends, Alert, Emoji}
+    ThreeDot, Send,Logo, Chats,Friends, Alert, Emoji, Close}

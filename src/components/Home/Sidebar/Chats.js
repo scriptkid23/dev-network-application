@@ -1,18 +1,30 @@
 import React from 'react'
 import PerfectScrollbar from 'react-perfect-scrollbar'
-import {AddGroup, NewChat} from '../../../assets/index'
+import {AddGroup} from '../../../assets/index'
 import Data from '../data.json';
+import {useSelector,useDispatch} from 'react-redux'
+import * as homeReducer from '../../../redux/reducers/home.reducer';
+import {useHistory} from 'react-router-dom'
 export function Chats() {
-    const [roomId,setRoomId] = React.useState("1");
-    const [show, setShow] = React.useState(false);
+    const history = useHistory();
+    const dispatch = useDispatch();
+    const homeAction = {...homeReducer.actions.sidebar}
+    const homeStore  = useSelector(state => state.home) 
+    const goToRoomId = (id) => {
+        history.push(`/home/${id}`)
+    }
     const setRoom = (id) => {
-        setRoomId(id)
+        dispatch(
+            homeAction.setChannel(id)
+        )
+       goToRoomId(id);
     }
     const renderLogMessageList = (data) => {
         return data.contact.map((value,index) => {
             return (
                 <li key={index} 
-                    className={`list-group-item ${value.room_id === roomId ? "open-chat" : ""}`}
+                    className={`list-group-item ${value.room_id === homeStore.room_id 
+                        ? "open-chat" : ""}`}
                     onClick={() => setRoom(value.room_id)}>
                     <figure className="avatar avatar-state-success">
                     <img src="http://storage-3t.herokuapp.com/uploads/avatar/002-unicorn.svg" className="rounded-circle" alt="avatar"/>

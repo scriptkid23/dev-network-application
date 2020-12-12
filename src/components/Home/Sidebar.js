@@ -5,7 +5,6 @@ import * as homeReducer from '../../redux/reducers/home.reducer';
 import {COMPONENT} from '../../constants/paths'
 export function Sidebar() {
     const homeStore  = useSelector(state => state.home) 
-    console.log(homeStore)
     const renderSidebarComponent = (key) => {
         switch (key) {
             case COMPONENT.CHATS:
