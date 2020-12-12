@@ -4,9 +4,10 @@ import {AddGroup} from '../../../assets/index'
 import Data from '../data.json';
 import {useSelector,useDispatch} from 'react-redux'
 import * as homeReducer from '../../../redux/reducers/home.reducer';
-import {useHistory} from 'react-router-dom'
+import {useHistory,useParams} from 'react-router-dom'
 export function Chats() {
     const history = useHistory();
+    const params = useParams();
     const dispatch = useDispatch();
     const homeAction = {...homeReducer.actions.sidebar}
     const homeStore  = useSelector(state => state.home) 
@@ -23,7 +24,7 @@ export function Chats() {
         return data.contact.map((value,index) => {
             return (
                 <li key={index} 
-                    className={`list-group-item ${value.room_id === homeStore.room_id 
+                    className={`list-group-item ${value.room_id === params.id
                         ? "open-chat" : ""}`}
                     onClick={() => setRoom(value.room_id)}>
                     <figure className="avatar avatar-state-success">

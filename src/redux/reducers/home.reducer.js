@@ -7,12 +7,17 @@ export const actions = createActions({
     },
     "SIDEBAR":{
         "SET_CHANNEL":[meta => meta, payload => payload],
+    },
+    "CHAT":{
+        "VIEW_PROFILE":[meta => meta, payload => payload],
+        "CLOSE_PROFILE": [meta => meta, payload => payload],
     }
 
 });
 const defaultState = {
    "navigation": COMPONENT.CHATS,
    "room_id": null,
+   "profile_visibly":false,
    
 }
 const reducers = handleActions({
@@ -28,7 +33,20 @@ const reducers = handleActions({
                 ...state,
                 room_id: actions.payload
             }
-        }
+        },
+        [actions.chat.viewProfile]:(state,actions) => {
+            return{
+                ...state,
+                profile_visibly:true,
+            }
+        },
+        [actions.chat.closeProfile]:(state,actions) => {
+            return{
+                ...state,
+                profile_visibly:false,
+            }
+        },
+
 
 },
     defaultState

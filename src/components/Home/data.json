@@ -75,28 +75,28 @@
     "message":[
         {
             "username":"Mirabelle",
-            "guid":"01",
+            "guid":1,
             "avatar":"http://storage-3t.herokuapp.com/uploads/avatar/008-unicorn.svg",
             "created_at":"03:41 PM",
             "message_content":"I'm fine, how are you"
         },
         {
             "username":"Mirabelle Tow",
-            "guid":"02",
+            "guid":2,
             "avatar":"http://storage-3t.herokuapp.com/uploads/avatar/006-unicorn.svg",
             "created_at":"03:41 PM",
             "message_content":"I'm fine, how are you"
         },
         {
             "username":"Mirabelle Tow",
-            "guid":"02",
+            "guid":2,
             "avatar":"http://storage-3t.herokuapp.com/uploads/avatar/006-unicorn.svg",
             "created_at":"03:41 PM",
             "message_content":"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,"
         },
         {
             "username":"Mirabelle",
-            "guid":"01",
+            "guid":1,
             "avatar":"http://storage-3t.herokuapp.com/uploads/avatar/008-unicorn.svg",
             "created_at":"03:41 PM",
             "message_content":"I'm fine, how are you"

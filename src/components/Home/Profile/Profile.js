@@ -1,15 +1,26 @@
 import React from 'react'
 import {Close} from '../../../assets/index'
 import PerfectScrollbar from 'react-perfect-scrollbar'
+import {useSelector,useDispatch} from 'react-redux'
+import * as homeReducer from '../../../redux/reducers/home.reducer';
 export default function Profile() {
+    const dispatch = useDispatch();
+    const homeAction = {...homeReducer.actions.chat}
+    const homeStore  = useSelector(state => state.home) 
+
+    const closeProfile = () => {
+        dispatch(homeAction.closeProfile())
+    }
+
     return (
         <div className="sidebar-group">
-            <div className="sidebar active">
+            <div className={`sidebar ${homeStore.profile_visibly && 'active'}`}>
                 <header>
                     <span>Profile</span>
                     <ul className="list-inline">
                         <li className="list-inline-item">
                             <a 
+                            onClick={() => closeProfile()}
                             className="btn btn-outline-light text-danger sidebar-close">
                                 <Close/>
                             </a>
