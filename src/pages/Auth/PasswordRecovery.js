@@ -5,11 +5,9 @@ export function PasswordRecovery() {
             <div className="row no-gutters text-center align-items-center justify-content-center min-vh-100">
                 <div className="col-12 col-md-6 col-lg-5 col-xl-4 ">
                     <h1 className="font-weight-semibold"> Forgot Password</h1>
-                    <p className="text-dark mb-3"> We Are Diffirent. We Make You Diffirent</p>
+                    <p className="text-dark mb-3">Enter your email address to reset password</p>
                     <form className="mb-3">
                         <div className="form-group">
-                            {/*<label className="sr-only">Email Address</label>*/}
-                            {/*<input className="form-control form-control-md" placeholder="Enter your email"/>*/}
                             <input
                                 formControlName="email"
                                 required
@@ -19,8 +17,12 @@ export function PasswordRecovery() {
                         </div>
                     </form>
                     <button
-                        class="btn btn-primary btn-lg btn-block text-uppercase font-weight-semibold"
-                    type="submit">Submit</button>
+                        class="btn btn-lg btn-block btn-primary  text-uppercase font-weight-semibold"
+                    type="submit">SEND RESET LINK </button>
+                    <div>
+                        <br></br>
+                    <p className="text-dark mb-3">Already have an account? <a className="font-weight-semibold" href="../">Sign in</a></p>
+                    </div>
                 </div>
 
             </div>
