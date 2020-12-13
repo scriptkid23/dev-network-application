@@ -7,9 +7,8 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path={["/auth/:name","/auth/:name/:name_"]} component={Auth}/>
+        <Route exact path={["/auth/:name","/auth/:uri1/:uri2"]} component={Auth}/>
         <AuthenticatedGuard  
-          exact  
           path={["/home","/home/:name"]} 
           component={Home} />
         <Redirect from="/"  to="/home" />
