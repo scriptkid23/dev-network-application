@@ -13,3 +13,5 @@ class AuthService{
         CookieService.remove("token");
     }
 }
+
+export default new AuthService();
