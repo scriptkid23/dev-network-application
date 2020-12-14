@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 export function PasswordRecovery() {
     return (
         <div className="container d-flex flex-column">
@@ -21,7 +22,9 @@ export function PasswordRecovery() {
                     type="submit">SEND RESET LINK </button>
                     <div>
                         <br></br>
-                    <p className="text-dark mb-3">Already have an account? <a className="font-weight-semibold" href="../">Sign in</a></p>
+                    <p className="text-dark mb-3">Already have an account?
+                    <Link to="/auth/login" className="font-weight-semibold">Sign in</Link>
+                    </p>
                     </div>
                 </div>
 
