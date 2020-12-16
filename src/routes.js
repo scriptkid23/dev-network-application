@@ -1,5 +1,4 @@
 import {Signup,Signin,PasswordRecovery} from './pages/Auth/index';
-
 import{Home} from './pages/Home/index';
 
 const Routers = [
@@ -24,14 +23,17 @@ const Routers = [
     },
     {
         path: "/home",
-        name: "Chat Room",
+        name: "Home",
         component: Home,
         layout: "",
         require : true,
     },
-  
-  
-
-    
+    {
+        path: "/home/:id",
+        name: "Home",
+        component: Home,
+        layout: "",
+        require : true,
+    },
 ]
 export default Routers;
