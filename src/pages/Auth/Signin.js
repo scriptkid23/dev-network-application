@@ -27,7 +27,7 @@ export function Signin() {
                     id="password" placeholder="Enter your password"/>
                 </div>
                 <div className="form-group d-flex justify-content-end">
-                    <a className="font-size-sm" href="./reset-password.html">Reset password</a>
+                    <Link className="font-size-sm" to="/auth/password/recovery">Reset password</Link>
                 </div>
                 <button 
                     className="btn btn-primary btn-lg btn-block text-uppercase font-weight-semibold" 
