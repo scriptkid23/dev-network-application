@@ -22,7 +22,6 @@ function* loginRequested(params){
 }
 function* forgotRequested(params){
     try {
-        console.log(params);
         let {data,status} = yield call(AuthService.forgot,params.payload.data);
       
         if(status === 200){
@@ -38,7 +37,6 @@ function* forgotRequested(params){
 function* confirmRequested(params){
     try{
       let {data,status} = yield call(AuthService.confirm,params.payload.data)
-      console.log(params.payload.data)
       if(status === 200){
           yield put({type : "CONFIRM/SUCCEEDED",payload:{data,status}})
          

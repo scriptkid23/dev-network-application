@@ -12,7 +12,6 @@ export function PasswordRecovery() {
     const authAction = {...authReducer.actions}
     const authStore  = useSelector(state => state.auth)
     const { register, handleSubmit, errors } = useForm();
-    console.log(authStore)
     const onSubmit = data => {
         dispatch(authAction.forgot.requested({data}))
     };
