@@ -3,6 +3,7 @@ import {Route, Switch, Redirect,BrowserRouter} from "react-router-dom";
 import AuthenticatedGuard from '../guards/AuthenticatedGuard';
 import Auth from '../layouts/Auth';
 import Home from '../layouts/Home';
+import ConfirmToken from '../pages/Auth/ConfirmToken';
 function App() {
   return (
     <BrowserRouter>

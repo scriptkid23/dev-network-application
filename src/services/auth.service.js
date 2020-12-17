@@ -9,6 +9,12 @@ class AuthService{
     register(payload){
         return post(API.SIGNUP,payload);
     }
+    forgot(payload){
+        return post(API.FORGOT_PASSWORD,payload);
+    }
+    confirm(payload){
+        return post(API.CONFIRM_TOKEN,payload);
+    }
     logout(){
         CookieService.remove("token");
     }

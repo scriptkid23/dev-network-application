@@ -1,4 +1,4 @@
-import {Signup,Signin,PasswordRecovery} from './pages/Auth/index';
+import {Signup,Signin,PasswordRecovery,ConfirmToken} from './pages/Auth/index';
 import{Home} from './pages/Home/index';
 
 const Routers = [
@@ -7,6 +7,12 @@ const Routers = [
         path: "/auth/login",
         name: "Signin",
         component: Signin,
+        require : false,
+    },
+    {
+        path:"/auth/token/:key",
+        name: "Confirm token",
+        component :ConfirmToken,
         require : false,
     },
     {
