@@ -1,6 +1,6 @@
 import React from 'react';
 import  '../../styles/backdrop.css'
-export default ({show}) => {
+export function Backdrop({show}){
 
     return(
         <div className={` m-auto fade modal-backdrop ${show ? 'show' : ''}`}>

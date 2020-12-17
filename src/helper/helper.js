@@ -7,18 +7,31 @@ const baseUrl = !process.env.NODE_ENV || process.env.NODE_ENV === 'development' 
                 ENVIRONMENTS.PRODUCTION; 
 
 function get(path,params , token = null){
-    return Axios({
-        baseURL: baseUrl,
-        method: "GET",
-        url:path,
-        headers:{
-            Authorization :"Bearer "+token,
-        },
-        params:params
-    }).then(result => {return result})
-    .catch(error => {return error.response})
+    if(token !== null) {
+        return Axios({
+            baseURL: baseUrl,
+            method: "GET",
+            url:path,
+            headers:{
+                Authorization :"Bearer "+token,
+            },
+            params:params
+        }).then(result => {return result})
+        .catch(error => {return error.response})
+    }
+    else{
+        return Axios({
+            baseURL: baseUrl,
+            method: "GET",
+            url:path,
+            params:params
+        }).then(result => {return result})
+        .catch(error => {return error.response})
+    }
+   
 }
 function post(path,body,token = null){
+    if(token !== null){
     return Axios({
         baseURL:baseUrl,
         method:"POST",
@@ -29,8 +42,20 @@ function post(path,body,token = null){
         data: body
     }).then(result => {return result})
     .catch(error => {return error.response})
+    }
+    else{
+        return Axios({
+            baseURL:baseUrl,
+            method:"POST",
+            url:path,
+            data: body
+        }).then(result => {return result})
+        .catch(error => {return error.response})
+    }
+   
 }
 function put(path,body,token){
+   if(token){
     return Axios({
         baseURL:baseUrl,
         method:"PUT",
@@ -41,8 +66,19 @@ function put(path,body,token){
         data: body
     }).then(result => {return result})
     .catch(error => {return error.response})
+   }
+   else{
+    return Axios({
+        baseURL:baseUrl,
+        method:"PUT",
+        url:path,
+        data: body
+    }).then(result => {return result})
+    .catch(error => {return error.response})
+   }
 }
 function del(path,token){
+   if(token){
     return Axios({
         baseURL:baseUrl,
         method:"DELETE",
@@ -52,6 +88,15 @@ function del(path,token){
         },
     }).then(result => {return result})
     .catch(error => {return error.response})
+   }
+   else{
+    return Axios({
+        baseURL:baseUrl,
+        method:"DELETE",
+        url:path,
+    }).then(result => {return result})
+    .catch(error => {return error.response})
+   }
 
 }
 function getRoutes(route){
