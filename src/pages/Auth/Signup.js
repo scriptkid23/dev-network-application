@@ -1,12 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-
 export function Signup() {
+  const [username,setUsername] = React.useState(null);
+  
   const handleOnClick = () => {
-    alert("Register Succeeded")
+    console.log({username: username})
   }
-
   return (
     <div className="container d-flex flex-column" >
       <div className="row no-gutters text-center align-items-center justify-content-center min-vh-100">
@@ -18,13 +18,15 @@ export function Signup() {
               <label for="firstname" className="sr-only">First Name</label>
               <input formControlName="firstname"
                 required
-                type="text" className="form-control form-control-md" id="firstname" placeholder="Enter your firstname" />
+                onChange={(e) => setUsername(e.target.value)}
+                type="text" className="form-control form-control-md" id="firstname" placeholder="Enter your first name" />
             </div>
             <div className="form-group">
               <label for="lastname" className="sr-only">Last Name</label>
               <input formControlName="lastname"
                 required
-                type="text" class="form-control form-control-md" id="lastname" placeholder="Enter your lastname" />
+                
+                type="text" class="form-control form-control-md" id="lastname" placeholder="Enter your last name" />
             </div>
             <div className="form-group">
               <label for="email" className="sr-only">Email Address</label>
