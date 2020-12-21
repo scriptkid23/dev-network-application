@@ -5,18 +5,18 @@ import CookieService from '../../services/cookie.service';
 
 function* registerRequested(params){
     try{
-        const {data,status} = yield call(AuthService.register,params.payload.credentials);
+        const {data,status} = yield call(AuthService.register,params.payload.data);
         if(status === 200){
             yield put({type : "SIGNUP/SUCCEEDED",payload:{data,status}})
         }
         yield put({type : "SIGNUP/FAILED",payload:{data,status}})        
     }catch(e){
-        yield put({type : "SIGNUP/FAILED",payload:{message:e}})
+        yield put({type : "SIGNUP/FAILED",payload:e})
     }
 }
 function* loginRequested(params){
     try{
-        const {data, status} = yield call(AuthService.login,params.payload.credentials);
+        const {data, status} = yield call(AuthService.login,params.payload.data);
         if(status === 200){
             yield put({type : "LOGIN/SUCCEEDED",payload : {data,status}})
             CookieService.set("token",data.token);
