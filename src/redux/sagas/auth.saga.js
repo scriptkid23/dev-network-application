@@ -3,6 +3,17 @@ import Auth from '../../layouts/Auth';
 import AuthService from '../../services/auth.service';
 import CookieService from '../../services/cookie.service';
 
+function* registerRequested(params){
+    try{
+        const {data,status} = yield call(AuthService.register,params.payload.credentials);
+        if(status === 200){
+            yield put({type : "SIGNUP/SUCCEEDED",payload:{data,status}})
+        }
+        yield put({type : "SIGNUP/FAILED",payload:{data,status}})        
+    }catch(e){
+        yield put({type : "SIGNUP/FAILED",payload:{message:e}})
+    }
+}
 function* loginRequested(params){
     try{
         const {data, status} = yield call(AuthService.login,params.payload.credentials);
@@ -18,6 +29,38 @@ function* loginRequested(params){
     }
     catch(e){
         yield put({type : "LOGIN/FAILED",payload : {data : {message : e}}})
+    }
+}
+function* logoutRequested(){
+    try{
+        let token = localStorage.getItem("token")
+        let {data,status} = yield call(AuthService.logout,token);
+        if(status === 200){
+            yield put({type : "LOGOUT/SUCCEEDED",payload:{data,status}})
+            localStorage.removeItem("token")
+        }
+        else{
+            yield put({type : "LOGOUT/FAILED",payload : {data,status}})
+        }
+    }
+    catch(e){
+        yield put({type : "LOGOUT/FAILED",payload : {data : {message : e}}})
+    }
+}
+function* getUserDetailRequested(params){
+    try{
+        let token = localStorage.getItem("token")
+        let {data,status} = yield call(AuthService.getUserDetail,token);
+        if(status === 200){
+            yield put({type : "GET_USER_DETAIL/SUCCEEDED",payload:{data,status}})
+
+        }
+        else{
+            yield put({type : "GET_USER_DETAIL/FAILED",payload:{data,status}})
+        }
+    }
+    catch(e){
+        yield put({type : "GET_USER_DETAIL/FAILED",payload : {data : {message : e}}})
     }
 }
 function* forgotRequested(params){
@@ -57,4 +100,7 @@ export default function* authSaga(){
     yield takeEvery("LOGIN/REQUESTED",loginRequested)
     yield takeEvery("FORGOT/REQUESTED",forgotRequested)
     yield takeEvery("CONFIRM/REQUESTED",confirmRequested)
+    yield takeEvery("SIGNUP/REQUESTED",registerRequested)
+    yield takeEvery("GET_USER_DETAIL/REQUESTED",getUserDetailRequested)
+    yield takeEvery("LOGOUT/REQUESTED",logoutRequested)
 }
