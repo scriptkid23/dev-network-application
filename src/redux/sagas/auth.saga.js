@@ -31,13 +31,14 @@ function* loginRequested(params){
         yield put({type : "LOGIN/FAILED",payload : {data : {message : e}}})
     }
 }
-function* logoutRequested(){
+function* logoutRequested(params){
     try{
         let token = localStorage.getItem("token")
         let {data,status} = yield call(AuthService.logout,token);
         if(status === 200){
             yield put({type : "LOGOUT/SUCCEEDED",payload:{data,status}})
             localStorage.removeItem("token")
+            params.payload.callback.push("/auth/login")
         }
         else{
             yield put({type : "LOGOUT/FAILED",payload : {data,status}})

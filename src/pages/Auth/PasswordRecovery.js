@@ -1,19 +1,18 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import { useHistory } from "react-router-dom";
-import {useSelector,useDispatch} from 'react-redux'
-import * as authReducer from '../../redux/reducers/auth.reducer'
+
 
 import { useForm } from "react-hook-form";
 import {ShowAlert,Backdrop} from '../../components/common/index';
+import Spirity from '../../helper/hook'
 export function PasswordRecovery() {
     
-    const dispatch = useDispatch();
-    const authAction = {...authReducer.actions}
-    const authStore  = useSelector(state => state.auth)
+    const {store,action} = Spirity();
+    var authStore = store.authStore;
+ 
     const { register, handleSubmit, errors } = useForm();
     const onSubmit = data => {
-        dispatch(authAction.forgot.requested({data}))
+        action.forgot(data)
     };
     return (
         <div className="container d-flex flex-column" onSubmit={handleSubmit(onSubmit)}>

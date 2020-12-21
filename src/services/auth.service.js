@@ -19,7 +19,7 @@ class AuthService{
         return post(API.ME,null,token);
     }
     logout(token){
-        return del(API.LOGOUT,{token:token},token);
+        return del(API.LOGOUT,null,token);
     }
 }
 
