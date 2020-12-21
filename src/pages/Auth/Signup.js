@@ -1,11 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-
+import Spirity from '../../helper/hook'
 
 export function Signup() {
-  const handleOnClick = () => {
-    alert("Register Succeeded")
-  }
+
+  const {store,action} = Spirity();
+
 
   return (
     <div className="container d-flex flex-column" >
@@ -40,7 +40,7 @@ export function Signup() {
             </div>
             <button className="btn btn-primary btn-lg btn-block text-uppercase font-weight-semibold"
               type="submit"
-              onClick={() => handleOnClick()}>
+              >
               Sign up
                          </button>
           </form>

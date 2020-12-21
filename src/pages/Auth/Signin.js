@@ -3,7 +3,9 @@ import { Link } from "react-router-dom";
 import Spirity from '../../helper/hook'
 export function Signin() {
     const {store,action} = Spirity();
-    console.log(store)
+ 
+
+    
     return (
         <div className="container d-flex flex-column">
     <div className="row no-gutters text-center align-items-center justify-content-center min-vh-100">
