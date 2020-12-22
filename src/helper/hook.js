@@ -14,7 +14,7 @@ export default function Spirity(){
         return dispatch(authAction.login.requested({data,callback:history}))
     }
     const register = data => {
-        return dispatch(authAction.register.requested({data,callback:history}))
+        return dispatch(authAction.signup.requested({data,callback:history}))
     }
     const forgot = data => {
         return dispatch(authAction.forgot.requested({data}))
