@@ -12,7 +12,6 @@ export function Signup() {
 
   const { register, handleSubmit, errors } = useForm();
   const onSubmit = data => {
-    console.log(data)
     action.register(data)
   };
 
