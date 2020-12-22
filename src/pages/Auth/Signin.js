@@ -42,7 +42,6 @@ export function Signin() {
                             type="submit"
                             onClick={handleSubmit(onSubmit)} >
                     Sign in
-
                 </button>
                     </form>
                     <p>Don't have an account? <Link className="font-weight-semibold" to="/auth/register">Sign up</Link>.</p>
