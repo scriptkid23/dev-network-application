@@ -10,6 +10,7 @@ export const ENVIRONMENTS = {
 export const API = {
     SIGNIN: "/api/v1/auth/signin",
     SIGNUP: "/api/v1/auth/signup",
+    LOGOUT: "/api/v1/auth/revoke/token",
     ME: "/api/v1/auth/me",
     CONFIRM_TOKEN:"api/v1/auth/token/confirm",
     FORGOT_PASSWORD: "/api/v1/auth/recovery/password",

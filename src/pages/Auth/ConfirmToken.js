@@ -1,17 +1,15 @@
 import React from 'react'
-import {useParams,Redirect,useHistory} from 'react-router-dom'
+import {useParams} from 'react-router-dom'
 import {Backdrop} from '../../components/common/index'
-import {useSelector,useDispatch} from 'react-redux'
-import * as authReducer from '../../redux/reducers/auth.reducer'
+import Spirity from '../../helper/hook'
 export function ConfirmToken() {
-    const history = useHistory();
-    const dispatch = useDispatch();
-    const authAction = {...authReducer.actions}
+    const {_,action} = Spirity();
+
     const params = useParams();
     React.useEffect(() => {
-        dispatch(authAction.confirm.requested({data:{token:params.key},callback:history}))
+        action.confirmToken(params)
         
-    }, [params.key])
+    }, [params])
     return (
         <div>
            <Backdrop show={true}/>

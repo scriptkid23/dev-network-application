@@ -15,8 +15,11 @@ class AuthService{
     confirm(payload){
         return post(API.CONFIRM_TOKEN,payload);
     }
-    logout(){
-        CookieService.remove("token");
+    getUserDetail(token){
+        return post(API.ME,null,token);
+    }
+    logout(token){
+        return del(API.LOGOUT,null,token);
     }
 }
 
