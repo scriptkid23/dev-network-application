@@ -38,6 +38,7 @@ export const actions = createActions({
 
 });
 const defaultState = {
+    status_code : null,
     loading: false,
     message: "",
     fullname: "",
@@ -60,6 +61,7 @@ const reducers = handleActions({
             ...state,
             loading : false,
             user_detail : action.payload.data.data,
+            status_code: action.payload.status
 
         })
 
@@ -69,7 +71,8 @@ const reducers = handleActions({
             ...state,
             loading : false,
             message : "Get user detail failed",
-            variant : "danger"
+            variant : "danger",
+            status_code: action.payload.status
         })
     },
     [actions.forgot.requested] : (state,action) => {

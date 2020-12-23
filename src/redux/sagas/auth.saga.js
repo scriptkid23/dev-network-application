@@ -59,10 +59,11 @@ function* getUserDetailRequested(params){
         let {data,status} = yield call(AuthService.getUserDetail,token);
         if(status === 200){
             yield put({type : "GET_USER_DETAIL/SUCCEEDED",payload:{data,status}})
-
+            localStorage.setItem("status",status)
         }
         else{
             yield put({type : "GET_USER_DETAIL/FAILED",payload:{data,status}})
+            localStorage.removeItem("token");
         }
     }
     catch(e){
