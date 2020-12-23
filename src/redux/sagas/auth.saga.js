@@ -11,7 +11,10 @@ function* registerRequested(params){
             localStorage.setItem("token",data.token);
             params.payload.callback.push("/home")
         }
-        yield put({type : "SIGNUP/FAILED",payload:{data,status}})        
+        else{
+            yield put({type : "SIGNUP/FAILED",payload:{data,status}})     
+        }
+         
     }catch(e){
         yield put({type : "SIGNUP/FAILED",payload:e})
     }
