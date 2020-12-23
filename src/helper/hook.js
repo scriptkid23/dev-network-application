@@ -28,10 +28,14 @@ export default function Spirity(){
     function confirmToken(params){
         dispatch(authAction.confirm.requested({data:{token:params.key},callback:history}))
     }
+    function setComponent(component){
+        dispatch(homeAction.navigation.setComponent(component))
+    }
 
     return{
         store:{authStore,homeStore},
         action:{login,register,forgot,
-            logout,getUserDetail,confirmToken}
+            logout,getUserDetail,confirmToken,
+        setComponent}
     }
 }

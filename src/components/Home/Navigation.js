@@ -3,9 +3,8 @@ import {Logo,Chats, Friends, Alert} from '../../assets/index';
 import {Dropdown} from 'react-bootstrap';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
-import {useSelector,useDispatch} from 'react-redux'
-import * as homeReducer from '../../redux/reducers/home.reducer';
 import {COMPONENT} from '../../constants/paths'
+import Spirity from '../../helper/hook'
 const CustomizeOverlayTrigger = (props) => {
     return <OverlayTrigger
     placement="right"
@@ -29,13 +28,14 @@ const CustomToggle = React.forwardRef(({children,onClick},ref) => (
 ))
 
 export function Navigation() {
-    const dispatch = useDispatch();
-    const homeAction = {...homeReducer.actions.navigation}
-    const homeStore  = useSelector(state => state.home) 
+   
+    const {store,action} = Spirity();
+    const homeStore = store.homeStore;
     
     const setComponent = (component) => {
-            dispatch(homeAction.setComponent(component))
+           action.setComponent(component)
     }
+   
     return (
         <nav className="navigation">
             <div className="nav-group">
@@ -93,7 +93,7 @@ export function Navigation() {
                                 <Dropdown.Item eventKey="1">Profile</Dropdown.Item>
                                 <Dropdown.Item eventKey="2">Setting</Dropdown.Item>
                                 <Dropdown.Divider />
-                                <Dropdown.Item eventKey="3">Logout</Dropdown.Item>
+                                <Dropdown.Item eventKey="3" onClick={() => action.logout()}>Logout</Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
                     </li>
