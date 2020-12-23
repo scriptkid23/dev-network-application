@@ -1,5 +1,5 @@
-import React, { useCallback } from 'react'
-import { Link } from 'react-router-dom'
+import React  from 'react'
+import { Link} from 'react-router-dom'
 import Spirity from '../../helper/hook'
 import { useForm } from "react-hook-form";
 import {ShowAlert,Backdrop} from '../../components/common/index';
@@ -9,7 +9,6 @@ export function Signup() {
 
   const { store, action } = Spirity();
   var authStore = store.authStore;
-
   const { register, handleSubmit, errors } = useForm();
   const onSubmit = data => {
     action.register(data)
