@@ -8,6 +8,8 @@ function* registerRequested(params){
         const {data,status} = yield call(AuthService.register,params.payload.data);
         if(status === 200){
             yield put({type : "SIGNUP/SUCCEEDED",payload:{data,status}})
+            localStorage.setItem("token",data.token);
+            params.payload.callback.push("/home")
         }
         yield put({type : "SIGNUP/FAILED",payload:{data,status}})        
     }catch(e){
@@ -19,7 +21,7 @@ function* loginRequested(params){
         const {data, status} = yield call(AuthService.login,params.payload.data);
         if(status === 200){
             yield put({type : "LOGIN/SUCCEEDED",payload : {data,status}})
-            CookieService.set("token",data.token);
+            localStorage.setItem("token",data.token);
             params.payload.callback.push("/home")
         }
         else{
