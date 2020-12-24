@@ -18,6 +18,9 @@ class AuthService{
     getUserDetail(token){
         return get(API.ME,null,token);
     }
+    getTokenMessage(token){
+        return get(API.GET_TOKEN_MESSAGE,null,token);
+    }
     logout(token){
         return del(API.LOGOUT,token);
     }

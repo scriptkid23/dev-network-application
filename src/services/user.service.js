@@ -1,0 +1,7 @@
+
+class UserService{
+    createRoom(payload){
+
+    }
+    
+}
