@@ -21,27 +21,27 @@ export function Chats() {
        goToRoomId(id);
     }
     const renderLogMessageList = (data) => {
-        return data.contact.map((value,index) => {
-            return (
-                <li key={index} 
-                    className={`list-group-item ${value.room_id === params.id
-                        ? "open-chat" : ""}`}
-                    onClick={() => setRoom(value.room_id)}>
-                    <figure className="avatar avatar-state-success">
-                    <img src="http://storage-3t.herokuapp.com/uploads/avatar/002-unicorn.svg" className="rounded-circle" alt="avatar"/>
-                    </figure>
-                    <div class="users-list-body">
-                        <div>
-                            <h5 className="">{value.room_name}</h5>
-                            <p>{value.last_message}</p>
-                        </div>
-                        <div className="users-list-action">
-                            <small className="text-muted">{value.created_at}</small>
-                        </div>
-                    </div>
-                </li>
-            )
-        })
+        // return data.contact.map((value,index) => {
+        //     return (
+        //         <li key={index} 
+        //             className={`list-group-item ${value.room_id === params.id
+        //                 ? "open-chat" : ""}`}
+        //             onClick={() => setRoom(value.room_id)}>
+        //             <figure className="avatar avatar-state-success">
+        //             <img src="http://storage-3t.herokuapp.com/uploads/avatar/002-unicorn.svg" className="rounded-circle" alt="avatar"/>
+        //             </figure>
+        //             <div class="users-list-body">
+        //                 <div>
+        //                     <h5 className="">{value.room_name}</h5>
+        //                     <p>{value.last_message}</p>
+        //                 </div>
+        //                 <div className="users-list-action">
+        //                     <small className="text-muted">{value.created_at}</small>
+        //                 </div>
+        //             </div>
+        //         </li>
+        //     )
+        // })
         
     }
     return (

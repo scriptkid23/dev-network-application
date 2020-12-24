@@ -43,6 +43,8 @@ function* logoutRequested(params){
         if(status === 200){
             yield put({type : "LOGOUT/SUCCEEDED",payload:{data,status}})
             localStorage.removeItem("token")
+            localStorage.removeItem("token_message")
+            localStorage.removeItem("username")
             params.payload.callback.push("/auth/login")
         }
         else{
@@ -60,7 +62,7 @@ function* getUserDetailRequested(params){
         let tokenMessage = yield call(AuthService.getTokenMessage,token);
         localStorage.setItem("token_message",tokenMessage.data)
         localStorage.setItem("username",data.email)
-        
+
         if(status === 200){
             yield put({type : "GET_USER_DETAIL/SUCCEEDED",payload:{data,status}})
             localStorage.setItem("status",status)

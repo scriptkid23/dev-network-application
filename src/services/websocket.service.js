@@ -21,8 +21,8 @@ class WebSocketService{
         })
 
     }
-    disconnect(payload){
-
+    disconnect(){
+        this.stompClient.disconnect();
     }
     sendMessage(payload){
 
