@@ -19,12 +19,13 @@ export function Signup() {
       {authStore.loading && <Backdrop show={authStore.loading ? true : false} />}
       <div className="row no-gutters text-center align-items-center justify-content-center min-vh-100">
         <div className="col-12 col-md-6 col-lg-5 col-xl-4">
-        <ShowAlert
+        
+          <h1 className=" text-dark font-weight-bold">Sign up</h1>
+          <ShowAlert
           show={authStore.variant.length !== 0 ? true : false}
           variant={authStore.variant}
           notification={authStore.message}
-        />
-          <h1 className=" text-dark font-weight-bold">Sign up</h1>
+          />
           <p className="text-dark mb-3">We are Different, We Make You Different.</p>
           <form class="mb-3">
             <div className="form-group">
