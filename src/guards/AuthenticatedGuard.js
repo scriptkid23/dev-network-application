@@ -7,7 +7,11 @@ export default function AuthenticatedGuard(props) {
     const {isAuthenticated, component: Component, ...rest} = props;
     const {action} = Spirity();
     React.useEffect(() => {
-           action.getUserDetail();
+        let isSubscribed = true
+        if(isSubscribed){
+            action.getUserDetail();
+        }
+          return () => isSubscribed = false
           
     },[])
    

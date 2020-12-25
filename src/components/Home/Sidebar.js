@@ -1,7 +1,7 @@
 import React from 'react'
 import {Chats,Friends, Notifications} from './Sidebar/index'
-import {useSelector,useDispatch} from 'react-redux'
-import * as homeReducer from '../../redux/reducers/home.reducer';
+import {useSelector} from 'react-redux'
+
 import {COMPONENT} from '../../constants/paths'
 export function Sidebar() {
     const homeStore  = useSelector(state => state.home) 

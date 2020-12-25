@@ -4,12 +4,13 @@ import {useParams} from 'react-router-dom'
 import ChatBodyNoMessage from '../../components/Home/Chat/ChatBodyNoMessage'
 import Profile from '../../components/Home/Profile/Profile';
 import websocketService from '../../services/websocket.service';
+import Spirity from '../../helper/hook';
 
 export function Home(){
     const params = useParams();
-    React.useEffect(() => {
-        websocketService.connect();
-    },[])
+    const {store,action} = Spirity();
+    let homeStore = store.homeStore;
+   
     return (
         <>
           <Navigation/>  

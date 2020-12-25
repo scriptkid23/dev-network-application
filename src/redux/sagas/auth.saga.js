@@ -1,7 +1,6 @@
-import {takeEvery,put,call,select} from 'redux-saga/effects';
-import Auth from '../../layouts/Auth';
+import {takeEvery,put,call} from 'redux-saga/effects';
 import AuthService from '../../services/auth.service';
-import CookieService from '../../services/cookie.service';
+
 
 function* registerRequested(params){
     try{

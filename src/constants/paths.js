@@ -16,7 +16,8 @@ export const API = {
     CONFIRM_TOKEN:"api/v1/auth/token/confirm",
     FORGOT_PASSWORD: "/api/v1/auth/recovery/password",
     TOKEN_MESSAGE: "/api/v1/auth/token/message",
-    UPDATE_PROFILE: "/api/v1/user/update"
+    UPDATE_PROFILE: "/api/v1/user/update",
+    GET_LIST_FRIEND: "/api/v1/user/list/friend"
 }
 export const COMPONENT = {
     CHATS : "chats",

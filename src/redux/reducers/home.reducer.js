@@ -7,20 +7,49 @@ export const actions = createActions({
     },
     "SIDEBAR":{
         "SET_CHANNEL":[meta => meta, payload => payload],
+        
     },
     "CHAT":{
         "VIEW_PROFILE":[meta => meta, payload => payload],
         "CLOSE_PROFILE": [meta => meta, payload => payload],
+    },
+    "GET_LIST_FRIEND": {
+        "REQUESTED" : [meta => meta, payload => payload],
+        "SUCCEEDED" : [meta => meta, payload => payload],
+        "FAILED":     [meta => meta, payload => payload]
     }
+    
 
 });
 const defaultState = {
    "navigation": COMPONENT.CHATS,
    "room_id": null,
    "profile_visibly":false,
+   "list_friend":[],
+   "loading":false,
    
 }
 const reducers = handleActions({
+        [actions.getListFriend.requested]: (state,actions) => {
+            return{
+                ...state,
+                loading:true,
+            }
+        },
+        [actions.getListFriend.succeeded]: (state,actions) => {
+            return{
+                ...state,
+                loading:false,
+                list_friend: actions.payload.data,
+            }
+        },
+        [actions.getListFriend.failed]: (state,actions) => {
+            return{
+                ...state,
+                loading:false,
+                list_friend: [],
+            }
+        },
         [actions.navigation.setComponent] : (state,actions) => {
             return {
                 ...state,

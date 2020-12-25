@@ -26,16 +26,19 @@ export default function Spirity(){
         return dispatch(authAction.getUserDetail.requested({}));
     }
     function confirmToken(params){
-        dispatch(authAction.confirm.requested({data:{token:params.key},callback:history}))
+        return dispatch(authAction.confirm.requested({data:{token:params.key},callback:history}))
     }
     function setComponent(component){
-        dispatch(homeAction.navigation.setComponent(component))
+        return dispatch(homeAction.navigation.setComponent(component))
+    }
+    function getListFriend(){
+        return dispatch(homeAction.getListFriend.requested({}));
     }
 
     return{
         store:{authStore,homeStore},
         action:{login,register,forgot,
             logout,getUserDetail,confirmToken,
-        setComponent}
+            getListFriend,setComponent}
     }
 }

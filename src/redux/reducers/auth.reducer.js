@@ -44,7 +44,6 @@ const defaultState = {
     fullname: "",
     password: "",
     email: "",
-    roles: ['user'],
     variant: "",
     time : "",
     token_message : "",
