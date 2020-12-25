@@ -19,7 +19,23 @@ function* getListFriendRequested(params){
     }
  
 }
+function* getMessageLogRequested(params){
+    try {
+        const token = localStorage.getItem("token");
+        const {data,status} = yield call(UserService.getMessageLog,params.payload.data,token);
+        console.log(data)
+        if(status === 200){
+            yield put({type : "GET_MESSAGE_LOG/SUCCEEDED",payload:{data,status}})
+        }
+        else{
+            yield put({type : "GET_MESSAGE_LOG/FAILED",payload : {data,status}})
+        }
+    } catch (error) {
+            yield put({type : "GET_MESSAGE_LOG/FAILED",payload:error})
+    }
+}
 export default function* homeSaga(){
     yield takeEvery("GET_LIST_FRIEND/REQUESTED",getListFriendRequested)
+    yield takeEvery("GET_MESSAGE_LOG/REQUESTED",getMessageLogRequested)
    
 }

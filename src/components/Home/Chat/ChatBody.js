@@ -6,7 +6,11 @@ export function ChatBody({channelId}) {
     const {store,action} = Spirity();
     
     const [scrollEl, setScrollEl] = React.useState();
-  
+    
+    React.useEffect(() => {
+        // action.getUserDetail();
+        action.getMessageLog(channelId);
+    },[])
     
     React.useEffect(() => {
         if (scrollEl) {
@@ -20,6 +24,7 @@ export function ChatBody({channelId}) {
             }, 100)
         }
     });
+    console.log(store.messageStore.message_log)
     return (
         <PerfectScrollbar containerRef={ref => setScrollEl(ref)}>
             <div className="chat-body">

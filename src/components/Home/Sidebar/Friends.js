@@ -6,9 +6,9 @@ import FriendsDropdown from './FriendDropdown';
 
 export function Friends() {
  
-
+    
     const {store,action} = Spirity();
-    console.log(store.homeStore.list_friend)
+    console.log(store.messageStore.list_friend)
     
     const renderFriendsList = (data) => {
             // TODO: 
@@ -53,7 +53,7 @@ export function Friends() {
                 <div className="sidebar-body">
                         <PerfectScrollbar>
                             <ul className="list-group list-group-flush">
-                               {renderFriendsList(store.homeStore.list_friend)}
+                               {renderFriendsList(store.messageStore.list_friend)}
                             </ul>
                         </PerfectScrollbar>
                 
