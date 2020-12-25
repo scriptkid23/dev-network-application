@@ -16,7 +16,6 @@ export function ChatFooter() {
                         </button>
                         </Dropdown.Toggle>
                         <Dropdown.Menu as={CustomMenu}
-                        
                         >
                                 <Picker 
                                 set='apple' style={{border:"none"}}
@@ -26,7 +25,8 @@ export function ChatFooter() {
                     </Dropdown>
                     
                 </div>
-                <input placeholder="Write a message." type="text" class="form-control form-control" value=""/>
+                <input placeholder="Write a message." type="text" 
+                className="form-control form-control" value=""/>
                 <div class="form-buttons">
                 <button class="btn btn-primary">
                     <Send/>

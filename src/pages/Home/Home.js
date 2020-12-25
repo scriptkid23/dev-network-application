@@ -9,14 +9,14 @@ import Spirity from '../../helper/hook';
 export function Home(){
     const params = useParams();
     const {store,action} = Spirity();
-    let homeStore = store.homeStore;
    
+
     return (
         <>
           <Navigation/>  
             <Sidebar/>  
             {params.id ? 
-            <Chat channelId = {params}/> :
+            <Chat channelId = {params.id}/> :
             <ChatBodyNoMessage/>
             }
             <Profile/>

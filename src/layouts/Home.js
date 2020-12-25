@@ -5,10 +5,10 @@ import {connect} from 'react-redux';
 import * as homeReducer from '../redux/reducers/home.reducer'
 import {bindActionCreators} from 'redux';
 class Home extends Component { 
-    componentDidMount(){
+    // componentDidMount(){
    
-        this.props.getListFriend.requested();
-    }
+    //     this.props.getListFriend.requested();
+    // }
     render() {
         return (
             <div className="layout">

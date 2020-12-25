@@ -6,6 +6,7 @@ import websocketService from '../services/websocket.service';
 export default function AuthenticatedGuard(props) {
     const {isAuthenticated, component: Component, ...rest} = props;
     const {action} = Spirity();
+    
     React.useEffect(() => {
         let isSubscribed = true
         if(isSubscribed){
