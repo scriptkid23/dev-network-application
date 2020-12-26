@@ -28,7 +28,7 @@ function* sendMessageRequested(params){
         const authStore = yield select(getAuthStore);
         const messageStore = yield select(getMessageStore);
         const {user_detail} = authStore;
-        
+        console.log(channelId)
         const {data,status} = yield call(UserService.sendMessage,channelId,message,"TEXT",token);
         if(status === 200){
             let message_state = {

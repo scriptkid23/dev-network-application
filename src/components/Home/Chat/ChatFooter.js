@@ -10,8 +10,8 @@ export function ChatFooter({channelId}) {
 
     const { register, handleSubmit, reset } = useForm();
     const sendMessage =  ( data ,e) =>{ 
-        
-            action.sendMessage(channelId,data.message,"Text")
+            console.log(channelId)
+            action.sendMessage(channelId,data.message,"TEXT")
             reset();
     }
     return (

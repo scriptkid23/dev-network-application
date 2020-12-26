@@ -41,6 +41,7 @@ export default function Spirity(){
     }
 
     function sendMessage(channelId,message,message_type){
+        
         return dispatch(messageAction.sendMessage.requested({
             data: {
                 channelId : channelId,

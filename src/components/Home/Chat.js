@@ -4,12 +4,10 @@ import {ChatHeader, ChatFooter,ChatBody} from './Chat/index'
 
 
 export const Chat = ({channelId}) => {
-    const [messages,setMessages] = React.useState([]);
     const [uid,setUid] = React.useState(null);
     const {store,action} = Spirity();
     React.useEffect(() => {
             action.getMessageLog(channelId);
-            setMessages(store.messageStore.message_log.messages)
             setUid(store.authStore.user_detail.id)
     },[])
     console.log(store.authStore)
@@ -17,8 +15,8 @@ export const Chat = ({channelId}) => {
     return (
         <div className="chat">
             <ChatHeader/>
-            <ChatBody messages={messages} uid={uid}/>
-            <ChatFooter/>
+            <ChatBody messages={store.messageStore.message_log.messages} uid={uid}/>
+            <ChatFooter channelId={channelId}/>
         </div>
     );
 }
