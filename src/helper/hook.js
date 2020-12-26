@@ -40,11 +40,20 @@ export default function Spirity(){
         return dispatch(messageAction.getMessageLog.requested({data:channelId}))
     }
 
+    function sendMessage(channelId,message,message_type){
+        return dispatch(messageAction.sendMessage.requested({
+            data: {
+                channelId : channelId,
+                message: message,
+                message_type: message_type
+             }
+        }))
+    }
     return{
         store:{authStore,homeStore, messageStore},
         action:{login,register,forgot,
             logout,getUserDetail,confirmToken,
-            getMessageLog,
+            getMessageLog,sendMessage,
             getListFriend,setComponent}
     }
 }

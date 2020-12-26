@@ -1,5 +1,5 @@
 import { API } from "../constants/paths";
-import { get } from "../helper/helper";
+import { get,post } from "../helper/helper";
 
 class UserService{
    
@@ -8,6 +8,13 @@ class UserService{
     }
     getMessageLog(channelId,token){
         return get(API.GET_MESSAGE_LOG,{channelId:channelId},token);
+    }
+    sendMessage(channelId,message,message_type,token){
+        return post(API.SEND_MESSAGE,{
+            channelId:channelId,
+            message:message,
+            message_type:message_type
+        },token)
     }
 
 }

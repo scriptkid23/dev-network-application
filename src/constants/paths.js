@@ -19,7 +19,8 @@ export const API = {
     UPDATE_PROFILE: "/api/v1/user/update",
     
     GET_LIST_FRIEND: "/api/v1/user/list/friend",
-    GET_MESSAGE_LOG: "/api/v1/user/conversation"
+    GET_MESSAGE_LOG: "/api/v1/user/conversation",
+    SEND_MESSAGE: "/api/v1/user/send/message",
 }
 export const COMPONENT = {
     CHATS : "chats",

@@ -19,12 +19,9 @@ export function ChatBody({uid,messages}) {
             }, 100)
         }
     });
-    console.log(messages)
     const renderMessageLog = () => {
         
         return messages && messages.map((value,index) => {
-            console.log(value.user.id)
-            console.log(uid)
             return(
                 <div className={`message-item ${value.user.id === uid  ? "outgoing-message" : null}`}>
                     <div className="message-avatar">

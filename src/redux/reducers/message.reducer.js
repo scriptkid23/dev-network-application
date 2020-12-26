@@ -11,17 +11,43 @@ export const actions = createActions({
         "REQUESTED": [meta => meta, payload => payload],
         "SUCCEEDED":[meta => meta, payload => payload],
         "FAILED":[meta => meta, payload => payload],
+    },
+    "SEND_MESSAGE":{
+        "REQUESTED" : [meta => meta, payload => payload],
+        "SUCCEEDED" : [meta => meta, payload => payload],
+        "FAILED":     [meta => meta, payload => payload]
     }
     
 
 });
 const defaultState = {
   "list_friend":[],
-  "message_log":[],
+  "message_log":{
+      messages:[],
+  },
    
 }
 const reducers = handleActions({
-        
+        [actions.sendMessage.requested] : (state,actions) => {
+            return{
+                ...state,   
+            }
+        },
+        [actions.sendMessage.succeeded] : (state,actions) => {
+            console.log(actions.payload)
+            return{
+                ...state,
+                message_log:{
+                    messages:[...actions.payload.newMessageLog]
+                },
+            }
+        },
+        [actions.sendMessage.failed] : (state,actions) => {
+            return{
+                ...state,
+            }
+        },
+
         [actions.getListFriend.requested]: (state,actions) => {
             return{
                 ...state,
