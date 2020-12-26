@@ -23,7 +23,6 @@ function* getMessageLogRequested(params){
     try {
         const token = localStorage.getItem("token");
         const {data,status} = yield call(UserService.getMessageLog,params.payload.data,token);
-        console.log(data)
         if(status === 200){
             yield put({type : "GET_MESSAGE_LOG/SUCCEEDED",payload:{data,status}})
         }

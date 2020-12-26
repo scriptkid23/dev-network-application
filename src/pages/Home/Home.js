@@ -9,7 +9,7 @@ import Spirity from '../../helper/hook';
 export function Home(){
     const params = useParams();
     const {store,action} = Spirity();
-   
+    
 
     return (
         <>

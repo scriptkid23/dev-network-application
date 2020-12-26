@@ -8,6 +8,7 @@ class Home extends Component {
     componentDidMount(){
    
         this.props.getListFriend.requested();
+       
     }
     render() {
         return (
@@ -21,7 +22,7 @@ class Home extends Component {
         )
     }
 }
-const mapStateToProps = state => {return{home: state.home}};
+const mapStateToProps = state => {return{home: state.home,auth:state.auth}};
 const mapDispatchToProps = dispatch => {
     return({
         getListFriend: bindActionCreators(messageReducer.actions.getListFriend,dispatch)

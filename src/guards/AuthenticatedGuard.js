@@ -5,17 +5,18 @@ import websocketService from '../services/websocket.service';
 
 export default function AuthenticatedGuard(props) {
     const {isAuthenticated, component: Component, ...rest} = props;
-    const {action} = Spirity();
+    const {store,action} = Spirity();
     
     React.useEffect(() => {
         let isSubscribed = true
         if(isSubscribed){
             action.getUserDetail();
+            
         }
           return () => isSubscribed = false
           
     },[])
-   
+    
     return (
        <Route
         {...rest}
