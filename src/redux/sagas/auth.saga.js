@@ -1,6 +1,6 @@
 import {takeEvery,put,call} from 'redux-saga/effects';
 import AuthService from '../../services/auth.service';
-
+import WebSocketService from '../../services/websocket.service'
 
 function* registerRequested(params){
     try{
@@ -42,8 +42,7 @@ function* logoutRequested(params){
         if(status === 200){
             yield put({type : "LOGOUT/SUCCEEDED",payload:{data,status}})
             localStorage.removeItem("token")
-            localStorage.removeItem("token_message")
-            localStorage.removeItem("username")
+            WebSocketService.disconnect();
             params.payload.callback.push("/auth/login")
         }
         else{
@@ -59,12 +58,10 @@ function* getUserDetailRequested(params){
         let token = localStorage.getItem("token")
         let {data,status} = yield call(AuthService.getUserDetail,token);
         let tokenMessage = yield call(AuthService.getTokenMessage,token);
-        localStorage.setItem("token_message",tokenMessage.data)
-        localStorage.setItem("username",data.email)
-
         if(status === 200){
             yield put({type : "GET_USER_DETAIL/SUCCEEDED",payload:{data,status}})
             localStorage.setItem("status",status)
+            WebSocketService.connect(tokenMessage.data,data.email);
         }
         else{
             yield put({type : "GET_USER_DETAIL/FAILED",payload:{data,status}})

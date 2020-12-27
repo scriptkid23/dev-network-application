@@ -8,12 +8,12 @@ class WebSocketService{
     getLogMessage(payload){
 
     }
-    connect(){
+    connect(token_message,username){
         var socket = new SockJS("http://localhost:8000/ws");
         this.stompClient = Stomp.over(socket);
         var headers = {
-            Authorization: localStorage.getItem("token_message"),
-            Username: localStorage.getItem("username")
+            Authorization: token_message,
+            Username: username,
         }
         this.stompClient.connect(headers,function(frame){
             console.log("Connected!")
