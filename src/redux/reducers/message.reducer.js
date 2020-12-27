@@ -16,18 +16,50 @@ export const actions = createActions({
         "REQUESTED" : [meta => meta, payload => payload],
         "SUCCEEDED" : [meta => meta, payload => payload],
         "FAILED":     [meta => meta, payload => payload]
-    }
+    },
+    "GET_USER_DETAIL": {
+        "REQUESTED": [meta => meta, payload => payload],
+        "SUCCEEDED": [meta => meta, payload => payload],
+        "FAILED": [meta => meta, payload => payload]
+    },
+    
     
 
 });
 const defaultState = {
+    "user_detail": {},
   "list_friend":[],
   "message_log":{
-      messages:[],
+      "messages":[],
   },
    
 }
 const reducers = handleActions({
+    [actions.getUserDetail.requested] : (state,action) => {
+        return({
+            ...state,
+            loading : true,
+        })
+    },
+    [actions.getUserDetail.succeeded] : (state,action) => {
+        return({
+            ...state,
+            loading : false,
+            user_detail : action.payload.data,
+            status_code: action.payload.status
+
+        })
+
+    },
+    [actions.getUserDetail.failed] : (state,action) => {
+        return({
+            ...state,
+            loading : false,
+            message : "Get user detail failed",
+            variant : "danger",
+            status_code: action.payload.status
+        })
+    },
         [actions.sendMessage.requested] : (state,actions) => {
             return{
                 ...state,   

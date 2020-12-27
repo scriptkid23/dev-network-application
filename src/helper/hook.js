@@ -2,6 +2,7 @@ import {useSelector,useDispatch} from 'react-redux'
 import * as authReducer from '../redux/reducers/auth.reducer'
 import * as homeReducer from '../redux/reducers/home.reducer'
 import * as messageReducer from '../redux/reducers/message.reducer'
+
 import { useHistory} from "react-router-dom";
 export default function Spirity(){
     const dispatch = useDispatch();
@@ -24,9 +25,7 @@ export default function Spirity(){
     function logout(){
         return dispatch(authAction.logout.requested({callback:history}))
     }
-    function getUserDetail(){
-        return dispatch(authAction.getUserDetail.requested({}));
-    }
+   
     function confirmToken(params){
         return dispatch(authAction.confirm.requested({data:{token:params.key},callback:history}))
     }
@@ -37,7 +36,7 @@ export default function Spirity(){
         return dispatch(messageAction.getListFriend.requested({}));
     }
     function getMessageLog(channelId){
-        return dispatch(messageAction.getMessageLog.requested({data:channelId}))
+        dispatch(messageAction.getMessageLog.requested({data:channelId}))
     }
 
     function sendMessage(channelId,message,message_type){
@@ -53,7 +52,7 @@ export default function Spirity(){
     return{
         store:{authStore,homeStore, messageStore},
         action:{login,register,forgot,
-            logout,getUserDetail,confirmToken,
+            logout,confirmToken,
             getMessageLog,sendMessage,
             getListFriend,setComponent}
     }

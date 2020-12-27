@@ -53,25 +53,7 @@ function* logoutRequested(params){
         yield put({type : "LOGOUT/FAILED",payload : {data : {message : e}}})
     }
 }
-function* getUserDetailRequested(params){
-    try{
-        let token = localStorage.getItem("token")
-        let {data,status} = yield call(AuthService.getUserDetail,token);
-        let tokenMessage = yield call(AuthService.getTokenMessage,token);
-        if(status === 200){
-            yield put({type : "GET_USER_DETAIL/SUCCEEDED",payload:{data,status}})
-            localStorage.setItem("status",status)
-            WebSocketService.connect(tokenMessage.data,data.email);
-        }
-        else{
-            yield put({type : "GET_USER_DETAIL/FAILED",payload:{data,status}})
-            localStorage.removeItem("token");
-        }
-    }
-    catch(e){
-        yield put({type : "GET_USER_DETAIL/FAILED",payload : {data : {message : e}}})
-    }
-}
+
 function* forgotRequested(params){
     try {
         let {data,status} = yield call(AuthService.forgot,params.payload.data);
@@ -110,6 +92,5 @@ export default function* authSaga(){
     yield takeEvery("FORGOT/REQUESTED",forgotRequested)
     yield takeEvery("CONFIRM/REQUESTED",confirmRequested)
     yield takeEvery("SIGNUP/REQUESTED",registerRequested)
-    yield takeEvery("GET_USER_DETAIL/REQUESTED",getUserDetailRequested)
     yield takeEvery("LOGOUT/REQUESTED",logoutRequested)
 }

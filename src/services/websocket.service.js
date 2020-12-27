@@ -25,7 +25,8 @@ class WebSocketService{
         this.stompClient.disconnect();
     }
     sendMessage(payload){
-
+        console.log(payload)
+        this.stompClient.send("/app/chat", {},JSON.stringify(payload));
     }
     getStatusUser(payload){
 
@@ -33,11 +34,16 @@ class WebSocketService{
     getNotification(payload){
 
     }
-    leaveRoom(payload){
-
+    leaveRoom(channelId){
+        this.stompClient.unsubscribe("/topic/"+channelId+"/queue/messages");
     }
-    joinRoom(payload){
-
+    joinRoom(channelId){
+        this.stompClient.subscribe(
+            "/topic/"+channelId+"/queue/messages",
+            (message) => {
+                    console.log(message)
+            }
+        )
     }
 
 }

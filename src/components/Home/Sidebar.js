@@ -3,8 +3,8 @@ import {Chats,Friends, Notifications} from './Sidebar/index'
 import {useSelector} from 'react-redux'
 
 import {COMPONENT} from '../../constants/paths'
-export function Sidebar() {
-    const homeStore  = useSelector(state => state.home) 
+export function Sidebar({screen}) {
+ 
     const renderSidebarComponent = (key) => {
         switch (key) {
             case COMPONENT.CHATS:
@@ -19,7 +19,7 @@ export function Sidebar() {
     }
     return (
         <>
-            {renderSidebarComponent(homeStore.navigation)}
+            {renderSidebarComponent(screen)}
         </>
     )
 }

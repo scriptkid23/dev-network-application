@@ -27,14 +27,11 @@ const CustomToggle = React.forwardRef(({children,onClick},ref) => (
     </span>
 ))
 
-export function Navigation() {
-   
+export function Navigation({screen,setScreen}) {
     const {store,action} = Spirity();
-    const homeStore = store.homeStore;
-    
-    const setComponent = (component) => {
-           action.setComponent(component)
-    }
+   const setComponent = (comp) => {
+        setScreen(comp)
+   }
    
     return (
         <nav className="navigation">
@@ -47,7 +44,7 @@ export function Navigation() {
                        <CustomizeOverlayTrigger title={"Chats"}>
                             <a
                             className={`sidebar 
-                            ${homeStore.navigation === COMPONENT.CHATS ? "active" : null} 
+                            ${screen === COMPONENT.CHATS ? "active" : null} 
                             cursor-pointer`}
                             onClick = {() => setComponent(COMPONENT.CHATS)}
                             >
@@ -59,7 +56,7 @@ export function Navigation() {
                     <li>
                         <CustomizeOverlayTrigger title={"Friends"}>
                             <a className={`sidebar 
-                            ${homeStore.navigation === COMPONENT.FRIENDS ? "active" : null} 
+                            ${screen === COMPONENT.FRIENDS ? "active" : null} 
                             cursor-pointer`}
                             onClick = {() => setComponent(COMPONENT.FRIENDS)}
                             >
@@ -71,7 +68,7 @@ export function Navigation() {
                     <li>
                         <CustomizeOverlayTrigger title={"Notifications"}>
                             <a className={`sidebar 
-                            ${homeStore.navigation === COMPONENT.NOTIFICATIONS ? "active" : null} 
+                            ${screen === COMPONENT.NOTIFICATIONS ? "active" : null} 
                             cursor-pointer`}
                             onClick = {() => setComponent(COMPONENT.NOTIFICATIONS)}
                             >
