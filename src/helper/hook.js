@@ -2,7 +2,6 @@ import {useSelector,useDispatch} from 'react-redux'
 import * as authReducer from '../redux/reducers/auth.reducer'
 import * as homeReducer from '../redux/reducers/home.reducer'
 import * as messageReducer from '../redux/reducers/message.reducer'
-
 import { useHistory} from "react-router-dom";
 export default function Spirity(){
     const dispatch = useDispatch();

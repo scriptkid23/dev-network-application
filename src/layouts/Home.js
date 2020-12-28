@@ -7,9 +7,9 @@ import * as homeReducer from '../redux/reducers/home.reducer'
 import {bindActionCreators} from 'redux';
 class Home extends Component { 
     componentDidMount(){
-        console.log("redner home layout component")
         this.props.getUserDetail.requested();
         this.props.getListFriend.requested();
+        console.log(localStorage.getItem("token_message"))
       
        
     }

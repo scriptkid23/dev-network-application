@@ -1,20 +1,23 @@
 import React from 'react';
 import Spirity from '../../helper/hook';
 import {ChatHeader, ChatFooter,ChatBody} from './Chat/index'
-import WebsocketService from '../../services/websocket.service'
+
 
 export const Chat = ({channelId}) => {
     const [uid,setUid] = React.useState(null);
     const {store,action} = Spirity();
+
     React.useEffect(() => {
-        console.log("render chat component")
-
+        let isSubcribe = true;
+        
+        if(isSubcribe && store.messageStore.user_detail.id){
             action.getMessageLog(channelId);
+        }
+        return function cleanUp(){
+            isSubcribe = false;
+        };
             
-            setUid(store.messageStore.user_detail.id)
-
-      
-    },[])
+    },[store.messageStore.user_detail.id])
  
     console.log(store.messageStore)
     

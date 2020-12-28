@@ -4,8 +4,9 @@ import homeSaga from './home.saga'
 function* rootSaga(){
     yield all([
         //TODO:
-        ...authSaga(),
         ...homeSaga(),
+        ...authSaga(),
+        
     ])
 }
 export default rootSaga;

@@ -4,8 +4,7 @@ import WebSocketService from '../../services/websocket.service'
 import AuthService from '../../services/auth.service';
 import { get } from '../../helper/helper';
 import { API } from '../../constants/paths';
-const getAuthStore = (state) => state.auth;
-const getMessageStore = (state) => state.message;
+
 function* getListFriendRequested(params){
     try{
         const token = localStorage.getItem("token");
@@ -53,25 +52,27 @@ function* getListFriendRequested(params){
 //         yield put({type : "SEND_MESSAGE/FAILED",payload:e})
 //     }
 // }
-function* sendMessageRequested(params){
-    const {channelId,message} = params.payload.data;
-    const {user_detail} = yield select(getMessageStore);
-    let payload = {
-        channelId: channelId,
-        message:message,
-        sender: user_detail.email,
-        message_type:"TEXT"
+
+function* sendMessage(params){
+    try {
+        console.log(params)
+        
+        yield put({type : "SEND_MESSAGE/SUCCEEDED",payload:{}})
+    } catch (error) {
+        yield put({type : "SEND_MESSAGE/FAILED",payload:{error}})
     }
-  WebSocketService.sendMessage(payload);
 }
 function* getMessageLogRequested(params){
     try {
         const token = localStorage.getItem("token");
         const {data,status} = yield call(UserService.getMessageLog,params.payload.data,token);
+        console.log(data)
         if(status === 200){
-            
             yield put({type : "GET_MESSAGE_LOG/SUCCEEDED",payload:{data,status}})
-            WebSocketService.joinRoom(params.payload.data);
+            WebSocketService.joinRoom(params.payload.data)
+           
+            
+            
         }
         else{
             yield put({type : "GET_MESSAGE_LOG/FAILED",payload : {data,status}})
@@ -85,10 +86,14 @@ function* getUserDetailRequested(){
         let token = localStorage.getItem("token")
         let {data,status} = yield call(get,API.ME,null,token);
         let tokenMessage = yield call(AuthService.getTokenMessage,token);
+       
+        
         if(status === 200){
-            yield put({type : "GET_USER_DETAIL/SUCCEEDED",payload:{data,status}})
+            
+            yield put({type : "GET_USER_DETAIL/SUCCEEDED",payload:{data,status,tokenMessage}})
             localStorage.setItem("status",status)
-            WebSocketService.connect(tokenMessage.data,data.email);
+            WebSocketService.connect(tokenMessage.data,data.email)
+            
         }
         else{
             yield put({type : "GET_USER_DETAIL/FAILED",payload:{data,status}})
@@ -102,9 +107,8 @@ function* getUserDetailRequested(){
 }
 export default function* homeSaga(){
     yield takeEvery("GET_LIST_FRIEND/REQUESTED",getListFriendRequested)
-    yield takeEvery("GET_MESSAGE_LOG/REQUESTED",getMessageLogRequested)
-    yield takeEvery("SEND_MESSAGE/REQUESTED",sendMessageRequested)
     yield takeEvery("GET_USER_DETAIL/REQUESTED",getUserDetailRequested)
-
+    yield takeEvery("GET_MESSAGE_LOG/REQUESTED",getMessageLogRequested)
+    yield takeEvery("SEND_MESSAGE/REQUESTED",sendMessage)
    
 }

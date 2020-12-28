@@ -22,6 +22,7 @@ export const actions = createActions({
         "SUCCEEDED": [meta => meta, payload => payload],
         "FAILED": [meta => meta, payload => payload]
     },
+    "JOIN_ROOM":[meta => meta, payload => payload],
     
     
 
@@ -32,13 +33,16 @@ const defaultState = {
   "message_log":{
       "messages":[],
   },
+  "get_user_detail": false,
    
 }
 const reducers = handleActions({
+   
     [actions.getUserDetail.requested] : (state,action) => {
         return({
             ...state,
             loading : true,
+            
         })
     },
     [actions.getUserDetail.succeeded] : (state,action) => {
@@ -46,7 +50,9 @@ const reducers = handleActions({
             ...state,
             loading : false,
             user_detail : action.payload.data,
-            status_code: action.payload.status
+            status_code: action.payload.status,
+            token_message:action.payload.tokenMessage.data,
+            "get_user_detail": true,
 
         })
 
@@ -57,7 +63,8 @@ const reducers = handleActions({
             loading : false,
             message : "Get user detail failed",
             variant : "danger",
-            status_code: action.payload.status
+            status_code: action.payload.status,
+            "get_user_detail": false,
         })
     },
         [actions.sendMessage.requested] : (state,actions) => {
@@ -66,12 +73,10 @@ const reducers = handleActions({
             }
         },
         [actions.sendMessage.succeeded] : (state,actions) => {
-            console.log(actions.payload)
+           
             return{
                 ...state,
-                message_log:{
-                    messages:[...actions.payload.newMessageLog]
-                },
+              
             }
         },
         [actions.sendMessage.failed] : (state,actions) => {
