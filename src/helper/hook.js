@@ -34,25 +34,24 @@ export default function Spirity(){
     function getListFriend(){
         return dispatch(messageAction.getListFriend.requested({}));
     }
-    function getMessageLog(channelId){
-        dispatch(messageAction.getMessageLog.requested({data:channelId}))
+    function getMessageLog({channelId,callback}){
+        dispatch(messageAction.getMessageLog.requested({data:channelId,callback:callback}))
     }
 
-    function sendMessage(channelId,message,message_type){
+    function sendMessage({payload,callback}){
         
         return dispatch(messageAction.sendMessage.requested({
-            data: {
-                channelId : channelId,
-                message: message,
-                message_type: message_type
-             }
+            data: payload,callback:callback,
         }))
+    }
+    function updateMessage(payload){
+        return dispatch(messageAction.updateMessage({data:payload}))
     }
     return{
         store:{authStore,homeStore, messageStore},
         action:{login,register,forgot,
             logout,confirmToken,
-            getMessageLog,sendMessage,
+            getMessageLog,sendMessage,updateMessage,
             getListFriend,setComponent}
     }
 }

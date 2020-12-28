@@ -9,9 +9,19 @@ export function ChatFooter({channelId}) {
     const {store, action } = Spirity();
 
     const { register, handleSubmit, reset } = useForm();
+    const updateMessage = (payload) => {
+        action.updateMessage(payload);
+    }
     const sendMessage =  ( data ,e) =>{ 
-            console.log(channelId)
-            action.sendMessage(channelId,data.message,"TEXT")
+
+            let payload = {
+                channelId : channelId,
+                message:data.message,
+                message_type:"TEXT",
+                sender:store.messageStore.user_detail.email,
+            }
+            
+            action.sendMessage({payload:payload})
             reset();
     }
     return (

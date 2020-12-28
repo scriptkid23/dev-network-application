@@ -1,5 +1,6 @@
 import SockJS from 'sockjs-client'
 import Stomp from 'stompjs'
+
 class WebSocketService{
     stompClient = null;
     createRoom(payload){
@@ -37,11 +38,12 @@ class WebSocketService{
     leaveRoom(channelId){
         this.stompClient.unsubscribe("/topic/"+channelId+"/queue/messages");
     }
-    joinRoom(channelId){
-        this.stompClient.subscribe(
+    joinRoom({channelId,callback}){
+        return this.stompClient.subscribe(
             "/topic/"+channelId+"/queue/messages",
             (message) => {
-                    console.log(message)
+                    console.log(JSON.parse(message.body))
+                    callback(JSON.parse(message.body))
             }
         )
     }

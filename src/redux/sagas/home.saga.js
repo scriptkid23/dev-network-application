@@ -55,9 +55,9 @@ function* getListFriendRequested(params){
 
 function* sendMessage(params){
     try {
-        console.log(params)
-        
+
         yield put({type : "SEND_MESSAGE/SUCCEEDED",payload:{}})
+        WebSocketService.sendMessage(params.payload.data)
     } catch (error) {
         yield put({type : "SEND_MESSAGE/FAILED",payload:{error}})
     }
@@ -69,10 +69,7 @@ function* getMessageLogRequested(params){
         console.log(data)
         if(status === 200){
             yield put({type : "GET_MESSAGE_LOG/SUCCEEDED",payload:{data,status}})
-            WebSocketService.joinRoom(params.payload.data)
-           
-            
-            
+            WebSocketService.joinRoom({channelId:params.payload.data,callback:params.payload.callback})   
         }
         else{
             yield put({type : "GET_MESSAGE_LOG/FAILED",payload : {data,status}})

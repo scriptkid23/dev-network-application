@@ -7,11 +7,14 @@ export const Chat = ({channelId}) => {
     const [uid,setUid] = React.useState(null);
     const {store,action} = Spirity();
 
+    const updateMessage = (payload) => {
+        action.updateMessage(payload)
+    }
     React.useEffect(() => {
         let isSubcribe = true;
         
         if(isSubcribe && store.messageStore.user_detail.id){
-            action.getMessageLog(channelId);
+            action.getMessageLog({channelId:channelId,callback:updateMessage});
         }
         return function cleanUp(){
             isSubcribe = false;

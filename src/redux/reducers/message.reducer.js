@@ -2,6 +2,8 @@ import { handleActions, createActions } from 'redux-actions';
 import {COMPONENT} from '../../constants/paths'
 export const actions = createActions({
   
+    "UPDATE_MESSAGE": [meta => meta, payload => payload],
+
     "GET_LIST_FRIEND": {
         "REQUESTED" : [meta => meta, payload => payload],
         "SUCCEEDED" : [meta => meta, payload => payload],
@@ -29,15 +31,25 @@ export const actions = createActions({
 });
 const defaultState = {
     "user_detail": {},
-  "list_friend":[],
-  "message_log":{
-      "messages":[],
-  },
+    "list_friend":[],
+    "message_log":{
+        "messages":[],
+    },
   "get_user_detail": false,
    
 }
 const reducers = handleActions({
-   
+    [actions.updateMessage] : (state,action) => {
+        console.log(actions.payload)
+        return({
+            ...state,
+            message_log:{
+                messages:[
+                    ...state.message_log.messages,action.payload.data,
+                ]
+            }
+        })
+    },
     [actions.getUserDetail.requested] : (state,action) => {
         return({
             ...state,
