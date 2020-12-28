@@ -25,6 +25,11 @@ export const actions = createActions({
         "FAILED": [meta => meta, payload => payload]
     },
     "JOIN_ROOM":[meta => meta, payload => payload],
+    "LEAVE_ROOM":{
+        "REQUESTED": [meta => meta, payload => payload],
+        "SUCCEEDED": [meta => meta, payload => payload],
+        "FAILED": [meta => meta, payload => payload]
+    }
     
     
 
@@ -39,6 +44,22 @@ const defaultState = {
    
 }
 const reducers = handleActions({
+    [actions.leaveRoom.requested] : (state, action) => {
+        return ({
+            ...state
+        })
+    },
+    [actions.leaveRoom.succeeded] : (state, action) => {
+        return ({
+            ...state
+        })
+    },
+    [actions.leaveRoom.failed] : (state, action) => {
+        return ({
+            ...state
+        })
+    },
+
     [actions.updateMessage] : (state,action) => {
         console.log(actions.payload)
         return({

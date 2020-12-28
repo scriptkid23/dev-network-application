@@ -37,6 +37,9 @@ export default function Spirity(){
     function getMessageLog({channelId,callback}){
         dispatch(messageAction.getMessageLog.requested({data:channelId,callback:callback}))
     }
+    const leaveRoom = (channelId) => {
+        return dispatch(messageAction.leaveRoom.requested({data:channelId}))
+    }
 
     function sendMessage({payload,callback}){
         
@@ -52,6 +55,7 @@ export default function Spirity(){
         action:{login,register,forgot,
             logout,confirmToken,
             getMessageLog,sendMessage,updateMessage,
+            leaveRoom,
             getListFriend,setComponent}
     }
 }

@@ -3,6 +3,7 @@ import Stomp from 'stompjs'
 
 class WebSocketService{
     stompClient = null;
+    mySubscribe = null;
     createRoom(payload){
 
     }
@@ -36,10 +37,10 @@ class WebSocketService{
 
     }
     leaveRoom(channelId){
-        this.stompClient.unsubscribe("/topic/"+channelId+"/queue/messages");
+        this.mySubscribe.unsubscribe();
     }
     joinRoom({channelId,callback}){
-        return this.stompClient.subscribe(
+        return this.mySubscribe = this.stompClient.subscribe(
             "/topic/"+channelId+"/queue/messages",
             (message) => {
                     console.log(JSON.parse(message.body))

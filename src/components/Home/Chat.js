@@ -18,6 +18,7 @@ export const Chat = ({channelId}) => {
         }
         return function cleanUp(){
             isSubcribe = false;
+            action.leaveRoom(channelId);
         };
             
     },[store.messageStore.user_detail.id])

@@ -52,7 +52,15 @@ function* getListFriendRequested(params){
 //         yield put({type : "SEND_MESSAGE/FAILED",payload:e})
 //     }
 // }
+function* leaveRoomRequested(params){
+    try {
 
+        yield put({type : "LEAVE_ROOM/SUCCEEDED",payload:{}})
+        WebSocketService.leaveRoom(params.payload.data)
+    } catch (error) {
+        yield put({type : "LEAVE_ROOM/FAILED",payload:{error}})
+    }
+}
 function* sendMessage(params){
     try {
 
@@ -107,5 +115,6 @@ export default function* homeSaga(){
     yield takeEvery("GET_USER_DETAIL/REQUESTED",getUserDetailRequested)
     yield takeEvery("GET_MESSAGE_LOG/REQUESTED",getMessageLogRequested)
     yield takeEvery("SEND_MESSAGE/REQUESTED",sendMessage)
+    yield takeEvery("LEAVE_ROOM/REQUESTED",leaveRoomRequested)
    
 }

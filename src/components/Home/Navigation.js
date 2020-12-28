@@ -5,6 +5,7 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
 import {COMPONENT} from '../../constants/paths'
 import Spirity from '../../helper/hook'
+import { Link } from 'react-router-dom';
 const CustomizeOverlayTrigger = (props) => {
     return <OverlayTrigger
     placement="right"
@@ -39,6 +40,7 @@ export function Navigation({screen,setScreen}) {
                 <ul>
                     <li className="logo" >
                         <a href="/#"><Logo/></a>
+                        <Link to="/home/6f91dfe9-1cb2-413e-9ef0-7e95a798cf7">123</Link>
                     </li>
                     <li>
                        <CustomizeOverlayTrigger title={"Chats"}>
