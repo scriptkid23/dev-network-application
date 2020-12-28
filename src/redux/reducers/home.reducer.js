@@ -20,8 +20,6 @@ const defaultState = {
    "room_id": null,
    "profile_visibly":false,
    "loading":false,
-
-   
 }
 const reducers = handleActions({
 

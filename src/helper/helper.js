@@ -1,6 +1,7 @@
 import {Route} from 'react-router-dom'
 import Axios from 'axios'
 import {ENVIRONMENTS} from '../constants/paths'
+import Moment from 'moment'
 //setup evironments
 const baseUrl = !process.env.NODE_ENV || process.env.NODE_ENV === 'development' ? 
                 ENVIRONMENTS.DEVELOPMENT : 
@@ -112,5 +113,7 @@ function getRoutes(route){
     )
 }
 
-
-export {getRoutes,get,post,put,del}
+function convertTime(time){
+    return Moment(time).fromNow()
+}
+export {getRoutes,get,post,put,del,convertTime}

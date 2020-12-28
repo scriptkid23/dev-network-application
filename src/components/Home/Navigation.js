@@ -40,7 +40,6 @@ export function Navigation({screen,setScreen}) {
                 <ul>
                     <li className="logo" >
                         <a href="/#"><Logo/></a>
-                        <Link to="/home/6f91dfe9-1cb2-413e-9ef0-7e95a798cf7">123</Link>
                     </li>
                     <li>
                        <CustomizeOverlayTrigger title={"Chats"}>

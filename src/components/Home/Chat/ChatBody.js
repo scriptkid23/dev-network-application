@@ -1,5 +1,6 @@
 import React from 'react'
 import PerfectScrollbar from 'react-perfect-scrollbar'
+import { convertTime } from '../../../helper/helper';
 
 
 export function ChatBody({uid,messages}) {
@@ -30,7 +31,7 @@ export function ChatBody({uid,messages}) {
                         </figure>
                         <div>
                             <h5>{value.user.first_name+" "+value.user.last_name}</h5>
-                            {/* <div className="time">{value.created_at}<i className="ti-double-check text-info"></i></div> */}
+                            <div className="time">{convertTime(value.created_at)}<i className="ti-double-check text-info"></i></div>
                         </div>
                     </div>
                     <div className="message-content">
