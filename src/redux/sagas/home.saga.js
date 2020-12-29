@@ -1,4 +1,4 @@
-import {takeEvery,put,call,select} from 'redux-saga/effects';
+import {takeEvery,put,call,select,delay} from 'redux-saga/effects';
 import UserService from '../../services/user.service';
 import WebSocketService from '../../services/websocket.service'
 import AuthService from '../../services/auth.service';
@@ -77,6 +77,7 @@ function* getMessageLogRequested(params){
         console.log(data)
         if(status === 200){
             yield put({type : "GET_MESSAGE_LOG/SUCCEEDED",payload:{data,status}})
+            yield delay(500);
             WebSocketService.joinRoom({channelId:params.payload.data,callback:params.payload.callback})   
         }
         else{
