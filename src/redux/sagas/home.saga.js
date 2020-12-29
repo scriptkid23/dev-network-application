@@ -110,11 +110,25 @@ function* getUserDetailRequested(){
         localStorage.removeItem("token");
     }
 }
+function* getListMessageLog() {
+    try {
+        let token = localStorage.getItem("token");
+        const {data,status} = yield call(get,API.GET_LIST_MESSAGE_LOG,null,token);
+        if(status === 200){
+            yield put({type : "GET_LIST_MESSAGE_LOG/SUCCEEDED",payload:{data,status}})
+        }
+        else{
+            yield put({type : "GET_LIST_MESSAGE_LOG/FAILED",payload :{data,status}})
+        }
+    } catch (error) {
+        yield put({type : "GET_LIST_MESSAGE_LOG/FAILED",payload :error})
+    }
+}
 export default function* homeSaga(){
     yield takeEvery("GET_LIST_FRIEND/REQUESTED",getListFriendRequested)
     yield takeEvery("GET_USER_DETAIL/REQUESTED",getUserDetailRequested)
     yield takeEvery("GET_MESSAGE_LOG/REQUESTED",getMessageLogRequested)
     yield takeEvery("SEND_MESSAGE/REQUESTED",sendMessage)
     yield takeEvery("LEAVE_ROOM/REQUESTED",leaveRoomRequested)
-   
+    yield takeEvery("GET_LIST_MESSAGE_LOG/REQUESTED",getListMessageLog)
 }

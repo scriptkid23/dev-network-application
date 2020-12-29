@@ -29,7 +29,13 @@ export const actions = createActions({
         "REQUESTED": [meta => meta, payload => payload],
         "SUCCEEDED": [meta => meta, payload => payload],
         "FAILED": [meta => meta, payload => payload]
+    },
+    "GET_LIST_MESSAGE_LOG":{
+        "REQUESTED": [meta => meta, payload => payload],
+        "SUCCEEDED": [meta => meta, payload => payload],
+        "FAILED": [meta => meta, payload => payload]
     }
+    
     
     
 
@@ -40,10 +46,27 @@ const defaultState = {
     "message_log":{
         "messages":[],
     },
+    "list_message_log": [],
   "get_user_detail": false,
    
 }
 const reducers = handleActions({
+    [actions.getListMessageLog.requested] : (state,action) => {
+        return({
+            ...state,
+        })
+    },
+    [actions.getListMessageLog.succeeded] : (state,action) => {
+        return({
+            ...state,
+            list_message_log: action.payload.data,
+        })
+    },
+    [actions.getListMessageLog.failed] : (state,action) => {
+        return({
+            ...state,
+        })
+    },
     [actions.leaveRoom.requested] : (state, action) => {
         return ({
             ...state

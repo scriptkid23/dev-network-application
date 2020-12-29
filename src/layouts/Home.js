@@ -9,6 +9,7 @@ class Home extends Component {
     componentDidMount(){
         this.props.getUserDetail.requested();
         this.props.getListFriend.requested();
+        this.props.getListMessageLog.requested();
         console.log(localStorage.getItem("token_message"))
       
        
@@ -29,7 +30,8 @@ const mapStateToProps = state => {return{home: state.home,auth:state.auth}};
 const mapDispatchToProps = dispatch => {
     return({
         getListFriend: bindActionCreators(messageReducer.actions.getListFriend,dispatch),
-        getUserDetail:bindActionCreators(messageReducer.actions.getUserDetail,dispatch)
+        getUserDetail:bindActionCreators(messageReducer.actions.getUserDetail,dispatch),
+        getListMessageLog:bindActionCreators(messageReducer.actions.getListMessageLog,dispatch),
     })
 }
 const connectHome = connect(mapStateToProps,mapDispatchToProps)(Home);

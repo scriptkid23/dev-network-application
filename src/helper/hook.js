@@ -50,12 +50,15 @@ export default function Spirity(){
     function updateMessage(payload){
         return dispatch(messageAction.updateMessage({data:payload}))
     }
+    function getListMessageLog(){
+        return dispatch(messageAction.getListMessageLog.requested({}))
+    }
     return{
         store:{authStore,homeStore, messageStore},
         action:{login,register,forgot,
             logout,confirmToken,
             getMessageLog,sendMessage,updateMessage,
-            leaveRoom,
+            leaveRoom,getListMessageLog,
             getListFriend,setComponent}
     }
 }
