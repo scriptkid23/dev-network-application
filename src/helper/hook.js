@@ -5,12 +5,15 @@ import * as messageReducer from '../redux/reducers/message.reducer'
 import { useHistory} from "react-router-dom";
 export default function Spirity(){
     const dispatch = useDispatch();
+
     const authAction = {...authReducer.actions}
     const homeAction = {...homeReducer.actions}
     const messageAction = {...messageReducer.actions}
+
     const authStore = useSelector(state => state.auth);
     const homeStore  = useSelector(state => state.home);
     const messageStore = useSelector(state => state.message);
+
     const history = useHistory();
     const login = data => {
         return dispatch(authAction.login.requested({data,callback:history}))
@@ -53,12 +56,15 @@ export default function Spirity(){
     function getListMessageLog(){
         return dispatch(messageAction.getListMessageLog.requested({}))
     }
+    function setChannel(id){
+        return dispatch(homeAction.sidebar.setChannel(id))
+    }
     return{
         store:{authStore,homeStore, messageStore},
         action:{login,register,forgot,
             logout,confirmToken,
             getMessageLog,sendMessage,updateMessage,
-            leaveRoom,getListMessageLog,
+            leaveRoom,getListMessageLog,setChannel,
             getListFriend,setComponent}
     }
 }

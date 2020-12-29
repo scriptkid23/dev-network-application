@@ -10,9 +10,6 @@ class Home extends Component {
         this.props.getUserDetail.requested();
         this.props.getListFriend.requested();
         this.props.getListMessageLog.requested();
-        console.log(localStorage.getItem("token_message"))
-      
-       
     }
     render() {
         return (

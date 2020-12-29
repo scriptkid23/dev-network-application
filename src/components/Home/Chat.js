@@ -23,8 +23,7 @@ export const Chat = ({channelId}) => {
             
     },[store.messageStore.user_detail.id])
  
-    console.log(store.messageStore)
-    
+   
     return (
         <div className="chat">
             <ChatHeader/>
