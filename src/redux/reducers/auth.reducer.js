@@ -38,6 +38,7 @@ export const actions = createActions({
 
 });
 const defaultState = {
+    status_code : null,
     loading: false,
     message: "",
     fullname: "",
@@ -46,9 +47,11 @@ const defaultState = {
     roles: ['user'],
     variant: "",
     time : "",
+    token_message : "",
     user_detail : {},
 }
 const reducers = handleActions({
+  
     [actions.getUserDetail.requested] : (state,action) => {
         return({
             ...state,
@@ -59,7 +62,8 @@ const reducers = handleActions({
         return({
             ...state,
             loading : false,
-            user_detail : action.payload.data.data,
+            user_detail : action.payload.data,
+            status_code: action.payload.status
 
         })
 
@@ -69,7 +73,8 @@ const reducers = handleActions({
             ...state,
             loading : false,
             message : "Get user detail failed",
-            variant : "danger"
+            variant : "danger",
+            status_code: action.payload.status
         })
     },
     [actions.forgot.requested] : (state,action) => {
