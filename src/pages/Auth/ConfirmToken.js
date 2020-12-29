@@ -7,9 +7,12 @@ export function ConfirmToken() {
 
     const params = useParams();
     React.useEffect(() => {
-        action.confirmToken(params)
-        
-    }, [params])
+        let isSubcribe = true;
+        if(isSubcribe){
+            action.confirmToken(params)
+        }
+        return () => isSubcribe = false;
+    }, [])
     return (
         <div>
            <Backdrop show={true}/>

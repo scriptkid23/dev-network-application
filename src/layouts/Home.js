@@ -1,12 +1,15 @@
 import React, { Component } from 'react'
 import Routers from '../routes';
 import {getRoutes} from '../helper/helper'
-import {Navigation,Sidebar} from '../components/Home'
-import websocketService from '../services/websocket.service';
-
-export default class Home extends Component { 
+import {connect} from 'react-redux';
+import * as messageReducer from '../redux/reducers/message.reducer'
+import * as homeReducer from '../redux/reducers/home.reducer'
+import {bindActionCreators} from 'redux';
+class Home extends Component { 
     componentDidMount(){
-        websocketService.connect();
+        this.props.getUserDetail.requested();
+        this.props.getListFriend.requested();
+        this.props.getListMessageLog.requested();
     }
     render() {
         return (
@@ -20,3 +23,13 @@ export default class Home extends Component {
         )
     }
 }
+const mapStateToProps = state => {return{home: state.home,auth:state.auth}};
+const mapDispatchToProps = dispatch => {
+    return({
+        getListFriend: bindActionCreators(messageReducer.actions.getListFriend,dispatch),
+        getUserDetail:bindActionCreators(messageReducer.actions.getUserDetail,dispatch),
+        getListMessageLog:bindActionCreators(messageReducer.actions.getListMessageLog,dispatch),
+    })
+}
+const connectHome = connect(mapStateToProps,mapDispatchToProps)(Home);
+export default connectHome

@@ -1,19 +1,21 @@
 import SockJS from 'sockjs-client'
 import Stomp from 'stompjs'
+
 class WebSocketService{
     stompClient = null;
+    mySubscribe = null;
     createRoom(payload){
 
     }
     getLogMessage(payload){
 
     }
-    connect(){
+    connect(token_message,username){
         var socket = new SockJS("http://localhost:8000/ws");
         this.stompClient = Stomp.over(socket);
         var headers = {
-            Authorization: localStorage.getItem("token_message"),
-            Username: localStorage.getItem("username")
+            Authorization: token_message,
+            Username: username,
         }
         this.stompClient.connect(headers,function(frame){
             console.log("Connected!")
@@ -21,11 +23,12 @@ class WebSocketService{
         })
 
     }
-    disconnect(payload){
-
+    disconnect(){
+        this.stompClient.disconnect();
     }
     sendMessage(payload){
-
+        console.log(payload)
+        this.stompClient.send("/app/chat", {},JSON.stringify(payload));
     }
     getStatusUser(payload){
 
@@ -33,11 +36,17 @@ class WebSocketService{
     getNotification(payload){
 
     }
-    leaveRoom(payload){
-
+    leaveRoom(channelId){
+        this.mySubscribe.unsubscribe();
     }
-    joinRoom(payload){
-
+    joinRoom({channelId,callback}){
+        return this.mySubscribe = this.stompClient.subscribe(
+            "/topic/"+channelId+"/queue/messages",
+            (message) => {
+                    console.log(JSON.parse(message.body))
+                    callback(JSON.parse(message.body))
+            }
+        )
     }
 
 }
