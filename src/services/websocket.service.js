@@ -11,7 +11,7 @@ class WebSocketService{
 
     }
     connect(token_message,username){
-        var socket = new SockJS("http://localhost:8000/ws");
+        var socket = new SockJS("https://capricorn-chat-serv.herokuapp.com");
         this.stompClient = Stomp.over(socket);
         var headers = {
             Authorization: token_message,
