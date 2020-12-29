@@ -23,10 +23,13 @@ export const Chat = ({channelId}) => {
             
     },[store.messageStore.user_detail.id])
  
-   
+    const exportInfoHeader = (data) => {
+        return data.filter(value => value.channel_id === channelId)[0]
+        
+    }
     return (
-        <div className="chat">
-            <ChatHeader/>
+        <div className="chat" >
+            <ChatHeader info={exportInfoHeader(store.messageStore.list_message_log)}/>
             <ChatBody 
                 messages={store.messageStore.message_log.messages} 
                 uid={store.messageStore.user_detail.id}
