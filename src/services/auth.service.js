@@ -15,9 +15,6 @@ class AuthService{
     confirm(payload){
         return post(API.CONFIRM_TOKEN,payload);
     }
-    getUserDetail(token){
-        return get(API.ME,null,token);
-    }
     getTokenMessage(token){
         return get(API.GET_TOKEN_MESSAGE,null,token);
     }

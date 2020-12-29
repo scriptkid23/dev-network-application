@@ -5,22 +5,24 @@ import {ThreeDot} from '../../../assets/index';
 
 import {useDispatch} from 'react-redux'
 import * as homeReducer from '../../../redux/reducers/home.reducer';
+import { convertTime } from '../../../helper/helper';
 
-export function ChatHeader() {
+export function ChatHeader({info}) {
     const dispatch = useDispatch();
     const homeAction = {...homeReducer.actions.chat}
     const profileActions = () => {
         dispatch(homeAction.viewProfile())
     }
+    console.log(info)
     return (
         <div class="chat-header">
             <div class="chat-header-user">
             <figure class="avatar avatar-state-success">
-                <img src="http://storage-3t.herokuapp.com/uploads/avatar/006-unicorn.svg" alt="avt-room" />                
+                <img src={info && info.avatar} alt="avt-room" />                
             </figure>
             <div>
-                <h5>Townsend Seary</h5>
-                <small class="text-muted"><i>5 minutes ago</i></small>
+                <h5>{info && info.first_name_receiver+" "+info.last_name_receiver}</h5>
+                <small class="text-muted"><i>{info && convertTime(info.created_at)}</i></small>
             </div>
             </div>
             <div class="chat-header-action">

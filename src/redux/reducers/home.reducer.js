@@ -1,5 +1,4 @@
 import { handleActions, createActions } from 'redux-actions';
-import {COMPONENT} from '../../constants/paths'
 export const actions = createActions({
     //TODO:
     "NAVIGATION":{
@@ -7,27 +6,23 @@ export const actions = createActions({
     },
     "SIDEBAR":{
         "SET_CHANNEL":[meta => meta, payload => payload],
+        
     },
     "CHAT":{
         "VIEW_PROFILE":[meta => meta, payload => payload],
         "CLOSE_PROFILE": [meta => meta, payload => payload],
-    }
+    },
+    
+    
 
 });
 const defaultState = {
-   "navigation": COMPONENT.CHATS,
    "room_id": null,
    "profile_visibly":false,
-   
+   "loading":false,
 }
 const reducers = handleActions({
-        [actions.navigation.setComponent] : (state,actions) => {
-            return {
-                ...state,
-                navigation: actions.payload,
 
-            }
-        },
         [actions.sidebar.setChannel] : (state,actions) => {
             return {
                 ...state,

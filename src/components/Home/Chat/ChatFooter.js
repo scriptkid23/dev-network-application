@@ -3,32 +3,40 @@ import {Dropdown} from 'react-bootstrap'
 import {CustomMenu, CustomToggle} from '../../common/index';
 import {Send,Emoji} from '../../../assets/index';
 import { Picker } from 'emoji-mart'
+import Spirity from '../../../helper/hook';
+import { useForm } from "react-hook-form";
+export function ChatFooter({channelId}) {
+    const {store, action } = Spirity();
 
-export function ChatFooter() {
+    const { register, handleSubmit, reset } = useForm();
+    const updateMessage = (payload) => {
+        action.updateMessage(payload);
+    }
+    const sendMessage =  ( data ,e) =>{ 
+
+            let payload = {
+                channelId : channelId,
+                message:data.message,
+                message_type:"TEXT",
+                sender:store.messageStore.user_detail.email,
+            }
+            
+            action.sendMessage({payload:payload})
+            reset();
+    }
     return (
         <div class="chat-footer">
-            <form>
-                <div>         
-                    <Dropdown drop={"up"}>
-                        <Dropdown.Toggle as={CustomToggle}>
-                        <button title="Emoji" class="mr-3 btn btn-light">
-                            <Emoji/>
-                        </button>
-                        </Dropdown.Toggle>
-                        <Dropdown.Menu as={CustomMenu}
-                        
-                        >
-                                <Picker 
-                                set='apple' style={{border:"none"}}
-                                theme={"dark"}
-                                />
-                        </Dropdown.Menu>
-                    </Dropdown>
-                    
-                </div>
-                <input placeholder="Write a message." type="text" class="form-control form-control" value=""/>
+            <form onSubmit={handleSubmit(sendMessage)}>
+               
+                <input 
+                ref={register({ required: true })}
+                name="message"
+                placeholder="Write a message." type="text" 
+                className="form-control form-control"/>
                 <div class="form-buttons">
-                <button class="btn btn-primary">
+                <button 
+                onClick={handleSubmit(sendMessage)}
+                class="btn btn-primary">
                     <Send/>
                 </button>
                 </div>
