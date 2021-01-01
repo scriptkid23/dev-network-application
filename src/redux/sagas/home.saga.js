@@ -77,7 +77,6 @@ function* getMessageLogRequested(params){
         console.log(data)
         if(status === 200){
             yield put({type : "GET_MESSAGE_LOG/SUCCEEDED",payload:{data,status}})
-            yield delay(500);
             WebSocketService.joinRoom({channelId:params.payload.data,callback:params.payload.callback})   
         }
         else{
