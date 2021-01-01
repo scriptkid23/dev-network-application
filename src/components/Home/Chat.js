@@ -1,4 +1,5 @@
 import React from 'react';
+import { channel } from 'redux-saga';
 import Spirity from '../../helper/hook';
 import {ChatHeader, ChatFooter,ChatBody} from './Chat/index'
 
@@ -7,18 +8,26 @@ export const Chat = ({channelId}) => {
     const [uid,setUid] = React.useState(null);
     const {store,action} = Spirity();
 
-    const updateMessage = (payload) => {
+    const updateMessage = React.useCallback((payload) => {
         action.updateMessage(payload)
-    }
+    },[action])
+    const getMessageLog = React.useCallback(({channelId,callback}) => {
+        action.getMessageLog({channelId:channelId,callback:callback});
+    },[action])
+
+    const leaveRoom = React.useCallback((channelId) => {
+        action.leaveRoom(channelId);
+    },[action])
+
     React.useEffect(() => {
         let isSubcribe = true;
-        
         if(isSubcribe && store.messageStore.user_detail.id){
-            action.getMessageLog({channelId:channelId,callback:updateMessage});
+            // action.getMessageLog({channelId:channelId,callback:updateMessage});
+            getMessageLog({channelId:channelId,callback:updateMessage})
         }
         return function cleanUp(){
             isSubcribe = false;
-            action.leaveRoom(channelId);
+            leaveRoom(channelId);
         };
             
     },[store.messageStore.user_detail.id])

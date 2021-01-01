@@ -1,24 +1,19 @@
 import React from 'react'
 import PerfectScrollbar from 'react-perfect-scrollbar'
 import {AddGroup} from '../../../assets/index'
-
-import {useSelector,useDispatch} from 'react-redux'
-
 import {useHistory,useParams} from 'react-router-dom'
 import Spirity from '../../../helper/hook'
 import { convertTime } from '../../../helper/helper'
 export function Chats() {
     const history = useHistory();  
-    // const homeStore  = useSelector(state => state.home) 
     const params = useParams();
     const {store,action} =Spirity();
-    console.log(store.messageStore)
     const goToRoomId = (id) => {
         history.push(`/home/${id}`)
     }
     const setRoom = (id) => {
         action.setChannel(id);
-       goToRoomId(id);
+        goToRoomId(id);
     }
     const renderListMessageLog = (data) => {
         console.log(data)
