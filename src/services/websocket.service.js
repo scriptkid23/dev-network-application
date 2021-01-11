@@ -17,10 +17,7 @@ class WebSocketService{
             Authorization: token_message,
             Username: username,
         }
-        this.stompClient.connect(headers,function(frame){
-            console.log("Connected!")
-            console.log(frame)
-        })
+        this.stompClient.connect(headers,{})
 
     }
     disconnect(){
