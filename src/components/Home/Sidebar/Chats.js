@@ -1,10 +1,11 @@
 import React from 'react'
-import PerfectScrollbar from 'react-perfect-scrollbar'
-import {AddGroup} from '../../../assets/index'
+import PerfectScrollbar from 'react-perfect-scrollbar'; 
 import Data from '../data.json';
 import {useSelector,useDispatch} from 'react-redux'
 import * as homeReducer from '../../../redux/reducers/home.reducer';
 import {useHistory,useParams} from 'react-router-dom'
+import AddGr from './AddGr';
+
 export function Chats() {
     const history = useHistory();
     const params = useParams();
@@ -52,9 +53,10 @@ export function Chats() {
                         <ul className="list-inline">
                             <li className="list-inline-item">
                                 <div>
-                                    <button className="btn btn-outline-light" id="Tooltip-Add-Group">                                          
-                                            <AddGroup/>    
-                                    </button>
+                                    {/* <button className="btn btn-outline-light" id="Tooltip-Add-Group">                                          
+                                            <AddGr/>    
+                                    </button> */}
+                                    <AddGr/> 
                                 </div>
                             </li>
                         </ul>
