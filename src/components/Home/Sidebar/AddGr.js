@@ -98,7 +98,9 @@ export default function AddGr() {
                                 </div>
                                 <div class="form-group">
                                     <label for="description" class="">Invitation message</label>
-                                    <textarea name="description" id="description" class="form-control"></textarea>
+                                    <textarea name="description" id="description" 
+                                    ref={register({ required: true })} class="form-control">
+                                    </textarea>
                                 </div>
                             </div>
                         </form>

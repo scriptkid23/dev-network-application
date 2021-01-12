@@ -4,6 +4,7 @@ import {AddGroup} from '../../../assets/index'
 import {useHistory,useParams} from 'react-router-dom'
 import Spirity from '../../../helper/hook'
 import { convertTime } from '../../../helper/helper'
+import AddGr from './AddGr'
 export function Chats() {
     const history = useHistory();  
     const params = useParams();
