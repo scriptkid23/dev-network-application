@@ -12,12 +12,25 @@ class WebSocketService{
     }
     connect(token_message,username){
         var socket = new SockJS("http://localhost:8000/ws");
+        var that = this;
         this.stompClient = Stomp.over(socket);
+        var StompClient = Stomp.over(socket);
         var headers = {
             Authorization: token_message,
             Username: username,
         }
-        this.stompClient.connect(headers,{})
+
+        this.stompClient.connect(headers,() => {
+            that.stompClient.subscribe("/topic/workspace",(message)=>{
+                console.log(message)
+            })  
+            
+
+            that.stompClient.send("/app/workspace",{},JSON.stringify({
+                "Text":"hello"
+            }))
+        })
+
 
     }
     disconnect(){
