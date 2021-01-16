@@ -1,7 +1,7 @@
 import React from 'react'
 import PerfectScrollbar from 'react-perfect-scrollbar'
-import {NewChat} from '../../../assets/index'
 import Spirity from '../../../helper/hook'
+import AddFriend from './AddFriend';
 import FriendsDropdown from './FriendDropdown';
 
 export function Friends() {
@@ -41,9 +41,9 @@ export function Friends() {
                         <span>Friends</span>
                         <ul className="list-inline">
                             <li className="list-inline-item">
-                                <button className="btn btn-outline-light" id="Tooltip-New-Chat">
-                                    <NewChat/>
-                                </button>
+                               
+                                    <AddFriend/>
+                                
                             </li>
                         </ul>
                     </header>  
