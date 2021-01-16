@@ -4,6 +4,7 @@ import {AddGroup} from '../../../assets/index'
 import {useHistory,useParams} from 'react-router-dom'
 import Spirity from '../../../helper/hook'
 import { convertTime } from '../../../helper/helper'
+import AddGr from './AddGr'
 export function Chats() {
     const history = useHistory();  
     const params = useParams();
@@ -50,9 +51,10 @@ export function Chats() {
                         <ul className="list-inline">
                             <li className="list-inline-item">
                                 <div>
-                                    <button className="btn btn-outline-light" id="Tooltip-Add-Group">                                          
-                                            <AddGroup/>    
-                                    </button>
+                                    {/* <button className="btn btn-outline-light" id="Tooltip-Add-Group">                                          
+                                            <AddGr/>    
+                                    </button> */}
+                                    <AddGr/> 
                                 </div>
                             </li>
                         </ul>
