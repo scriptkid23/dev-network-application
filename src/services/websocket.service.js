@@ -14,7 +14,6 @@ class WebSocketService{
         var socket = new SockJS("http://localhost:8000/ws");
         var that = this;
         this.stompClient = Stomp.over(socket);
-        var StompClient = Stomp.over(socket);
         var headers = {
             Authorization: token_message,
             Username: username,
@@ -27,7 +26,8 @@ class WebSocketService{
             
 
             that.stompClient.send("/app/workspace",{},JSON.stringify({
-                "Text":"hello"
+                "from":username,
+                "text": "online",
             }))
         })
 
