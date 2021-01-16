@@ -97,7 +97,7 @@ function* getUserDetailRequested(){
             
             yield put({type : "GET_USER_DETAIL/SUCCEEDED",payload:{data,status,tokenMessage}})
             localStorage.setItem("status",status)
-            WebSocketService.connect(tokenMessage.data,data.email)
+            WebSocketService.connect(tokenMessage.data,data.email,data.id)
             
         }
         else{
