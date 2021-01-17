@@ -7,9 +7,12 @@ import * as homeReducer from '../redux/reducers/home.reducer'
 import {bindActionCreators} from 'redux';
 class Home extends Component { 
     componentDidMount(){
-        this.props.getUserDetail.requested();
+        this.props.getUserDetail.requested({
+            updateNotification:this.props.updateNotification,
+        });
         this.props.getListFriend.requested();
         this.props.getListMessageLog.requested();
+        this.props.getListNotification.requested();
     }
     render() {
         return (
@@ -26,9 +29,11 @@ class Home extends Component {
 const mapStateToProps = state => {return{home: state.home,auth:state.auth}};
 const mapDispatchToProps = dispatch => {
     return({
+        updateNotification:bindActionCreators(messageReducer.actions.updateNotification,dispatch),
         getListFriend: bindActionCreators(messageReducer.actions.getListFriend,dispatch),
         getUserDetail:bindActionCreators(messageReducer.actions.getUserDetail,dispatch),
         getListMessageLog:bindActionCreators(messageReducer.actions.getListMessageLog,dispatch),
+        getListNotification:bindActionCreators(messageReducer.actions.getListNotification,dispatch),
     })
 }
 const connectHome = connect(mapStateToProps,mapDispatchToProps)(Home);

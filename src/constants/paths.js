@@ -22,6 +22,7 @@ export const API = {
     GET_MESSAGE_LOG: "/api/v1/user/conversation",
     GET_LIST_MESSAGE_LOG:"/api/v1/user/message/log",
     SEND_MESSAGE: "/api/v1/user/send/message",
+    GET_LIST_NOTIFICATION: "/api/v1/user/notifications",
 }
 export const COMPONENT = {
     CHATS : "chats",

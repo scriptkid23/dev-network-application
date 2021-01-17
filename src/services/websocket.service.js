@@ -10,7 +10,7 @@ class WebSocketService{
     getLogMessage(payload){
 
     }
-    connect(token_message,username,id){
+    connect(token_message,username,id,callback){
         var socket = new SockJS("http://localhost:8000/ws");
         var that = this;
         this.stompClient = Stomp.over(socket);
@@ -26,6 +26,7 @@ class WebSocketService{
             })  
             that.stompClient.subscribe("/user/"+id+"/queue/notifications",(message) => {
                 console.log(message)
+                callback.updateNotification(JSON.parse(message.body))
             })
 
             that.stompClient.send("/app/workspace",{},JSON.stringify({
@@ -60,6 +61,9 @@ class WebSocketService{
                     callback(JSON.parse(message.body))
             }
         )
+    }
+    sendNotification(payload){
+        return this.stompClient.send("/app/notification",{},JSON.stringify(payload))
     }
 
 }

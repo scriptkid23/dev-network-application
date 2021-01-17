@@ -9,10 +9,11 @@ export default function AddFriend() {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const { store, action } = Spirity();
-    var authStore = store.authStore;
+    var messageStore = store.messageStore;
     const { register, handleSubmit, errors } = useForm();
     const onSubmit = data => {
-        action.AddFriend(data)
+        data["sender"]= messageStore.user_detail.email
+        action.addFriend(data)
       };
     return (
         <div>

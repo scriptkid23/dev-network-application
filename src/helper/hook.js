@@ -59,10 +59,17 @@ export default function Spirity(){
     function setChannel(id){
         return dispatch(homeAction.sidebar.setChannel(id))
     }
+    function addFriend(payload){
+        return dispatch(messageAction.sendNotification.requested({data:payload}))
+    }
+    function updateNotification(payload){
+        return dispatch(messageAction.updateNotification({data:payload}))
+    }
     return{
         store:{authStore,homeStore, messageStore},
         action:{login,register,forgot,
             logout,confirmToken,
+            addFriend,updateNotification,
             getMessageLog,sendMessage,updateMessage,
             leaveRoom,getListMessageLog,setChannel,
             getListFriend,setComponent}

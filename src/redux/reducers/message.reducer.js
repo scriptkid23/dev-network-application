@@ -3,6 +3,7 @@ import {COMPONENT} from '../../constants/paths'
 export const actions = createActions({
   
     "UPDATE_MESSAGE": [meta => meta, payload => payload],
+    "UPDATE_NOTIFICATION":[meta => meta, payload => payload],
 
     "GET_LIST_FRIEND": {
         "REQUESTED" : [meta => meta, payload => payload],
@@ -15,6 +16,11 @@ export const actions = createActions({
         "FAILED":[meta => meta, payload => payload],
     },
     "SEND_MESSAGE":{
+        "REQUESTED" : [meta => meta, payload => payload],
+        "SUCCEEDED" : [meta => meta, payload => payload],
+        "FAILED":     [meta => meta, payload => payload]
+    },
+    "SEND_NOTIFICATION":{
         "REQUESTED" : [meta => meta, payload => payload],
         "SUCCEEDED" : [meta => meta, payload => payload],
         "FAILED":     [meta => meta, payload => payload]
@@ -34,6 +40,11 @@ export const actions = createActions({
         "REQUESTED": [meta => meta, payload => payload],
         "SUCCEEDED": [meta => meta, payload => payload],
         "FAILED": [meta => meta, payload => payload]
+    },
+    "GET_LIST_NOTIFICATION":{
+        "REQUESTED": [meta => meta, payload => payload],
+        "SUCCEEDED": [meta => meta, payload => payload],
+        "FAILED": [meta => meta, payload => payload]
     }
     
     
@@ -46,11 +57,52 @@ const defaultState = {
     "message_log":{
         "messages":[],
     },
+    "list_notification":[],
     "list_message_log": [],
   "get_user_detail": false,
    
 }
 const reducers = handleActions({
+    [actions.getListNotification.requested]: (state,action) => {
+        return({
+            ...state,
+        })
+    },
+    [actions.getListNotification.succeeded]: (state,action) => {
+        return({
+            ...state,
+            list_notification:action.payload.data,
+        })
+    },
+    [actions.getListNotification.failed]: (state,action) => {
+        return({
+            ...state,
+        })
+    },
+    [actions.updateNotification]: (state, action) => {
+        return({
+            ...state,
+            list_notification:[
+                ...state.list_notification,
+                action.payload
+            ]
+        })
+    },
+    [actions.sendNotification.requested]: (state,action) => {
+        return ({
+            ...state,
+        })
+    }, 
+    [actions.sendNotification.succeeded]: (state, action) => {
+        return({
+            ...state,
+        })
+    },
+    [actions.sendNotification.failed]: (state, action) => {
+        return({
+            ...state,
+        })
+    },
     [actions.getListMessageLog.requested] : (state,action) => {
         return({
             ...state,

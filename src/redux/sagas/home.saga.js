@@ -52,6 +52,7 @@ function* getListFriendRequested(params){
 //         yield put({type : "SEND_MESSAGE/FAILED",payload:e})
 //     }
 // }
+
 function* leaveRoomRequested(params){
     try {
 
@@ -61,9 +62,26 @@ function* leaveRoomRequested(params){
         yield put({type : "LEAVE_ROOM/FAILED",payload:{error}})
     }
 }
+function* sendNotification(params){
+    try{
+        
+        console.log(params.payload.data)
+        let data = {
+            sender: params.payload.data.sender,
+            email:params.payload.data.email,
+            invitation_message:params.payload.data.message
+        }
+            
+        
+        yield put({type : "SEND_NOTIFICATION/SUCCEEDED",payload:{}})
+        WebSocketService.sendNotification(data);
+    }catch(error){
+        yield put({type : "SEND_NOTIFICATION/FAILED",payload:{error}})
+    }
+}
 function* sendMessage(params){
     try {
-
+        
         yield put({type : "SEND_MESSAGE/SUCCEEDED",payload:{}})
         WebSocketService.sendMessage(params.payload.data)
     } catch (error) {
@@ -86,7 +104,7 @@ function* getMessageLogRequested(params){
             yield put({type : "GET_MESSAGE_LOG/FAILED",payload:error})
     }
 }
-function* getUserDetailRequested(){
+function* getUserDetailRequested(callback){
     try{
         let token = localStorage.getItem("token")
         let {data,status} = yield call(get,API.ME,null,token);
@@ -97,7 +115,7 @@ function* getUserDetailRequested(){
             
             yield put({type : "GET_USER_DETAIL/SUCCEEDED",payload:{data,status,tokenMessage}})
             localStorage.setItem("status",status)
-            WebSocketService.connect(tokenMessage.data,data.email,data.id)
+            WebSocketService.connect(tokenMessage.data,data.email,data.id,callback.payload)
             
         }
         else{
@@ -124,11 +142,27 @@ function* getListMessageLog() {
         yield put({type : "GET_LIST_MESSAGE_LOG/FAILED",payload :error})
     }
 }
+function* getListNotification(){
+    try{
+        let token = localStorage.getItem("token");
+        const {data,status} = yield call(get,API.GET_LIST_NOTIFICATION,null,token);
+        if(status === 200){
+            yield put({type : "GET_LIST_NOTIFICATION/SUCCEEDED",payload:{data,status}})
+        }
+        else{
+            yield put({type : "GET_LIST_NOTIFICATION/FAILED",payload : {data,status}})
+        }
+    }catch (error) {
+        yield put({type : "GET_LIST_NOTIFICATION/FAILED",payload:{error}})
+    }
+}
 export default function* homeSaga(){
     yield takeEvery("GET_LIST_FRIEND/REQUESTED",getListFriendRequested)
     yield takeEvery("GET_USER_DETAIL/REQUESTED",getUserDetailRequested)
     yield takeEvery("GET_MESSAGE_LOG/REQUESTED",getMessageLogRequested)
     yield takeEvery("SEND_MESSAGE/REQUESTED",sendMessage)
     yield takeEvery("LEAVE_ROOM/REQUESTED",leaveRoomRequested)
+    yield takeEvery("SEND_NOTIFICATION/REQUESTED",sendNotification)
     yield takeEvery("GET_LIST_MESSAGE_LOG/REQUESTED",getListMessageLog)
+    yield takeEvery("GET_LIST_NOTIFICATION/REQUESTED",getListNotification)
 }
