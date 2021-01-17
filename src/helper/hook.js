@@ -68,9 +68,13 @@ export default function Spirity(){
     function acceptFriend(payload){
         return dispatch(messageAction.acceptFriend.requested({data:payload}))
     }
+    function createConversation(payload){
+        return dispatch(messageAction.createConversation.requested({data:payload,callback:history}))
+    }
     return{
         store:{authStore,homeStore, messageStore},
         action:{login,register,forgot,
+            createConversation,
             logout,confirmToken,
             acceptFriend,
             addFriend,updateNotification,

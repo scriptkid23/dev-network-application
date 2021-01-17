@@ -50,6 +50,11 @@ export const actions = createActions({
         "REQUESTED": [meta => meta, payload => payload],
         "SUCCEEDED": [meta => meta, payload => payload],
         "FAILED": [meta => meta, payload => payload]
+    },
+    "CREATE_CONVERSATION":{
+        "REQUESTED": [meta => meta, payload => payload],
+        "SUCCEEDED": [meta => meta, payload => payload],
+        "FAILED": [meta => meta, payload => payload]
     }
     
     
@@ -68,6 +73,22 @@ const defaultState = {
    
 }
 const reducers = handleActions({
+    [actions.createConversation.requested]: (state,action) => {
+        return({
+            ...state,
+        })
+    },
+    [actions.createConversation.succeeded]: (state,action) => {
+        return({
+            ...state,
+        })
+    },
+    [actions.createConversation.failed]: (state,action) => {
+        return({
+            ...state,
+        })
+    },
+
     [actions.acceptFriend.requested]: (state,action) => {
         return({
             ...state,

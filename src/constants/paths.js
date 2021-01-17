@@ -24,6 +24,8 @@ export const API = {
     SEND_MESSAGE: "/api/v1/user/send/message",
     GET_LIST_NOTIFICATION: "/api/v1/user/notifications",
     ACCEPT_FRIEND:"/api/v1/user/accept/friend",
+    CREATE_CONVERSATION:"/api/v1/user/create/conversation",
+    
 }
 export const COMPONENT = {
     CHATS : "chats",

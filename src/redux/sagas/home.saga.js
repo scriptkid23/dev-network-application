@@ -141,6 +141,22 @@ function* acceptFriend(params){
         yield put({type : "ACCEPT_FRIEND/FAILED",payload:{error}})
     }
 }
+function* createConversation(params,callback){
+    try {
+        let token = localStorage.getItem("token");
+        let body = {
+            "receiver": [params.payload.data]
+        }
+        const {data,status} = yield call(post,API.CREATE_CONVERSATION,body,token);
+        console.log(data)
+        if(status === 200){
+            yield put({type:"CREATE_CONVERSATION/SUCCEEDED",payload:{data,status}})
+            params.payload.callback.push("/home/"+data.channel_id)
+        }
+    } catch (error) {
+        yield put({type : "CREATE_CONVERSATION/FAILED",payload:{error}})
+    }
+}
 export default function* homeSaga(){
     yield takeEvery("GET_LIST_FRIEND/REQUESTED",getListFriendRequested)
     yield takeEvery("GET_USER_DETAIL/REQUESTED",getUserDetailRequested)
@@ -151,4 +167,5 @@ export default function* homeSaga(){
     yield takeEvery("GET_LIST_MESSAGE_LOG/REQUESTED",getListMessageLog)
     yield takeEvery("GET_LIST_NOTIFICATION/REQUESTED",getListNotification)
     yield takeEvery("ACCEPT_FRIEND/REQUESTED",acceptFriend);
+    yield takeEvery("CREATE_CONVERSATION/REQUESTED",createConversation);
 }
