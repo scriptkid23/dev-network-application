@@ -1,15 +1,17 @@
 import React, {useState} from 'react'
 import {Dropdown} from 'react-bootstrap'
 import {ThreeDot} from '../../../assets/index'
+import Spirity from '../../../helper/hook';
 import {CustomToggle, CustomMenu} from '../../common/index'
 
 const FriendsDropdown = ({user}) => {
 
     const [dropdownOpen, setDropdownOpen] = useState(false);
-
+    const { store, action } = Spirity();
     const toggle = () => setDropdownOpen(prevState => !prevState);
     const handleNewChat = () => {
-        console.log(user)
+        console.log(user.email)
+        action.createConversation(user.email);
     }
 
     return (

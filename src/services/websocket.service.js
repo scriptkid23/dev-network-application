@@ -13,14 +13,28 @@ class WebSocketService{
     connect(token_message,username){
         var socket = new SockJS("https://capricorn-chat-serv.herokuapp.com/ws");
         this.stompClient = Stomp.over(socket);
+        var that = this;
         var headers = {
             Authorization: token_message,
             Username: username,
         }
-        this.stompClient.connect(headers,function(frame){
-            console.log("Connected!")
-            console.log(frame)
+        
+        this.stompClient.connect(headers,() => {
+            console.log(id)
+            that.stompClient.subscribe("/topic/workspace",(message)=>{
+                console.log(message)
+            })  
+            that.stompClient.subscribe("/user/"+id+"/queue/notifications",(message) => {
+                console.log(message)
+                callback.updateNotification(JSON.parse(message.body))
+            })
+
+            that.stompClient.send("/app/workspace",{},JSON.stringify({
+                "from":username,
+                "text": "online",
+            }))
         })
+
 
     }
     disconnect(){
@@ -41,12 +55,15 @@ class WebSocketService{
     }
     joinRoom({channelId,callback}){
         return this.mySubscribe = this.stompClient.subscribe(
-            "/topic/"+channelId+"/queue/messages",
+            "/user/"+channelId+"/queue/messages",
             (message) => {
                     console.log(JSON.parse(message.body))
                     callback(JSON.parse(message.body))
             }
         )
+    }
+    sendNotification(payload){
+        return this.stompClient.send("/app/notification",{},JSON.stringify(payload))
     }
 
 }
