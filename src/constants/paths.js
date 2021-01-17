@@ -23,6 +23,7 @@ export const API = {
     GET_LIST_MESSAGE_LOG:"/api/v1/user/message/log",
     SEND_MESSAGE: "/api/v1/user/send/message",
     GET_LIST_NOTIFICATION: "/api/v1/user/notifications",
+    ACCEPT_FRIEND:"/api/v1/user/accept/friend",
 }
 export const COMPONENT = {
     CHATS : "chats",

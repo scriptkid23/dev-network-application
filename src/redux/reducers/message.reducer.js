@@ -45,6 +45,11 @@ export const actions = createActions({
         "REQUESTED": [meta => meta, payload => payload],
         "SUCCEEDED": [meta => meta, payload => payload],
         "FAILED": [meta => meta, payload => payload]
+    },
+    "ACCEPT_FRIEND":{
+        "REQUESTED": [meta => meta, payload => payload],
+        "SUCCEEDED": [meta => meta, payload => payload],
+        "FAILED": [meta => meta, payload => payload]
     }
     
     
@@ -63,6 +68,22 @@ const defaultState = {
    
 }
 const reducers = handleActions({
+    [actions.acceptFriend.requested]: (state,action) => {
+        return({
+            ...state,
+        })
+    },
+    [actions.acceptFriend.succeeded]: (state,action) => {
+        return({
+            ...state,
+        })
+    },
+    [actions.acceptFriend.failed]: (state,action) => {
+        return({
+            ...state,
+        })
+    },
+
     [actions.getListNotification.requested]: (state,action) => {
         return({
             ...state,

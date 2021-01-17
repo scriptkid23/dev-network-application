@@ -2,14 +2,15 @@ import React from 'react'
 import {ThreeDot} from '../../../assets/index'
 import {CustomToggle, CustomMenu} from '../../common/index'
 import {Dropdown} from 'react-bootstrap'
+import Spirity from '../../../helper/hook';
 
 export default function NotificationDropdown({data}) {
 
     const [dropdownOpen, setDropdownOpen] = React.useState(false);
-
+    const { store, action } = Spirity();
     const toggle = () => setDropdownOpen(prevState => !prevState);
-    const handleNewChat = () => {
-        console.log(data)
+    const handleAccept = () => {
+        action.acceptFriend(data)
     }
 
     return (
@@ -18,7 +19,7 @@ export default function NotificationDropdown({data}) {
                 <ThreeDot/>
             </Dropdown.Toggle>
             <Dropdown.Menu>
-                <Dropdown.Item onClick={handleNewChat}>Accept</Dropdown.Item>
+                <Dropdown.Item onClick={handleAccept}>Accept</Dropdown.Item>
                 <Dropdown.Item>Denial</Dropdown.Item>
             </Dropdown.Menu>
         </Dropdown>

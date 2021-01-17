@@ -65,10 +65,14 @@ export default function Spirity(){
     function updateNotification(payload){
         return dispatch(messageAction.updateNotification({data:payload}))
     }
+    function acceptFriend(payload){
+        return dispatch(messageAction.acceptFriend.requested({data:payload}))
+    }
     return{
         store:{authStore,homeStore, messageStore},
         action:{login,register,forgot,
             logout,confirmToken,
+            acceptFriend,
             addFriend,updateNotification,
             getMessageLog,sendMessage,updateMessage,
             leaveRoom,getListMessageLog,setChannel,
