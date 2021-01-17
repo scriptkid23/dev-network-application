@@ -59,10 +59,25 @@ export default function Spirity(){
     function setChannel(id){
         return dispatch(homeAction.sidebar.setChannel(id))
     }
+    function addFriend(payload){
+        return dispatch(messageAction.sendNotification.requested({data:payload}))
+    }
+    function updateNotification(payload){
+        return dispatch(messageAction.updateNotification({data:payload}))
+    }
+    function acceptFriend(payload){
+        return dispatch(messageAction.acceptFriend.requested({data:payload}))
+    }
+    function createConversation(payload){
+        return dispatch(messageAction.createConversation.requested({data:payload,callback:history}))
+    }
     return{
         store:{authStore,homeStore, messageStore},
         action:{login,register,forgot,
+            createConversation,
             logout,confirmToken,
+            acceptFriend,
+            addFriend,updateNotification,
             getMessageLog,sendMessage,updateMessage,
             leaveRoom,getListMessageLog,setChannel,
             getListFriend,setComponent}
