@@ -10,10 +10,10 @@ class WebSocketService{
     getLogMessage(payload){
 
     }
-    connect(token_message,username){
+    connect(token_message,username,id,callback){
         var socket = new SockJS("https://capricorn-chat-serv.herokuapp.com/ws");
-        this.stompClient = Stomp.over(socket);
         var that = this;
+        this.stompClient = Stomp.over(socket);
         var headers = {
             Authorization: token_message,
             Username: username,
