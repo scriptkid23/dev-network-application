@@ -1,4 +1,4 @@
-import {Signup,Signin,PasswordRecovery,ConfirmToken} from './pages/Auth/index';
+import {Signup,Signin,PasswordRecovery,ConfirmToken,NewPassword} from './pages/Auth/index';
 import{Home} from './pages/Home/index';
 
 const Routers = [
@@ -26,6 +26,11 @@ const Routers = [
         name: "Password Recovery",
         component: PasswordRecovery,
         require : false,
+    },
+    {
+        path:"/auth/password/new",
+        name:"New Password",
+        component: NewPassword,
     },
     {
         path: "/home",

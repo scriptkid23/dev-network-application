@@ -13,6 +13,10 @@ const FriendsDropdown = ({user}) => {
         console.log(user.email)
         action.createConversation(user.email);
     }
+    const handleProfile = ()  => {
+        console.log(user)
+        action.getProfile(user.id);
+    }
 
     return (
         <Dropdown isOpen={dropdownOpen} toggle={toggle}>
@@ -21,7 +25,7 @@ const FriendsDropdown = ({user}) => {
             </Dropdown.Toggle>
             <Dropdown.Menu>
                 <Dropdown.Item onClick={handleNewChat}>New chat</Dropdown.Item>
-                <Dropdown.Item>Profile</Dropdown.Item>
+                <Dropdown.Item onClick={handleProfile}>Profile</Dropdown.Item>
                 <Dropdown.Item divider/>
                 <Dropdown.Item>Block</Dropdown.Item>
             </Dropdown.Menu>

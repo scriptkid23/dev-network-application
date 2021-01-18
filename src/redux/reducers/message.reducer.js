@@ -55,6 +55,11 @@ export const actions = createActions({
         "REQUESTED": [meta => meta, payload => payload],
         "SUCCEEDED": [meta => meta, payload => payload],
         "FAILED": [meta => meta, payload => payload]
+    },
+    "GET_PROFILE":{
+        "REQUESTED": [meta => meta, payload => payload],
+        "SUCCEEDED": [meta => meta, payload => payload],
+        "FAILED": [meta => meta, payload => payload]
     }
     
     
@@ -73,6 +78,22 @@ const defaultState = {
    
 }
 const reducers = handleActions({
+    [actions.getProfile.requested]: (state,action) => {
+        return({
+            ...state,
+        })
+    },
+    [actions.getProfile.succeeded]: (state,action) => {
+        return({
+            ...state,
+        })
+    },
+    [actions.getProfile.failed]: (state,action) => {
+        return({
+            ...state,
+        })
+    },
+
     [actions.createConversation.requested]: (state,action) => {
         return({
             ...state,

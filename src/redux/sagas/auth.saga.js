@@ -1,4 +1,6 @@
 import {takeEvery,put,call} from 'redux-saga/effects';
+import { API } from '../../constants/paths';
+import { post } from '../../helper/helper';
 import AuthService from '../../services/auth.service';
 import WebSocketService from '../../services/websocket.service'
 
@@ -75,7 +77,7 @@ function* confirmRequested(params){
           yield put({type : "CONFIRM/SUCCEEDED",payload:{data,status}})
          
           localStorage.setItem("token",params.payload.data.token)
-          params.payload.callback.push("/home")
+          params.payload.callback.push("/auth/password/new")
       }
       else{
         yield put({type : "CONFIRM/FAILED",payload:{data,status}})
@@ -86,6 +88,19 @@ function* confirmRequested(params){
         yield put({type : "CONFIRM/FAILED",payload : {data : {message : e}}})
     }
 }
+function* resetPassword(params){
+    try {
+        let token = localStorage.getItem("token");
+        let body = params.payload.data;
+        let {data,status} = yield call(post,API.RESET_PASSWORD,body,token);
+        if(status === 200){
+            params.payload.callback.push("/home");
+            yield put({type : "RESET_PASSWORD/SUCCEEDED",payload:{data,status}})
+        }
+    } catch (error) {
+        yield put({type:"RESET_PASSWORD/FAILED",payload:{error}})
+    }
+}
 
 export default function* authSaga(){
     yield takeEvery("LOGIN/REQUESTED",loginRequested)
@@ -93,4 +108,5 @@ export default function* authSaga(){
     yield takeEvery("CONFIRM/REQUESTED",confirmRequested)
     yield takeEvery("SIGNUP/REQUESTED",registerRequested)
     yield takeEvery("LOGOUT/REQUESTED",logoutRequested)
+    yield takeEvery("RESET_PASSWORD/REQUESTED",resetPassword);
 }
