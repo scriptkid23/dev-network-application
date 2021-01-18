@@ -25,7 +25,8 @@ export const API = {
     GET_LIST_NOTIFICATION: "/api/v1/user/notifications",
     ACCEPT_FRIEND:"/api/v1/user/accept/friend",
     CREATE_CONVERSATION:"/api/v1/user/create/conversation",
-    
+    RESET_PASSWORD:"/api/v1/auth/reset/password",
+    GET_PROFILE: "/api/v1/user/profile"
 }
 export const COMPONENT = {
     CHATS : "chats",

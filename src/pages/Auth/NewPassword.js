@@ -11,9 +11,13 @@ export function NewPassword() {
     var authStore = store.authStore;
     const { register, handleSubmit, errors } = useForm();
     const onSubmit = data => {
-        action.new(data)
+     
+        if(data.password !== data.cfpassword){
+            return
+        }
+        action.resetPassword(data);
     };
-
+    
     return (
         <div className="container d-flex flex-column" onSubmit={handleSubmit(onSubmit)}>
             {authStore.loading && <Backdrop show={authStore.loading ? true : false} />}
@@ -30,21 +34,24 @@ export function NewPassword() {
                     <form class="mb-3">
                         <div className="form-group">
                             <label for="newpassword" className="sr-only">New Password</label>
-                            <input formControlName="newpassword"
+                            <input 
                                 required
-                                name="newpassword"
+                                name="password"
                                 type="password" className="form-control form-control-md" id="newpassword" placeholder="Enter your new password"
                                 ref={register({ required: true })} />
                         </div>
                         <div className="form-group">
                             <label for="cfpassword" className="sr-only">Confirm Password</label>
-                            <input formControlName="cfpassword"
+                            
+                            <input
                                 required
                                 name="cfpassword"
                                 type="password" className="form-control form-control-md" id="cfpassword" placeholder="Enter your confirm password"
-                                ref={register({ required: true })} />
+                                ref={register({ required: true})} />
                         </div>
-                        <button className="btn btn-primary btn-lg btn-block text-uppercase font-weight-semibold"
+                        <button 
+                            
+                            className="btn btn-primary btn-lg btn-block text-uppercase font-weight-semibold"
                             type="submit"
                             onClick={handleSubmit(onSubmit)} >
                             Submit

@@ -71,9 +71,17 @@ export default function Spirity(){
     function createConversation(payload){
         return dispatch(messageAction.createConversation.requested({data:payload,callback:history}))
     }
+    function resetPassword(payload){
+        return dispatch(authAction.resetPassword.requested({data:payload,callback:history}));
+    }
+    function getProfile(payload){
+        return dispatch(messageAction.getProfile.requested({data:payload}))
+    }
     return{
         store:{authStore,homeStore, messageStore},
         action:{login,register,forgot,
+            getProfile,
+            resetPassword,
             createConversation,
             logout,confirmToken,
             acceptFriend,

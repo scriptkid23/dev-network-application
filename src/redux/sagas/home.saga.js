@@ -157,6 +157,18 @@ function* createConversation(params,callback){
         yield put({type : "CREATE_CONVERSATION/FAILED",payload:{error}})
     }
 }
+function* getProfile(params) {
+    try {
+        let id = params.payload.data;
+        let token = localStorage.getItem("token")
+        const {data,status} = yield call(get,API.GET_PROFILE+"/"+id,null,token);
+        if(status === 200){
+            yield put({type : "GET_PROFILE/SUCCEEDED",payload:{data,status}})
+        }
+    } catch (error) {
+        yield put({type : "GET_PROFILE/FAILED",payload:{error}})
+    }
+}
 export default function* homeSaga(){
     yield takeEvery("GET_LIST_FRIEND/REQUESTED",getListFriendRequested)
     yield takeEvery("GET_USER_DETAIL/REQUESTED",getUserDetailRequested)
@@ -168,4 +180,5 @@ export default function* homeSaga(){
     yield takeEvery("GET_LIST_NOTIFICATION/REQUESTED",getListNotification)
     yield takeEvery("ACCEPT_FRIEND/REQUESTED",acceptFriend);
     yield takeEvery("CREATE_CONVERSATION/REQUESTED",createConversation);
+    yield takeEvery("GET_PROFILE/REQUESTED",getProfile);
 }

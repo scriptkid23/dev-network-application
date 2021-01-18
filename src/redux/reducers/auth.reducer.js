@@ -30,6 +30,11 @@ export const actions = createActions({
         "SUCCEEDED": [meta => meta, payload => payload],
         "FAILED": [meta => meta, payload => payload],
     },
+    "RESET_PASSWORD":{
+        "REQUESTED": [meta => meta, payload => payload],
+        "SUCCEEDED": [meta => meta, payload => payload],
+        "FAILED": [meta => meta, payload => payload],
+    },
 
 
 });
@@ -47,7 +52,21 @@ const defaultState = {
 }
 const reducers = handleActions({
   
-    
+    [actions.resetPassword.requested]: (state, action) => {
+        return({
+            ...state,
+        })
+    },
+    [actions.resetPassword.succeeded]: (state, action) => {
+        return({
+            ...state,
+        })
+    },
+    [actions.resetPassword.failed]: (state, action) => {
+        return({
+            ...state,
+        })
+    },
     [actions.forgot.requested] : (state,action) => {
         return({
             ...state,
