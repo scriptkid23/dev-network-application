@@ -77,10 +77,14 @@ export default function Spirity(){
     function getProfile(payload){
         return dispatch(messageAction.getProfile.requested({data:payload}))
     }
+    function editProfile(payload){
+        return dispatch(messageAction.editProfile.requested({data:payload}))
+    }
     return{
         store:{authStore,homeStore, messageStore},
         action:{login,register,forgot,
             getProfile,
+            editProfile,
             resetPassword,
             createConversation,
             logout,confirmToken,

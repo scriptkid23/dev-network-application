@@ -2,7 +2,7 @@ import {takeEvery,put,call,select,delay} from 'redux-saga/effects';
 import UserService from '../../services/user.service';
 import WebSocketService from '../../services/websocket.service'
 import AuthService from '../../services/auth.service';
-import { get,post } from '../../helper/helper';
+import { get,post,put_} from '../../helper/helper';
 import { API } from '../../constants/paths';
 
 function* getListFriendRequested(params){
@@ -169,6 +169,18 @@ function* getProfile(params) {
         yield put({type : "GET_PROFILE/FAILED",payload:{error}})
     }
 }
+function* editProfile(params){
+    try {
+        let body = params.payload.data;
+        let token = localStorage.getItem("token");
+        const {data,status} = yield call(put_,API.UPDATE_PROFILE,body,token);
+        if(status === 200) {
+            yield put({type : "EDIT_PROFILE/SUCCEEDED",payload:{data,status}})
+        }
+    } catch (error) {
+        yield put({type : "EDIT_PROFILE/FAILED",payload:{error}})
+    }
+}
 export default function* homeSaga(){
     yield takeEvery("GET_LIST_FRIEND/REQUESTED",getListFriendRequested)
     yield takeEvery("GET_USER_DETAIL/REQUESTED",getUserDetailRequested)
@@ -181,4 +193,5 @@ export default function* homeSaga(){
     yield takeEvery("ACCEPT_FRIEND/REQUESTED",acceptFriend);
     yield takeEvery("CREATE_CONVERSATION/REQUESTED",createConversation);
     yield takeEvery("GET_PROFILE/REQUESTED",getProfile);
+    yield takeEvery("EDIT_PROFILE/REQUESTED",editProfile);
 }
