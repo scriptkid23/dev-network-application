@@ -9,27 +9,58 @@ export function Chats() {
     const history = useHistory();  
     const params = useParams();
     const {store,action} =Spirity();
+    function compareObjects(object1, object2, key) {
+        const obj1 = object1[key]
+        const obj2 = object2[key]
+        
+        if (obj1 > obj2) {
+          return -1
+        }
+        if (obj1 < obj2) {
+          return 1;
+        }
+        return 0;
+      };
     const goToRoomId = (id) => {
         history.push(`/home/${id}`)
     }
+    
     const setRoom = (id) => {
         action.setChannel(id);
         goToRoomId(id);
     }
+    const exportTitle = (data) => {
+        if(data.member.length > 2){
+            return data.title;
+        }
+        else{
+            let ownerId = store.messageStore.user_detail.id;
+            let result = data.member.filter(value => value.id !== ownerId);
+            return result[0].first_name +" "+result[0].last_name;
+        }
+    }
+    const exportAvatar = (data) => {
+        let ownerId = store.messageStore.user_detail.id;
+        let result = data.member.filter(value => value.id !== ownerId);
+        return result[0].avatar;
+    }
+  
     const renderListMessageLog = (data) => {
         console.log(data)
-        return data.map((value,index) => {
+        return data
+        .sort((data1,data2)=>{return compareObjects(data1,data2,'created_at')})
+        .map((value,index) => {
             return (
                 <li key={index} 
                     className={`list-group-item ${value.channel_id === params.id
                         ? "open-chat" : ""}`}
                     onClick={() => setRoom(value.channel_id)}>
                     <figure className="avatar avatar-state-success">
-                    <img src={value.avatar} className="rounded-circle" alt="avatar"/>
+                    <img src={exportAvatar(value)} className="rounded-circle" alt="avatar"/>
                     </figure>
                     <div class="users-list-body">
                         <div>
-                            <h5 className="">{value.first_name_receiver+" "+value.last_name_receiver}</h5>
+                            <h5 className="">{exportTitle(value)}</h5>
                             <p>{value.message}</p>
                         </div>
                         <div className="users-list-action">

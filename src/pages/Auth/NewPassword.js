@@ -57,8 +57,6 @@ export function NewPassword() {
                             Submit
             </button>
                     </form>
-                    <p> <Link to="/auth/login" className="font-weight-semibold">Sign in</Link>.
-           </p>
                 </div>
             </div>
 

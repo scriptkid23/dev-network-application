@@ -9,6 +9,7 @@ class Home extends Component {
     componentDidMount(){
         this.props.getUserDetail.requested({
             updateNotification:this.props.updateNotification,
+            updateChats : this.props.updateChats,
         });
         this.props.getListFriend.requested();
         this.props.getListMessageLog.requested();
@@ -29,6 +30,7 @@ class Home extends Component {
 const mapStateToProps = state => {return{home: state.home,auth:state.auth}};
 const mapDispatchToProps = dispatch => {
     return({
+        updateChats: bindActionCreators(messageReducer.actions.updateChats,dispatch),
         updateNotification:bindActionCreators(messageReducer.actions.updateNotification,dispatch),
         getListFriend: bindActionCreators(messageReducer.actions.getListFriend,dispatch),
         getUserDetail:bindActionCreators(messageReducer.actions.getUserDetail,dispatch),

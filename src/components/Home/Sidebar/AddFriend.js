@@ -14,6 +14,7 @@ export default function AddFriend() {
     const onSubmit = data => {
         data["sender"]= messageStore.user_detail.email
         action.addFriend(data)
+        setShow(false);
       };
     return (
         <div>
