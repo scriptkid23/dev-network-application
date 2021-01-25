@@ -20,7 +20,8 @@ export const API = {
     
     GET_LIST_FRIEND: "/api/v1/user/list/friend",
     GET_MESSAGE_LOG: "/api/v1/user/conversation",
-    GET_LIST_MESSAGE_LOG:"/api/v1/user/message/log",
+    // GET_LIST_MESSAGE_LOG:"/api/v1/user/message/log",
+    GET_LIST_MESSAGE_LOG:"/api/v1/user/message/group/log",
     SEND_MESSAGE: "/api/v1/user/send/message",
     GET_LIST_NOTIFICATION: "/api/v1/user/notifications",
     ACCEPT_FRIEND:"/api/v1/user/accept/friend",

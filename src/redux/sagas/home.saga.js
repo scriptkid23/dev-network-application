@@ -144,8 +144,9 @@ function* acceptFriend(params){
 function* createConversation(params,callback){
     try {
         let token = localStorage.getItem("token");
+
         let body = {
-            "receiver": [params.payload.data]
+            "receiver": params.payload.data.split(' ').join('').split(',')
         }
         const {data,status} = yield call(post,API.CREATE_CONVERSATION,body,token);
         console.log(data)

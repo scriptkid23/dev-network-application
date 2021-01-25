@@ -38,7 +38,7 @@ export const Chat = ({channelId}) => {
     }
     return (
         <div className="chat" >
-            <ChatHeader info={exportInfoHeader(store.messageStore.list_message_log)}/>
+            <ChatHeader info={exportInfoHeader(store.messageStore.list_message_log)} ownerId = {store.messageStore.user_detail.id}/>
             <ChatBody 
                 messages={store.messageStore.message_log.messages} 
                 uid={store.messageStore.user_detail.id}

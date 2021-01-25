@@ -9,13 +9,26 @@ export function Chats() {
     const history = useHistory();  
     const params = useParams();
     const {store,action} =Spirity();
+   
     const goToRoomId = (id) => {
         history.push(`/home/${id}`)
     }
+    
     const setRoom = (id) => {
         action.setChannel(id);
         goToRoomId(id);
     }
+    const exportTitle = (data) => {
+        if(data.member.length > 2){
+            return data.title;
+        }
+        else{
+            let ownerId = store.messageStore.user_detail.id;
+            let result = data.member.filter(value => value.id !== ownerId);
+            return result[0].first_name +" "+result[0].last_name;
+        }
+    }
+  
     const renderListMessageLog = (data) => {
         console.log(data)
         return data.map((value,index) => {
@@ -29,7 +42,7 @@ export function Chats() {
                     </figure>
                     <div class="users-list-body">
                         <div>
-                            <h5 className="">{value.first_name_receiver+" "+value.last_name_receiver}</h5>
+                            <h5 className="">{exportTitle(value)}</h5>
                             <p>{value.message}</p>
                         </div>
                         <div className="users-list-action">
