@@ -9,7 +9,18 @@ export function Chats() {
     const history = useHistory();  
     const params = useParams();
     const {store,action} =Spirity();
-   
+    function compareObjects(object1, object2, key) {
+        const obj1 = object1[key]
+        const obj2 = object2[key]
+        
+        if (obj1 > obj2) {
+          return -1
+        }
+        if (obj1 < obj2) {
+          return 1;
+        }
+        return 0;
+      };
     const goToRoomId = (id) => {
         history.push(`/home/${id}`)
     }
@@ -36,7 +47,9 @@ export function Chats() {
   
     const renderListMessageLog = (data) => {
         console.log(data)
-        return data.map((value,index) => {
+        return data
+        .sort((data1,data2)=>{return compareObjects(data1,data2,'created_at')})
+        .map((value,index) => {
             return (
                 <li key={index} 
                     className={`list-group-item ${value.channel_id === params.id

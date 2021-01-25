@@ -101,6 +101,7 @@ const reducers = handleActions({
             }else{
              
                 state.list_message_log[result].message = actions.payload.message;
+                state.list_message_log[result].created_at = actions.payload.created_at;
                 return({
                     ...state,
                     list_message_log:[...state.list_message_log]
