@@ -28,6 +28,10 @@ class WebSocketService{
                 console.log(message)
                 callback.updateNotification(JSON.parse(message.body))
             })
+            that.stompClient.subscribe("/user/"+id+"/queue/chats",(message) => {
+                console.log(message.body)
+                callback.updateChats(JSON.parse(message.body))
+            })
 
             that.stompClient.send("/app/workspace",{},JSON.stringify({
                 "from":username,

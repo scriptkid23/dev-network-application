@@ -10,7 +10,8 @@ const FriendsDropdown = ({user}) => {
     const { store, action } = Spirity();
     const toggle = () => setDropdownOpen(prevState => !prevState);
     const handleNewChat = () => {
-        console.log(user.email)
+        console.log(user)
+        action.setHeaderInfo(user);
         action.createConversation(user.email);
     }
     const handleProfile = ()  => {

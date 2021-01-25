@@ -55,7 +55,7 @@ function post(path,body,token = null){
     }
    
 }
-function put(path,body,token){
+function put_(path,body,token){
    if(token){
     return Axios({
         baseURL:baseUrl,
@@ -116,4 +116,4 @@ function getRoutes(route){
 function convertTime(time){
     return Moment(time).fromNow()
 }
-export {getRoutes,get,post,put,del,convertTime}
+export {getRoutes,get,post,put_,del,convertTime}

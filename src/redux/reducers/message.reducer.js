@@ -4,7 +4,7 @@ export const actions = createActions({
   
     "UPDATE_MESSAGE": [meta => meta, payload => payload],
     "UPDATE_NOTIFICATION":[meta => meta, payload => payload],
-
+    "UPDATE_CHATS":[meta => meta, payload => payload],
     "GET_LIST_FRIEND": {
         "REQUESTED" : [meta => meta, payload => payload],
         "SUCCEEDED" : [meta => meta, payload => payload],
@@ -60,7 +60,13 @@ export const actions = createActions({
         "REQUESTED": [meta => meta, payload => payload],
         "SUCCEEDED": [meta => meta, payload => payload],
         "FAILED": [meta => meta, payload => payload]
-    }
+    },
+    "EDIT_PROFILE":{
+        "REQUESTED": [meta => meta, payload => payload],
+        "SUCCEEDED": [meta => meta, payload => payload],
+        "FAILED": [meta => meta, payload => payload]
+    },
+   
     
     
     
@@ -78,6 +84,52 @@ const defaultState = {
    
 }
 const reducers = handleActions({
+    [actions.updateChats]: (state,actions) => {
+        if(state.list_message_log.length === 0){
+            return({
+                ...state,
+                list_message_log:[actions.payload],
+            })
+        }
+        else{
+            let result = state.list_message_log.findIndex((value => value.channel_id === actions.payload.channel_id))
+            if(result === -1){
+                return ({
+                    ...state,
+                    list_message_log:[...state.list_message_log,actions.payload]
+                })
+            }else{
+             
+                state.list_message_log[result].message = actions.payload.message;
+                state.list_message_log[result].created_at = actions.payload.created_at;
+                return({
+                    ...state,
+                    list_message_log:[...state.list_message_log]
+
+                })
+            }
+        }
+      
+    },
+    [actions.editProfile.requested]: (state,action) => {
+        return({
+            ...state,
+
+        })
+    },
+    [actions.editProfile.succeeded]: (state,action) => {
+        return({
+            ...state,
+
+        })
+    },
+    [actions.editProfile.failed]: (state,action) => {
+        return({
+            ...state,
+
+        })
+    },
+
     [actions.getProfile.requested]: (state,action) => {
         return({
             ...state,
