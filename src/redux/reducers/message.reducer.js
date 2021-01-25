@@ -85,10 +85,30 @@ const defaultState = {
 }
 const reducers = handleActions({
     [actions.updateChats]: (state,actions) => {
-        console.log(actions.payload)
-        return({
-            ...state,
-        })
+        if(state.list_message_log.length === 0){
+            return({
+                ...state,
+                list_message_log:[actions.payload],
+            })
+        }
+        else{
+            let result = state.list_message_log.findIndex((value => value.channel_id === actions.payload.channel_id))
+            if(result === -1){
+                return ({
+                    ...state,
+                    list_message_log:[...state.list_message_log,actions.payload]
+                })
+            }else{
+             
+                state.list_message_log[result].message = actions.payload.message;
+                return({
+                    ...state,
+                    list_message_log:[...state.list_message_log]
+
+                })
+            }
+        }
+      
     },
     [actions.editProfile.requested]: (state,action) => {
         return({

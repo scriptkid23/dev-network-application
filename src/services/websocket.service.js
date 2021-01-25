@@ -29,7 +29,7 @@ class WebSocketService{
                 callback.updateNotification(JSON.parse(message.body))
             })
             that.stompClient.subscribe("/user/"+id+"/queue/chats",(message) => {
-                console.log(message)
+                console.log(message.body)
                 callback.updateChats(JSON.parse(message.body))
             })
 

@@ -28,6 +28,11 @@ export function Chats() {
             return result[0].first_name +" "+result[0].last_name;
         }
     }
+    const exportAvatar = (data) => {
+        let ownerId = store.messageStore.user_detail.id;
+        let result = data.member.filter(value => value.id !== ownerId);
+        return result[0].avatar;
+    }
   
     const renderListMessageLog = (data) => {
         console.log(data)
@@ -38,7 +43,7 @@ export function Chats() {
                         ? "open-chat" : ""}`}
                     onClick={() => setRoom(value.channel_id)}>
                     <figure className="avatar avatar-state-success">
-                    <img src={value.avatar} className="rounded-circle" alt="avatar"/>
+                    <img src={exportAvatar(value)} className="rounded-circle" alt="avatar"/>
                     </figure>
                     <div class="users-list-body">
                         <div>
