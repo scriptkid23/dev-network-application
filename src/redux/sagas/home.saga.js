@@ -133,6 +133,7 @@ function* acceptFriend(params){
         const {data,status} = yield call(post,API.ACCEPT_FRIEND,params.payload.data,token);
         if(status === 200){
             yield put({type : "ACCEPT_FRIEND/SUCCEEDED",payload:{body,status}})
+            yield put({type:"GET_LIST_FRIEND/REQUESTED"})
         }
         else{
             yield put({type : "ACCEPT_FRIEND/FAILED",payload : {data,status}})
