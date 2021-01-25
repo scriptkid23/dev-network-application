@@ -101,6 +101,9 @@ export default function Spirity() {
   function editProfile(payload) {
     return dispatch(messageAction.editProfile.requested({ data: payload }));
   }
+  function setHeaderInfo(payload){
+    return dispatch(homeAction.setHeaderInfo(payload))
+  }
   return {
     store: { authStore, homeStore, messageStore },
     action: {
@@ -124,6 +127,7 @@ export default function Spirity() {
       setChannel,
       getListFriend,
       setComponent,
+      setHeaderInfo,
     },
   };
 }

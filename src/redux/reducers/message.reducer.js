@@ -4,7 +4,7 @@ export const actions = createActions({
   
     "UPDATE_MESSAGE": [meta => meta, payload => payload],
     "UPDATE_NOTIFICATION":[meta => meta, payload => payload],
-
+    "UPDATE_CHATS":[meta => meta, payload => payload],
     "GET_LIST_FRIEND": {
         "REQUESTED" : [meta => meta, payload => payload],
         "SUCCEEDED" : [meta => meta, payload => payload],
@@ -65,7 +65,8 @@ export const actions = createActions({
         "REQUESTED": [meta => meta, payload => payload],
         "SUCCEEDED": [meta => meta, payload => payload],
         "FAILED": [meta => meta, payload => payload]
-    }
+    },
+   
     
     
     
@@ -83,6 +84,12 @@ const defaultState = {
    
 }
 const reducers = handleActions({
+    [actions.updateChats]: (state,actions) => {
+        console.log(actions.payload)
+        return({
+            ...state,
+        })
+    },
     [actions.editProfile.requested]: (state,action) => {
         return({
             ...state,

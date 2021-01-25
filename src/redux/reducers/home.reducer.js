@@ -12,6 +12,7 @@ export const actions = createActions({
         "VIEW_PROFILE":[meta => meta, payload => payload],
         "CLOSE_PROFILE": [meta => meta, payload => payload],
     },
+    "SET_HEADER_INFO":[meta => meta, payload => payload],
     
     
 
@@ -20,9 +21,15 @@ const defaultState = {
    "room_id": null,
    "profile_visibly":false,
    "loading":false,
+   "header_info":{},
 }
 const reducers = handleActions({
-
+        [actions.setHeaderInfo]: (state, actions) => {
+            return({
+                ...state,
+                header_info:actions.payload
+            })
+        },
         [actions.sidebar.setChannel] : (state,actions) => {
             return {
                 ...state,
