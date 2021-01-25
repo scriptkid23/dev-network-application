@@ -3,7 +3,7 @@ import { Button, Modal } from 'react-bootstrap'
 import Spirity from '../../../helper/hook'
 import { useForm } from "react-hook-form";
 
-export default function AddFriend() {
+export default function EditProfile() {
     const [show, setShow] = React.useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -15,8 +15,8 @@ export default function AddFriend() {
 
     return (
         <div>
-            <div className="sidebar-group">
-                <div className={`sidebar ${homeStore.profile_visibly && 'active'}`}>
+            <div className="navigation-group">
+                <div className={`navigation ${homeStore.edit_profile && 'active'}`}> 
                     <div className="modal-content" show={show} onHide={handleClose}>
                         <div className="modal-header" closeButton>
                             <h5 className="modal-title">
