@@ -6,6 +6,8 @@ import Tooltip from 'react-bootstrap/Tooltip';
 import {COMPONENT} from '../../constants/paths'
 import Spirity from '../../helper/hook'
 import { Link } from 'react-router-dom';
+import {useDispatch} from 'react-redux'
+import * as homeReducer from '../../redux/reducers/home.reducer';
 const CustomizeOverlayTrigger = (props) => {
     return <OverlayTrigger
     placement="right"
@@ -33,7 +35,11 @@ export function Navigation({screen,setScreen}) {
    const setComponent = (comp) => {
         setScreen(comp)
    }
-   
+   const dispatch = useDispatch();
+    const homeAction = {...homeReducer.actions.chat}
+   const profileActions = () => {
+    dispatch(homeAction.viewProfile())
+    }
     return (
         <nav className="navigation">
             <div className="nav-group">
@@ -88,7 +94,7 @@ export function Navigation({screen,setScreen}) {
                                 </figure>
                             </Dropdown.Toggle>
                             <Dropdown.Menu>
-                                <Dropdown.Item eventKey="1">Profile</Dropdown.Item>
+                                <Dropdown.Item eventKey="1" onClick={profileActions}>Profile</Dropdown.Item>
                                 <Dropdown.Item eventKey="2">Setting</Dropdown.Item>
                                 <Dropdown.Divider />
                                 <Dropdown.Item eventKey="3" onClick={() => action.logout()}>Logout</Dropdown.Item>
