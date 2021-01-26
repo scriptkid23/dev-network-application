@@ -78,6 +78,7 @@ const defaultState = {
     "message_log":{
         "messages":[],
     },
+    "profile":{},
     "list_notification":[],
     "list_message_log": [],
   "get_user_detail": false,
@@ -138,6 +139,7 @@ const reducers = handleActions({
     [actions.getProfile.succeeded]: (state,action) => {
         return({
             ...state,
+            profile:action.payload.data,
         })
     },
     [actions.getProfile.failed]: (state,action) => {
