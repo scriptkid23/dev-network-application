@@ -17,6 +17,7 @@ const FriendsDropdown = ({user}) => {
     const handleProfile = ()  => {
         console.log(user)
         action.getProfile(user.id);
+        action.viewProfile();
     }
 
     return (

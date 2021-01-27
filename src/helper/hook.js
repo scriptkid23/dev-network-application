@@ -82,6 +82,9 @@ export default function Spirity() {
   function acceptFriend(payload) {
     return dispatch(messageAction.acceptFriend.requested({ data: payload }));
   }
+  function viewProfile(){
+    return dispatch(homeAction.chat.viewProfile());
+  }
   function createConversation(payload) {
     return dispatch(
       messageAction.createConversation.requested({
@@ -123,6 +126,7 @@ export default function Spirity() {
       sendMessage,
       updateMessage,
       leaveRoom,
+      viewProfile,
       getListMessageLog,
       setChannel,
       getListFriend,
