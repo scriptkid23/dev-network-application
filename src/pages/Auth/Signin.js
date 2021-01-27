@@ -45,7 +45,7 @@ export function Signin() {
                     id="password" placeholder="Enter your password"/>
                 </div>
                 <div className="form-group d-flex justify-content-end">
-                    <Link className="font-size-sm" to="/auth/password/recovery">Reset password</Link>
+                    <Link className="font-size-sm" to="/auth/password/recovery">Forgot Password</Link>
                 </div>
                 <button 
                     onClick={handleSubmit(onSubmit)}

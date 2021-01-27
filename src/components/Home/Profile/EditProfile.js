@@ -16,7 +16,7 @@ export default function EditProfile() {
     return (
         <div>
             <div className="navigation-group">
-                <div className={`navigation ${homeStore.edit_profile && 'active'}`}> 
+                <div> 
                     <div className="modal-content" show={show} onHide={handleClose}>
                         <div className="modal-header" closeButton>
                             <h5 className="modal-title">
@@ -118,6 +118,8 @@ export default function EditProfile() {
                                             </div>
                                         </div>
                                     </div>
+
+                                    
                                     <div className="tab-pane">
                                         <div className="form-group">
                                             <label for="about" className="">Write a few words that describe you</label>
