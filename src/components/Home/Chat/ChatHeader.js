@@ -11,9 +11,7 @@ export function ChatHeader({ info, ownerId, header_info }) {
   const dispatch = useDispatch();
   const homeAction = { ...homeReducer.actions.chat };
 
-  const profileActions = () => {
-    dispatch(homeAction.viewProfile());
-  };
+ 
   const exportTitle = (data) => {
     if (data.member.length > 2) {
       return data.title;
@@ -41,26 +39,7 @@ export function ChatHeader({ info, ownerId, header_info }) {
           </small>
         </div>
       </div>
-      <div class="chat-header-action">
-        <ul class="list-inline">
-          <li class="list-inline-item">
-            <Dropdown>
-              <Dropdown.Toggle as={CustomToggle}>
-                <Button variant="light">
-                  <ThreeDot />
-                </Button>
-              </Dropdown.Toggle>
-              <Dropdown.Menu className="dropdown-menu-right">
-                <Dropdown.Item onClick={profileActions}>Profile</Dropdown.Item>
-                <Dropdown.Item>Add to archive</Dropdown.Item>
-                <Dropdown.Item>Delete</Dropdown.Item>
-                <Dropdown.Divider />
-                <Dropdown.Item>Block</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-          </li>
-        </ul>
-      </div>
+      
     </div>
   );
 }
